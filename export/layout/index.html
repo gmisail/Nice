@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="/assets/skeleton.css">
+        <link rel="stylesheet" href="/assets/style.css">
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1><a href="/">gmisail</a></h1>
+        
+            <div class="body">
+                <div class="row">
+                    <div class="eight columns">
+                        <h5 id="title">::title::</h5>
+                        
+                        <p>::body::</p>
+                    </div>
+
+                    <div class="four columns">
+                        <h5 id="title">Posts</h5>
+                        <ul>
+                        ::foreach posts::
+                            <li><a href="/posts/::name::">::title::</a></li>
+                        ::end::
+                        </ul>
+                    </div>
+                </div>
+
+                <footer>
+                    <hr>
+                    <i>Written by Graham Misail using Nice.</i>
+                </footer>
+            </div>
+    
+        </div>
+    </body>
+</html>

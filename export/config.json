@@ -1,0 +1,8 @@
+{
+    "publicPath": "public",
+    "postPath": "posts",
+    "layoutPath": "layout",
+    "pagesPath": "pages",
+    "assetsPath": "assets",
+    "siteName": "Home"
+}

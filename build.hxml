@@ -1,0 +1,3 @@
+-cp src
+-main Nice
+-neko export/nice.n
