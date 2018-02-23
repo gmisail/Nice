@@ -6,7 +6,8 @@ import haxe.Template;
 import sys.io.File;
 
 typedef PostData = {
-    title : String
+    title : String,
+    markdown : Bool
 };
 
 class Post
@@ -33,6 +34,12 @@ class Post
         post.title = jsonData.title;
         post.data = postData;
         post.name = name;
+
+        if(jsonData.markdown != null && jsonData.markdown)
+        {
+            post.name = (name.split(".")[0]) + ".html";
+            post.data = Markdown.markdownToHtml(postData);
+        }
 
         return post;
     }

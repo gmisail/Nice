@@ -10,11 +10,15 @@ h1 {
     font-family: 'Fugaz One', cursive;
 }
 
+code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 a {
     color: red;
     text-decoration: none;
 }
 
-a:hover {
+.color:hover {
     color: black;
 }

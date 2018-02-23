@@ -49,7 +49,7 @@ class Generator
         
         for(file in Config.publicFolder)
         {
-            recursiveDelete(Config.config.publicPath + "/" + file);
+            recursiveDelete(Config.config.paths.publicDir + "/" + file);
         }
     }
 
@@ -57,11 +57,11 @@ class Generator
     {
         Sys.println("Nice -> Loading assets");
 
-        FileSystem.createDirectory('${Config.config.publicPath}/assets');
+        FileSystem.createDirectory('${Config.config.paths.publicDir}/assets');
 
         for(file in Config.assetsFolder)
         {
-            File.copy('${Config.config.assetsPath}/${file}', '${Config.config.publicPath}/assets/${file}');
+            File.copy('${Config.config.paths.assets}/${file}', '${Config.config.paths.publicDir}/assets/${file}');
         }
     }
 
@@ -71,7 +71,7 @@ class Generator
         
         for(file in Config.layoutFolder)
         {
-            var source = File.getContent('${Config.config.layoutPath}/${file}');
+            var source = File.getContent('${Config.config.paths.layout}/${file}');
             layout = new Template(source);
         }
     }
@@ -80,22 +80,22 @@ class Generator
     {
         Sys.println("Nice -> Compiling home");
 
-        var homePath = '${Config.config.pagesPath}/home.html';
+        var homePath = '${Config.config.paths.pages}/home.html';
         var output = Post.compile(layout, Post.load(homePath, "home.html"));
 
-        File.saveContent('${Config.config.publicPath}/index.html', output);
+        File.saveContent('${Config.config.paths.publicDir}/index.html', output);
     }
 
     private static function compilePosts() : Void
     {
         Sys.println("Nice -> Compiling posts");
         
-        var postsPath = '${Config.config.publicPath}/posts';
+        var postsPath = '${Config.config.paths.publicDir}/posts';
         FileSystem.createDirectory(postsPath);
 
         for(file in Config.postsFolder)
         {
-            var data = Post.load('${Config.config.postPath}/${file}', file);
+            var data = Post.load('${Config.config.paths.post}/${file}', file);
             posts.push(data);
         }
 

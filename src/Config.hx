@@ -6,11 +6,13 @@ import sys.io.File;
 import haxe.Json;
 
 typedef ConfigFile = {
-    publicPath : String,
-    postPath: String,
-    layoutPath: String,
-    pagesPath: String,
-    assetsPath: String
+    paths : {
+        publicDir : String,
+        post : String,
+        layout : String,
+        pages : String,
+        assets : String
+    }
 }
 
 class Config
@@ -47,11 +49,11 @@ class Config
     {
         Sys.println("Nice -> Loading directories");
         
-        publicFolder = FileSystem.readDirectory(config.publicPath);
-        postsFolder = FileSystem.readDirectory(config.postPath);
-        layoutFolder = FileSystem.readDirectory(config.layoutPath);
-        pagesFolder = FileSystem.readDirectory(config.pagesPath);
-        assetsFolder = FileSystem.readDirectory(config.assetsPath);
+        publicFolder = FileSystem.readDirectory(config.paths.publicDir);
+        postsFolder = FileSystem.readDirectory(config.paths.post);
+        layoutFolder = FileSystem.readDirectory(config.paths.layout);
+        pagesFolder = FileSystem.readDirectory(config.paths.pages);
+        assetsFolder = FileSystem.readDirectory(config.paths.assets);
 
         onLoad();
     }

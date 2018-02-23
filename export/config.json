@@ -1,8 +1,11 @@
 {
-    "publicPath": "public",
-    "postPath": "posts",
-    "layoutPath": "layout",
-    "pagesPath": "pages",
-    "assetsPath": "assets",
+    "paths" : {
+        "publicDir": "public",
+        "post": "posts",
+        "layout": "layout",
+        "pages": "pages",
+        "assets": "assets"
+    },
+
     "siteName": "Home"
 }
