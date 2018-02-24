@@ -1,40 +1,34 @@
 <html>
     <head>
         <link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet"> 
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
 
-        <link rel="stylesheet" href="/assets/skeleton.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="/assets/style.css">
     </head>
     
     <body>
         <div class="container">
-            <h1><a href="/">gmisail</a></h1>
-        
-            <div class="body">
-                <div class="row">
-                    <div class="eight columns">
-                        <h5 class="color" id="title">::title::</h5>
-                        
-                        <p>::body::</p>
-                    </div>
+            <h1 id="site-title" class="text-center"><a href="/">gmisail</a></h1>
+            
+            <hr>
 
-                    <div class="four columns">
-                        <h5 id="title">Posts</h5>
-                        <ul>
-                        ::foreach posts::
-                            <li><a href="/posts/::name::">::title::</a></li>
-                        ::end::
-                        </ul>
-                    </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <h4 class="color" id="title">::title::</h4>
+                    <p>::body::</p>
                 </div>
 
-                <footer>
-                    <hr>
-                    <i>Written by Graham Misail using Nice.</i>
-                </footer>
+                <div class="col-md-4">
+                    <h4 id="title">Posts</h4>
+                    <ul>
+                    ::foreach posts::
+                        <li><a href="/posts/::name::">::title::</a></li>
+                    ::end::
+                    </ul>
+                </div>
             </div>
-    
         </div>
     </body>
 </html>

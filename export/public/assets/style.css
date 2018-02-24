@@ -1,14 +1,20 @@
 #title {
-    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+#site-title {
+    font-family: 'Fugaz One', cursive;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Gentium Book Basic', serif;
 }
 
-h1 {
-    font-family: 'Fugaz One', cursive;
+h5 {
+    font-weight: bold;
 }
+
 
 code {
     font-family: 'Courier New', Courier, monospace;
