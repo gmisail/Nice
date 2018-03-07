@@ -46,6 +46,6 @@ class Post
 
     public static function compile(layout : Template, post : Post) : Dynamic
     {
-        return layout.execute({title: post.title, body: post.data, posts: Generator.posts});
+        return layout.execute({title: post.title, body: post.data, posts: Generator.posts, pages: Generator.pages});
     }
 }

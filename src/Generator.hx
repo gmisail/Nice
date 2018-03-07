@@ -11,16 +11,22 @@ class Generator
 {
     public static var layout : Template;
     public static var posts : Array<Post>;
+    public static var pages : Array<Post>;
 
     public static function init() : Void
     {
         posts = [];
+        pages = [];
         
         cleanPublic();
         loadAssets();
         compileLayout();
-        compilePosts();
+
+        loadPages();
+        loadPosts();
+        
         compileHome();
+        compileFinish();
     }
 
     private static function recursiveDelete(path : String) : Void
@@ -86,7 +92,7 @@ class Generator
         File.saveContent('${Config.config.paths.publicDir}/index.html', output);
     }
 
-    private static function compilePosts() : Void
+    private static function loadPosts() : Void
     {
         Sys.println("Nice -> Compiling posts");
         
@@ -98,11 +104,43 @@ class Generator
             var data = Post.load('${Config.config.paths.post}/${file}', file);
             posts.push(data);
         }
+    }
 
+    private static function loadPages() : Void
+    {
+        Sys.println("Nice -> Compiling pages");
+        
+        var pagesPath = '${Config.config.paths.publicDir}/pages';
+        FileSystem.createDirectory(pagesPath);
+
+        for(file in Config.pagesFolder)
+        {
+            if(file != "home.html") /* home.html is a reserved name by Nice because it is the index page */
+            {
+                var data = Post.load('${Config.config.paths.pages}/${file}', file);
+                pages.push(data);
+            }
+        }
+    }
+
+    /*
+        We have everything loaded at this point. Because we have all of the updated information, 
+        we can compile our pages and posts.
+    */
+    private static function compileFinish() : Void
+    {
+        var postsPath = '${Config.config.paths.publicDir}/posts';
         for(post in posts)
         {
             var output = Post.compile(layout, post);
             File.saveContent('${postsPath}/${post.name}', output);
+        }
+
+        var pagesPath = '${Config.config.paths.publicDir}/pages';
+        for(page in pages)
+        {
+            var output = Post.compile(layout, page);
+            File.saveContent('${pagesPath}/${page.name}', output);
         }
     }
 }

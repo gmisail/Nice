@@ -1,6 +1,8 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic" rel="stylesheet">
@@ -13,8 +15,6 @@
     <div class="container">
         <h1 id="site-title" class="text-center"><a href="/">gmisail<span class="cursor">_</span></a></h1>
 
-
-
         <div class="row">
             <div class="col-md-8">
                 <h4 class="color" id="title">::title::</h4>
@@ -22,6 +22,12 @@
             </div>
 
             <div class="col-md-4">
+                <h4 id="title">Pages</h4>
+                <ul>
+                    ::foreach pages::
+                    <li><a href="/pages/::name::">::title::</a></li>
+                    ::end::
+                </ul>
                 <h4 id="title">Posts</h4>
                 <ul>
                     ::foreach posts::
