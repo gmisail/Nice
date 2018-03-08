@@ -25,7 +25,7 @@ class Generator
         loadPages();
         loadPosts();
         
-        compileHome();
+        compileSpecial();
         compileFinish();
     }
 
@@ -82,7 +82,7 @@ class Generator
         }
     }
 
-    private static function compileHome() : Void
+    private static function compileSpecial() : Void
     {
         Sys.println("Nice -> Compiling home");
 
@@ -90,11 +90,18 @@ class Generator
         var output = Post.compile(layout, Post.load(homePath, "home.html"));
 
         File.saveContent('${Config.config.paths.publicDir}/index.html', output);
+
+        Sys.println("Nice -> Compiling 404");
+
+        var notFoundPath = '${Config.config.paths.pages}/404.html';
+        var output = Post.compile(layout, Post.load(notFoundPath, "404.html"));
+
+        File.saveContent('${Config.config.paths.publicDir}/404.html', output);
     }
 
     private static function loadPosts() : Void
     {
-        Sys.println("Nice -> Compiling posts");
+        Sys.println("Nice -> Loading posts");
         
         var postsPath = '${Config.config.paths.publicDir}/posts';
         FileSystem.createDirectory(postsPath);
@@ -108,14 +115,14 @@ class Generator
 
     private static function loadPages() : Void
     {
-        Sys.println("Nice -> Compiling pages");
+        Sys.println("Nice -> Loading pages");
         
         var pagesPath = '${Config.config.paths.publicDir}/pages';
         FileSystem.createDirectory(pagesPath);
 
         for(file in Config.pagesFolder)
         {
-            if(file != "home.html") /* home.html is a reserved name by Nice because it is the index page */
+            if(file != "home.html" && file != "404.html") /* home are 404 are reserved for the index.html and 404.html pages. */
             {
                 var data = Post.load('${Config.config.paths.pages}/${file}', file);
                 pages.push(data);
@@ -129,12 +136,16 @@ class Generator
     */
     private static function compileFinish() : Void
     {
+        Sys.println("Nice -> Compiling posts");
+
         var postsPath = '${Config.config.paths.publicDir}/posts';
         for(post in posts)
         {
             var output = Post.compile(layout, post);
             File.saveContent('${postsPath}/${post.name}', output);
         }
+
+        Sys.println("Nice -> Compiling pages");
 
         var pagesPath = '${Config.config.paths.publicDir}/pages';
         for(page in pages)
