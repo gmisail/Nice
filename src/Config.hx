@@ -17,6 +17,8 @@ typedef ConfigFile = {
 
 class Config
 {
+    public static var projectDirectory : String;
+
     public static var config : ConfigFile;
     public static var configPath : String = "config.json";
 
@@ -31,6 +33,9 @@ class Config
     public static function load(callback : Void->Void)
     {      
         onLoad = callback;
+
+        projectDirectory = Sys.args().pop();
+        Sys.setCwd(projectDirectory);
 
         if(FileSystem.exists(configPath))
         {

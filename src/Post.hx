@@ -24,10 +24,6 @@ class Post
     public static function load(filePath : String, name : String) : Post
     {
         var postSource = File.getContent(filePath);
-
-        Sys.println("Path -> " + filePath);
-        Sys.println("Source -> " + postSource);
-
         var postSections = postSource.split("---"); //this will cut out the Json data. The data will be in [1], and the post will be in [2]
         var headerData = postSections[1];
         var postData = postSections[2];

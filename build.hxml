@@ -1,4 +1,4 @@
 -cp src
 -lib markdown
 -main Nice
--neko export/nice.n
+-neko run.n
