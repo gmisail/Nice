@@ -108,9 +108,16 @@ class Generator
 
         for(file in Config.postsFolder)
         {
-            var data = Post.load('${Config.config.paths.post}/${file}', file);
+            if(file == ".DS_Store")
+                continue;
+
+            var path = '${Config.config.paths.post}/${file}';
+
+            var data = Post.load(path, file);
             posts.push(data);
         }
+
+        Sys.println("Nice -> Done loading posts.");
     }
 
     private static function loadPages() : Void
@@ -122,12 +129,18 @@ class Generator
 
         for(file in Config.pagesFolder)
         {
+            if(file == ".DS_Store")
+                continue;
+
             if(file != "home.html" && file != "404.html") /* home are 404 are reserved for the index.html and 404.html pages. */
             {
-                var data = Post.load('${Config.config.paths.pages}/${file}', file);
+                var path = '${Config.config.paths.pages}/${file}';
+                var data = Post.load(path, file);
                 pages.push(data);
             }
         }
+
+        Sys.println("Nice -> Done loading pages.");
     }
 
     /*
