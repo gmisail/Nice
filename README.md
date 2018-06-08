@@ -1,7 +1,17 @@
 # Nice
 
-Nice has one goal in mind: simplicity. Throw nice.n in your project,
-give it your files, publish your website. 
+## Installation
+
+Nice is distributed through haxelib. To install, type into terminal:
+
+`haxelib install nice`
+ 
+ To generate your site, type:
+ 
+ ```
+ cd your-site-path
+ haxelib run nice
+ ```
 
 ## Features
 * Lightweight
