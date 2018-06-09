@@ -7,7 +7,8 @@ import sys.io.File;
 
 typedef PostData = {
     title : String,
-    markdown : Bool
+    markdown : Bool,
+    date : String
 };
 
 class Post
@@ -15,6 +16,7 @@ class Post
     public var title : String;
     public var data : String;
     public var name : String;
+    public var date : String;
 
     public function new()
     {
@@ -36,6 +38,7 @@ class Post
 
         var post = new Post();
         post.title = jsonData.title;
+        if(jsonData.date != null) post.date = jsonData.date;
         post.data = postData;
         post.name = name;
 
@@ -50,6 +53,6 @@ class Post
 
     public static function compile(layout : Template, post : Post) : Dynamic
     {
-        return layout.execute({title: post.title, body: post.data, posts: Generator.posts, pages: Generator.pages});
+        return layout.execute({title: post.title, body: post.data, posts: Generator.posts, pages: Generator.pages, date: post.date});
     }
 }

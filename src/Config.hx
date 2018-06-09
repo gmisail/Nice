@@ -34,8 +34,10 @@ class Config
     {      
         onLoad = callback;
 
-        projectDirectory = Sys.args().pop();
-        Sys.setCwd(projectDirectory);
+        #if !dev
+            projectDirectory = Sys.args().pop();
+            Sys.setCwd(projectDirectory);
+        #end
 
         if(FileSystem.exists(configPath))
         {
