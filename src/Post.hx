@@ -17,13 +17,14 @@ class Post
     public var data : String;
     public var name : String;
     public var date : String;
+    public var kind : FileType;
 
     public function new()
     {
 
     }
 
-    public static function load(filePath : String, name : String) : Post
+    public static function load(filePath : String, name : String, kind : FileType) : Post
     {
         var postSource = File.getContent(filePath);
         var postSections = postSource.split("---"); //this will cut out the Json data. The data will be in [1], and the post will be in [2]
@@ -38,7 +39,13 @@ class Post
 
         var post = new Post();
         post.title = jsonData.title;
-        if(jsonData.date != null) post.date = jsonData.date;
+        
+        if(jsonData.date != null)
+            post.date = jsonData.date;
+        else
+            post.date = "";
+
+        post.kind = kind;
         post.data = postData;
         post.name = name;
 

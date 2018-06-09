@@ -4,7 +4,7 @@
   "license": "MIT",
   "tags": ["neko", "html", "web", "static-site-generator"],
   "description": "Cross platform static site generator",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "classPath": "src/",
   "releasenote": "Add dates to posts",
   "contributors": ["gmisail"],

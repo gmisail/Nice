@@ -87,14 +87,14 @@ class Generator
         Sys.println("Nice -> Compiling home");
 
         var homePath = '${Config.config.paths.pages}/home.html';
-        var output = Post.compile(layout, Post.load(homePath, "home.html"));
+        var output = Post.compile(layout, Post.load(homePath, "home.html", FileType.INDEX));
 
         File.saveContent('${Config.config.paths.publicDir}/index.html', output);
 
         Sys.println("Nice -> Compiling 404");
 
         var notFoundPath = '${Config.config.paths.pages}/404.html';
-        var output = Post.compile(layout, Post.load(notFoundPath, "404.html"));
+        var output = Post.compile(layout, Post.load(notFoundPath, "404.html", FileType.NOT_FOUND));
 
         File.saveContent('${Config.config.paths.publicDir}/404.html', output);
     }
@@ -113,7 +113,7 @@ class Generator
 
             var path = '${Config.config.paths.post}/${file}';
 
-            var data = Post.load(path, file);
+            var data = Post.load(path, file, FileType.POST);
             posts.push(data);
         }
 
@@ -135,7 +135,7 @@ class Generator
             if(file != "home.html" && file != "404.html") /* home are 404 are reserved for the index.html and 404.html pages. */
             {
                 var path = '${Config.config.paths.pages}/${file}';
-                var data = Post.load(path, file);
+                var data = Post.load(path, file, FileType.PAGE);
                 pages.push(data);
             }
         }
