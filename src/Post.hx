@@ -8,7 +8,8 @@ import sys.io.File;
 typedef PostData = {
     title : String,
     markdown : Bool,
-    date : String
+    date : String,
+    tags: Array<String>
 };
 
 class Post
@@ -18,6 +19,7 @@ class Post
     public var name : String;
     public var date : String;
     public var kind : FileType;
+    public var tags : Array<String>;
 
     public function new()
     {
@@ -39,7 +41,7 @@ class Post
 
         var post = new Post();
         post.title = jsonData.title;
-        
+
         if(jsonData.date != null)
             post.date = jsonData.date;
         else
@@ -48,6 +50,15 @@ class Post
         post.kind = kind;
         post.data = postData;
         post.name = name;
+        post.tags = [];
+
+        if(jsonData.tags != null)
+        {
+            for(tag in jsonData.tags)
+            {
+                post.tags.push(tag);
+            }
+        }
 
         if(jsonData.markdown != null && jsonData.markdown)
         {
@@ -60,6 +71,6 @@ class Post
 
     public static function compile(layout : Template, post : Post) : Dynamic
     {
-        return layout.execute({title: post.title, body: post.data, posts: Generator.posts, pages: Generator.pages, date: post.date});
+        return layout.execute({title: post.title, body: post.data, posts: Generator.posts, pages: Generator.pages, tags: Generator.tags, date: post.date, postTags: post.tags});
     }
 }

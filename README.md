@@ -25,5 +25,7 @@ The following variables are exposed from Nice to the templates:
 - `::pages::` - an array of the pages
 - `::name::` - name of the current file
 - `::date::` - date of the current post
+- `::tags::` - tags used by *all of the posts*. Duplicate tags are removed. 
+- `::postTag::` - tags used by the *current post*. 
 
 You can access these variables through the [Haxe Templating Engine](http://old.haxe.org/doc/cross/template). The template for every Nice page is located in `layout/index.html`.

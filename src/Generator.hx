@@ -12,11 +12,13 @@ class Generator
     public static var layout : Template;
     public static var posts : Array<Post>;
     public static var pages : Array<Post>;
+    public static var tags : Array<String>;
 
     public static function init() : Void
     {
         posts = [];
         pages = [];
+        tags = [];
         
         cleanPublic();
         loadAssets();
@@ -27,6 +29,24 @@ class Generator
         
         compileSpecial();
         compileFinish();
+    }
+
+    private static function addTags(postTags : Array<String>)
+    {
+        if(tags.length == 0) 
+        {
+            tags = tags.concat(postTags);
+        }
+        else
+        {
+            for(postTag in postTags)
+            {
+                if(tags.indexOf(postTag) == -1) //if it finds an id, that mean it exists.
+                {
+                    tags.push(postTag);
+                }
+            }
+        }
     }
 
     private static function recursiveDelete(path : String) : Void
@@ -112,9 +132,10 @@ class Generator
                 continue;
 
             var path = '${Config.config.paths.post}/${file}';
-
             var data = Post.load(path, file, FileType.POST);
             posts.push(data);
+
+            addTags(data.tags);
         }
 
         Sys.println("Nice -> Done loading posts.");
