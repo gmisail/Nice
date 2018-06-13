@@ -4,9 +4,9 @@
   "license": "MIT",
   "tags": ["neko", "html", "web", "static-site-generator"],
   "description": "Cross platform static site generator",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "classPath": "src/",
-  "releasenote": "Add tags to posts",
+  "releasenote": "New command line interface",
   "contributors": ["gmisail"],
   "dependencies": {
     "markdown": ""

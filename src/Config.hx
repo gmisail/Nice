@@ -22,6 +22,20 @@ class Config
     public static var config : ConfigFile;
     public static var configPath : String = "config.json";
 
+    private static var configTemplate : String = '
+        {
+            "paths" : {
+                "publicDir": "public",
+            "post": "posts",
+            "layout": "layout",
+            "pages": "pages",
+            "assets": "assets"
+            },
+
+            "siteName": "Home"
+        }
+    ';
+
     public static var publicFolder : Array<String>;
     public static var postsFolder : Array<String>;
     public static var layoutFolder : Array<String>;
@@ -50,6 +64,16 @@ class Config
         {
             Sys.println("Nice -> Cannot find config.json!");
         }
+    }
+
+    public static function createProject()
+    {
+        FileSystem.createDirectory("assets");
+        FileSystem.createDirectory("layout");
+        FileSystem.createDirectory("pages");
+        FileSystem.createDirectory("posts");
+        FileSystem.createDirectory("public");
+        File.saveContent("config.json", configTemplate);
     }
 
     public static function loadPaths()
