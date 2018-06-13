@@ -6,11 +6,17 @@ Nice is distributed through haxelib. To install, type into terminal:
 
 `haxelib install nice`
  
- To generate your site, type:
+ To generate a new site, first create a new folder. Then go to Terminal / Command Prompt:
  
  ```
  cd your-site-path
- haxelib run nice
+ haxelib run nice new
+ ```
+ 
+ To build your site, run this command:
+ 
+ ```
+ haxelib run nice build
  ```
 
 ## Theming
