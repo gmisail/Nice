@@ -19,7 +19,7 @@ class Post
     public var name : String;
     public var date : String;
     public var kind : FileType;
-    public var tags : Array<String>;
+    public var tags : Array<Tag>;
 
     public function new()
     {
@@ -56,7 +56,7 @@ class Post
         {
             for(tag in jsonData.tags)
             {
-                post.tags.push(tag);
+                post.tags.push(new Tag(tag));
             }
         }
 

@@ -12,7 +12,7 @@ class Generator
     public static var layout : Template;
     public static var posts : Array<Post>;
     public static var pages : Array<Post>;
-    public static var tags : Array<String>;
+    public static var tags : Array<Tag>;
 
     public static function init() : Void
     {
@@ -31,7 +31,7 @@ class Generator
         compileFinish();
     }
 
-    private static function addTags(postTags : Array<String>)
+    private static function addTags(postTags : Array<Tag>)
     {
         if(tags.length == 0) 
         {

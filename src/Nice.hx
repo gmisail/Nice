@@ -5,7 +5,6 @@ class Nice
     public static function main()
     {
         var command = Sys.args()[0];
-        var name = Sys.args()[1];
         
         switch(command){
             case "new":
