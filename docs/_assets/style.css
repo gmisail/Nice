@@ -1,0 +1,41 @@
+#title {
+    font-family: 'Oswald', sans-serif;
+}
+
+#site-title {
+    font-family: 'Oswald', monospace;
+    color: black;
+}
+
+body {
+    font-family: 'Merriweather', serif;
+    background-color: white;
+    color: black;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Oswald", sans-serif;
+}
+
+h1 {
+    color: red;
+    font-weight: 700;
+}
+
+pre {
+    background-color: lightgrey;
+	
+	padding: 8px;
+	
+    font-family: 'Oswald', Courier, monospace;
+    color: black;
+}
+
+a {
+    color: grey;
+    text-decoration: none;
+}
+
+.color:hover {
+    color: black;
+}
