@@ -1,0 +1,55 @@
+---
+title: EnglishScript, MIT Blueprint 18'
+date: February 2018
+---
+
+<p>
+    The learning curve of programming is very difficult for many individuals. At this year's MIT Blueprint, 
+    our group created a solution to this issue. The solution was <strong>EnglishScript</strong>. EnglishScript
+    is an interpreted programming language which replicates the English language. The goal of this language
+    was to abstract logic from syntax, allowing the user to learn how programming languages flow as opposed to a specific
+    syntax.
+</p>
+
+<pre>
+    <code>
+variable x equals 99 #you can define comments with number symbols
+x equals 4
+
+variable y equals 10
+y equals 10 plus 4
+x equals 4 times 4
+
+call print The variable x is equal to @x
+call print By the way, y is equal to @y
+    </code>
+</pre>
+
+<p>
+    This code will output to:
+
+    <pre>
+        <code>
+The variable x is equal to 16
+By the way, y is equal to 14
+        </code>
+    </pre>
+
+    The goal of the language was to allow novice programmers to learn programming <strong>logic</strong> instead of
+    a specific syntax. With this knowledge, the difficulty of learning other languages would be greatly minimized.
+</p>
+
+<h5>Implementation</h5>
+<p>
+    EnglishScript was implemented in Javascript. The language itself, although running on the client side, is not dependent
+    on the client or server side. The library requires a string that the interpreter will run. As long as you have a
+    string, EnglishScript does not care where it is run.
+</p>
+<p>
+    The interpreter takes a string and splits it by line breaks, or '\n' characters. For every line, the interpreter
+    will split the line by spaces, or the " " character. It first looks for keywords such as "variable," "equals," and "call." 
+    When it finds one of these phrases, it knows that it must be in a particular format. For instance, if it sees "equals", that
+    must mean that the term before it will be set to the term after it. It looks the preceding term, sees if it is a variable, and sets
+    it to the term after it. 
+</p>
+

@@ -1,4 +1,8 @@
--cp src
--lib markdown
--main Nice
+# libraries
+-lib yaml
+-lib hxmustache
+
+# build
+-cp nice
+-main nice.Main
 -neko run.n

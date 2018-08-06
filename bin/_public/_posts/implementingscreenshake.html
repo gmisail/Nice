@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/_assets/style.css">
+</head>
+
+<body>
+    <main class="container">
+			<div class="row pt-3">
+				<div class="col">
+					<h1 id="site-title">Graham</h1>
+                    <h1 id="site-title">Misail</h1>
+                    
+                    <hr>
+
+                    <h4 id="title">Pages</h4>
+    	            <ul>
+    	                    <li><a href="/index.html">Home</a></li>
+    	            </ul>
+				</div>
+			
+				<div class="col-md-6">
+    	            <h4 class="color" id="title">Implementing Screen Shake using Trig</h4>
+    	            <p>
+
+Screen shake is a popular effect used in video games where the visible contents on the 
+screen will shake. To implement this effect, all you need is some basic trigonometry. 
+
+<h5>Implementation</h5>
+
+<p>
+We want our screen to shake in all directions: up, down, left, and right. To achieve this,
+we will use the <i>sin</i> trig ratio. If you are unfamiliar, <i>sin</i> will return a 
+value within -1 and 1 based on the angle given (For a more detailed explanation, I'd recommend
+researching the basic trig ratios: sin, cos, and tan.)
+</p>
+
+<p>
+My implementation of screen shake will be in Haxe, but the logic will stay the same for most languages as long as they have a random number function and trig functions. By the way, <i>camera</i> represents a generic camera object with a position.
+</p>
+
+<pre>
+    <code>
+public function shake(a : Float) {
+    camera.x = a * Math.sin((2 * Math.PI) * Math.random());
+    camera.y = a * Math.sin((2 * Math.PI) * Math.random());
+}
+    </code>
+</pre>
+
+<p>
+If you have learned about trig ratios, you should know that 'a,' or the amplitude, is the max
+displacement in either direction. The amplitude will be the max number of pixels the camera will move in
+any direction.
+</p>
+
+<p>
+Since <i>Math.random()</i> returns a value from 0 to 1, we can find a random angle by multiplying our random number by
+the period of <i>sin.</i> For example, if <i>Math.random</i> generates 0.25 and we multiply it by <i>2 * Math.PI</i>,
+we will get the angle <i>Math.PI / 2</i> radians, or 90 degrees. <i>Math.sin(Math.PI / 2)</i> equals 1. If we multiply this
+by our amplitude, we will get how far we will displace the camera. If the amplitude is 10, then we will be moving the camera
+10 pixels in either the x or y directions. If the angle is greater than <i>Math.PI</i> then the camera will move in the negative
+direction. 
+</p>
+
+<p>
+To create the desired effect, call the <i>shake</i> function every frame you want the screen to shake.	
+</p>
+
+<p>
+For more information on trig functions, read <a href="https://www.mathsisfun.com/algebra/trigonometry.html">this page about basic trig.</a>
+</p></p>
+				</div>
+				
+				<div class="col">
+    	            <h4 id="title">Posts</h4>
+    	            <ul>
+    	                	<li><a href="/_posts/mitblueprint.html">EnglishScript, MIT Blueprint 18&#39;</a></li>
+    	                	<li><a href="/_posts/showdown.html">Design of Showdown</a></li>
+    	                	<li><a href="/_posts/ultimatetictactoe.html">Ultimate Tic Tac Toe</a></li>
+    	                	<li><a href="/_posts/implementingscreenshake.html">Implementing Screen Shake using Trig</a></li>
+    	                	<li><a href="/_posts/nice.html">Nice, a nice static site generator</a></li>
+    	                	<li><a href="/_posts/nog.html">Nog, synchronized text</a></li>
+    	            </ul>
+    	            <h4 id="title">Stalk</h4>
+    	            <ul>
+				        <li><a href="https://github.com/gmisail" aria-label="@gmisail"><i class="fab fa-github"></i> Github (@gmisail)</a></li>
+				        <li><a href="https://www.instagram.com/gmdevel/" aria-label="@gmdevel"><i class="fab fa-instagram"></i> Instagram (@gmdevel)</a></li>
+						<li><a href="https://twitter.com/gmdevacc" aria-label="@gmdevacc"><i class="fab fa-twitter"></i> Twitter (@gmdevacc)</a></li>
+    	            </ul>
+				</div>
+			</div>
+	</main>
+
+	<footer class="footer">
+		<div class="container">
+			<p class="pt-2 pb-2 text-center">
+				Created by Graham Misail, 2015-2018.
+			</p>
+		</div>
+	</footer>
+</body>
+
+</html>

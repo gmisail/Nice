@@ -1,5 +1,9 @@
--cp src
--lib markdown
--main Nice
--neko export/run.n
+# libraries
+-lib yaml
+-lib hxmustache
+
+# build
+-cp nice
+-main nice.Main
 -D dev
+-neko bin/nice.n

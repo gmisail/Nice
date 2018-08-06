@@ -1,14 +1,16 @@
 {
-  "name": "Nice",
-  "url" : "https://github.com/gmisail/Nice",
-  "license": "MIT",
-  "tags": ["neko", "html", "web", "static-site-generator"],
-  "description": "Cross platform static site generator",
-  "version": "1.4.1",
-  "classPath": "src/",
-  "releasenote": "Improved tag support",
-  "contributors": ["gmisail"],
-  "dependencies": {
-    "markdown": ""
+    "name": "Nice",
+    "url" : "https://github.com/gmisail/Nice",
+    "license": "MIT",
+    "tags": ["neko", "html", "web", "static-site-generator"],
+    "description": "Simple static site generator.",
+    "version": "2.0.1",
+    "classPath": "nice/",
+    "releasenote": "Complete rewrite, switch to Mustache templates, improved site organization.",
+    "contributors": ["gmisail"],
+    "dependencies": {
+        "yaml": "",
+        "hxmustache": "",
+        "markdown": ""
+    }
   }
-}
