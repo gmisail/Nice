@@ -37,4 +37,21 @@ You can use the following variables in your Mustache templates:
 - pages - Array of your site's pages.
 - posts - Array of your site's posts.
 
-You can access these variables through the [Haxe Templating Engine](http://old.haxe.org/doc/cross/template). The template for every Nice page is located in `layout/index.html`.
+### _layout/index.html Example
+
+```
+<html>
+    <body>
+        <h1>My cool blog!</h1>
+        <h3>{{title}}</h3>
+        <p>{{{body}}}</p>
+        <hr>
+        <h2>Other posts</h2>
+        <ul>
+    	    {{#posts}}
+            	<li><a href="/_posts/{{name}}">{{title}}</a></li>
+    	    {{/posts}}
+        </ul>
+    </body>
+</html>
+```
