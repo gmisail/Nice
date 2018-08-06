@@ -5,46 +5,36 @@
 Nice is distributed through haxelib. To install, type into terminal:
 
 `haxelib install nice`
- 
- To generate a new site, first create a new folder. Then go to Terminal / Command Prompt:
- 
- ```
- cd your-site-path
- haxelib run nice new
- ```
- 
- To build your site, run this command:
+
+Once you have Nice installed, you need to set up your website. To do so, create a new folder and populate it with the following files and folders:
+
+- _assets/
+- _layouts/
+- _layouts/index.html
+- _pages/
+- _pages/index.html
+- _posts/
+- _public/
+
+This is all you need to generate a Nice project!
+
+To build your site, run this command:
  
  ```
  haxelib run nice build
  ```
 
+Your site will output to the `_public` folder.
+
 ## Theming
 
-Nice does not come with a pre-installed theme or design. The user must design their own theme using HTML & the Haxe Templating language. 
+Nice does not come with a pre-installed theme or design. The user must design their own theme using HTML & Mustache.
 
-The following variables are exposed from Nice to the templates:
+You can use the following variables in your Mustache templates:
 
-- `::title::` - the title of the page / post
-- `::body::` - the body text of the page / post
-- `::posts::` - an array of the posts
-- `::pages::` - an array of the pages
-- `::name::` - name of the current file
-- `::date::` - date of the current post
-- `::tags::` - tags used by *all of the posts*. Duplicate tags are removed. 
-- `::postTag::` - tags used by the *current post*. 
+- title - Title of the current post / page.
+- body - Body content (In your template, you MUST use triple braces ({{{body}}})! Without them, the page will not render properly)
+- pages - Array of your site's pages.
+- posts - Array of your site's posts.
 
 You can access these variables through the [Haxe Templating Engine](http://old.haxe.org/doc/cross/template). The template for every Nice page is located in `layout/index.html`.
-
-## Project Structure
-
-A template for a Nice website is located in `/export`. Nice has a few requirements:
-
-- `assets/` - static files that are copied over, e.g. images
-- `layout/` - this is where your template file lives. Your template file must be called `index.html`
-- `pages/` - this folder holds all of the pages. Pages are like posts without tags or a date.
-- `pages/404.html` - 404 file
-- `pages/home.html` - home page / page located at the root of your site. This file will be renamed to `index.html` and placed in the root.
-- `posts/` - this folder holds all of the posts.
-- `public/` - this folder is where Nice spits out your generated site
-- `config.json` - config file for your Nice site. Configure site paths, site title, etc.
