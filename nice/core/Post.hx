@@ -13,6 +13,7 @@ class Post
     public var tags : Array<String>;
     public var template : String;
     public var state : String;
+    public var language : String;
 
     public var frontmatter : Dynamic;
 
@@ -29,6 +30,7 @@ class Post
         this.tags = frontmatter.get("tags");
         this.template = frontmatter.get("template");
         this.state = frontmatter.get("state");
+        this.language = frontmatter.get("language");
 
         if(tags == null)
         {
@@ -45,7 +47,25 @@ class Post
             state = "visible";
         }
 
+        if(language == null)
+        {
+            language = "html";
+        }
+
         this.body = frontmatterContent[2];
+    }
+
+    public function compile() : String
+    {
+        switch(language)
+        {
+            case "html":
+                return body;
+            case "markdown":
+                return Markdown.markdownToHtml(body);
+            default:
+                return body;
+        }
     }
 
     public function save(path : String, rendered : String)

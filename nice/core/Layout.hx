@@ -15,7 +15,7 @@ class Layout
 
     public function compilePost(post : Post, posts : Collection, pages : Collection) : String
     {
-        return compile({title: post.title, body: post.body, posts: posts.getItems(), pages: pages.getItems()});
+        return compile({title: post.title, body: post.compile(), posts: posts.getItems(), pages: pages.getItems()});
     }
 
     public function compile(context : {}) : String

@@ -1,6 +1,7 @@
 # libraries
 -lib yaml
 -lib hxmustache
+-lib markdown
 
 # build
 -cp nice
