@@ -1,20 +1,21 @@
 #title {
-    font-family: 'Oswald', sans-serif;
+    font-family: monospacesans-serif;
 }
 
 #site-title {
-    font-family: 'Oswald', monospace;
+    font-family: monospace;
     color: black;
 }
 
 body {
-    font-family: 'Merriweather', serif;
+    font-family: monospace;
     background-color: white;
     color: black;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: "Oswald", sans-serif;
+    font-family: monospace;
+    font-weight: 700;
 }
 
 h1 {
@@ -27,7 +28,7 @@ pre {
 	
 	padding: 8px;
 	
-    font-family: 'Oswald', Courier, monospace;
+    font-family: monospace;
     color: black;
 }
 
