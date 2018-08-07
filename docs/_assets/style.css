@@ -1,0 +1,42 @@
+#title {
+    font-family: monospacesans-serif;
+}
+
+#site-title {
+    font-family: monospace;
+    color: black;
+}
+
+body {
+    font-family: monospace;
+    background-color: white;
+    color: black;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: monospace;
+    font-weight: 700;
+}
+
+h1 {
+    color: red;
+    font-weight: 700;
+}
+
+pre {
+    background-color: lightgrey;
+	
+	padding: 8px;
+	
+    font-family: monospace;
+    color: black;
+}
+
+a {
+    color: grey;
+    text-decoration: none;
+}
+
+.color:hover {
+    color: black;
+}
