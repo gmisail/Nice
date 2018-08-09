@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["neko", "html", "web", "static-site-generator"],
     "description": "Simple static site generator.",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "classPath": "nice/",
-    "releasenote": "Complete rewrite, switch to Mustache templates, improved site organization.",
+    "releasenote": "haxelib run nice create Works",
     "contributors": ["gmisail"],
     "dependencies": {
         "yaml": "",

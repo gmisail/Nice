@@ -1,5 +1,6 @@
 package nice;
 
+import nice.core.Directory;
 import nice.cli.Cli;
 
 class Main
@@ -20,7 +21,11 @@ class Main
 
         cli.onCreate = function()
         {
-
+            Directory.create("_assets");
+            Directory.create("_pages");
+            Directory.create("_posts");
+            Directory.create("_layouts");
+            Directory.create("_public");
         }
 
         cli.process();
