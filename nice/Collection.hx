@@ -31,12 +31,22 @@ class Collection
 
     public function getItems() : Array<Post>
     {
+        sortByDate();
         return visible;
     }
 
     public function getAll() : Array<Post>
     {
         return items;
+    }
+    
+    public function sortByDate()
+    {
+        haxe.ds.ArraySort.sort(visible, function(itemA, itemB) : Int {
+            if (itemA.date > itemB.date) return -1;
+            else if (itemA.date < itemB.date) return 1;
+            return 0;
+        });
     }
 
     public function render(layouts : Layouts, posts : Collection, pages : Collection, saveTo : String) 
