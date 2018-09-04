@@ -55,3 +55,19 @@ You can use the following variables in your Mustache templates:
     </body>
 </html>
 ```
+## Posts
+
+Posts are very easy to create; all you have to do is create a new file in the `_posts` folder with a HTML extension. 
+
+```
+---
+title: My Post Title!
+date: 20000909
+---
+
+<p>
+Hello!
+</p>
+```
+
+Dates are formatted as: `YYYYMMDD`
