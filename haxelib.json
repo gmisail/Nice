@@ -6,7 +6,7 @@
     "description": "Simple static site generator.",
     "version": "2.1.2",
     "classPath": "nice/",
-    "releasenote": "haxelib run nice create Works",
+    "releasenote": "Support for YYYY/MM/DD",
     "contributors": ["gmisail"],
     "dependencies": {
         "yaml": "",

@@ -62,6 +62,14 @@ class Post
 
         dateStamp = new DateStamp(date);
 
+        trace("---- POST ----");
+        trace("Tags: " + []);
+        trace("State: " + state);
+        trace("Template: " + template);
+        trace("Language: " + language);
+        trace("Date: " + date);
+        trace("\n");
+
         this.body = frontmatterContent[2];
     }
 
