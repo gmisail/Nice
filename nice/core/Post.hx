@@ -55,12 +55,15 @@ class Post
             language = "html";
         }
 
+        var actualDate = true;
+
         if(date == null)
         {
-            date = 20001109;
+            date = 10000000;
+            actualDate = false;
         }
 
-        dateStamp = new DateStamp(date);
+        dateStamp = new DateStamp(date, actualDate);
 
         trace("---- POST ----");
         trace("Tags: " + []);

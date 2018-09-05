@@ -5,17 +5,23 @@ class DateStamp
     public var year : String;
     public var month : String;
     public var day : String;
+    public var actual : Bool = false;
 
-    public function new(value : Int)
+    public function new(value : Int, ?actual : Bool = true)
     {
+        this.actual = actual;
+
         var date = Std.string(value);
-        year = date.substr(0, 4);
-        month = date.substr(4, 2);
-        day = date.substr(6, 2);
+        this.year = date.substr(0, 4);
+        this.month = date.substr(4, 2);
+        this.day = date.substr(6, 2);
     }
 
     public function render()
     {
-        return '${month}/${day}/${year}';
+        if(actual)
+            return '${month} / ${day} / ${year}';
+        else 
+            return '';
     }
 }
