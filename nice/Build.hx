@@ -29,8 +29,8 @@ class Build
 
         assets.copy();
 
-        posts.render(layouts, posts, pages, "_public/_posts");
-        pages.render(layouts, posts, pages, "_public");
+        posts.render(layouts, posts, pages, "_public/_posts", false);
+        pages.render(layouts, posts, pages, "_public", true);
     }
 
     public static function clean(path : String)

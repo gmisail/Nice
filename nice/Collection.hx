@@ -49,8 +49,22 @@ class Collection
         });
     }
 
-    public function render(layouts : Layouts, posts : Collection, pages : Collection, saveTo : String) 
+    public function sortByOrder()
     {
+        haxe.ds.ArraySort.sort(visible, function(itemA, itemB) : Int {
+            if (itemA.order < itemB.order) return -1;
+            else if (itemA.order > itemB.order) return 1;
+            return 0;
+        });
+    }
+
+    public function render(layouts : Layouts, posts : Collection, pages : Collection, saveTo : String, ?sortedByOrder : Bool = false) 
+    {
+        if(sortedByOrder)
+        {
+            sortByOrder();
+        }
+
         for(item in getAll())
         {
             var template = layouts.getLayout(item.template);

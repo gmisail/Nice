@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["neko", "html", "web", "static-site-generator"],
     "description": "Simple static site generator.",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "classPath": "nice/",
-    "releasenote": "Support for YYYY/MM/DD",
+    "releasenote": "Pages can be ordered using the 'order' property.",
     "contributors": ["gmisail"],
     "dependencies": {
         "yaml": "",
