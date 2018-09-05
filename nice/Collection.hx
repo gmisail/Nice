@@ -32,6 +32,8 @@ class Collection
     public function getItems() : Array<Post>
     {
         sortByDate();
+        sortByOrder();
+
         return visible;
     }
 
@@ -58,13 +60,8 @@ class Collection
         });
     }
 
-    public function render(layouts : Layouts, posts : Collection, pages : Collection, saveTo : String, ?sortedByOrder : Bool = false) 
+    public function render(layouts : Layouts, posts : Collection, pages : Collection, saveTo : String) 
     {
-        if(sortedByOrder)
-        {
-            sortByOrder();
-        }
-
         for(item in getAll())
         {
             var template = layouts.getLayout(item.template);
