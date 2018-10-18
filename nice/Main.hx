@@ -7,14 +7,14 @@ class Main
 {
     public static function main()
     {
+        #if !dev
+            var currentDir = Sys.args().pop();
+            Sys.setCwd(currentDir);
+        #end
+
         var cli = new Cli();
         cli.onBuild = function()
         {
-            #if !dev
-                var currentDir = Sys.args().pop();
-                Sys.setCwd(currentDir); 
-            #end
-
             Build.process();
             Build.compile();
         }

@@ -72,14 +72,6 @@ class Post
             order = -1;
         }
 
-        trace("---- POST ----");
-        trace("Tags: " + []);
-        trace("State: " + state);
-        trace("Template: " + template);
-        trace("Language: " + language);
-        trace("Date: " + date);
-        trace("\n");
-
         this.body = frontmatterContent[2];
     }
 

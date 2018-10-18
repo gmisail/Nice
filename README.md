@@ -26,6 +26,15 @@ To build your site, run this command:
 
 Your site will output to the `_public` folder.
 
+> Pro tip:
+> Instead of running 'haxelib run Nice ...' copy the following code to `.bashrc` so you only have to run `nice`!
+
+```
+nice () {
+    haxelib run Nice
+}
+```
+
 ## Theming
 
 Nice does not come with a pre-installed theme or design. The user must design their own theme using HTML & Mustache.
