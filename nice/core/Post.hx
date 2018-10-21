@@ -37,25 +37,10 @@ class Post
         this.language = frontmatter.get("language");
         this.order = frontmatter.get("order");
 
-        if(tags == null)
-        {
-            tags = [];
-        }
-
-        if(template == null)
-        {
-            template = "index.html";
-        }
-
-        if(state == null)
-        {
-            state = "visible";
-        }
-
-        if(language == null)
-        {
-            language = "html";
-        }
+        if(tags == null) tags = [];
+        if(template == null) template = "index.html";
+        if(state == null) state = "visible";
+        if(language == null) language = "html";
 
         var actualDate = true;
 
@@ -67,10 +52,7 @@ class Post
 
         dateStamp = new DateStamp(date, actualDate);
 
-        if(order == null)
-        {
-            order = -1;
-        }
+        if(order == null) order = -1;
 
         this.body = frontmatterContent[2];
     }

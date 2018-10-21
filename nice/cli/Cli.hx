@@ -19,6 +19,11 @@ class Cli
 
     }
 
+    public dynamic function onDefault()
+    {
+
+    }
+
     public function process()
     {
         var command = args[0];
@@ -28,6 +33,8 @@ class Cli
                 onBuild();
             case "create":
                 onCreate();
+            default:
+                onDefault();
         }
     }
 }

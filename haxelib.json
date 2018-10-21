@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["neko", "html", "web", "static-site-generator"],
     "description": "Simple static site generator.",
-    "version": "2.2.3",
+    "version": "2.3.1",
     "classPath": "nice/",
-    "releasenote": "Pages can be ordered using the 'order' property.",
+    "releasenote": "Added help prompt and some cool text effects.",
     "contributors": ["gmisail"],
     "dependencies": {
         "yaml": "",
