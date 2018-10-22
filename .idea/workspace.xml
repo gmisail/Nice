@@ -2,15 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f6c85cc-2124-4141-8774-6406db4c0176" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Nice.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Nice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nice/util/ConfigFile.hx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_layouts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_layouts/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_pages/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/implementingscreenshake.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/_posts/implementingscreenshake.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/mitblueprint.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/_posts/mitblueprint.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/nice.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/_posts/nice.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/nog.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/_posts/nog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/showdown.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/_posts/showdown.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/_posts/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/ultimatetictactoe.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/_posts/ultimatetictactoe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/_public/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/_public/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/nice.n" beforeDir="false" afterPath="$PROJECT_DIR$/bin/nice.n" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/haxelib.json" beforeDir="false" afterPath="$PROJECT_DIR$/haxelib.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/Build.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/Build.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/Collection.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/Collection.hx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nice/Main.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/Main.hx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/cli/Cli.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/cli/Cli.hx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/core/Post.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/core/Post.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/core/Layout.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/core/Layout.hx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run.n" beforeDir="false" afterPath="$PROJECT_DIR$/run.n" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,43 +34,52 @@
     <session id="-1932851323">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.25" value="1" />
           <entry key="project.open.time.34" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.44" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="hx" value="5" />
-          <entry key="json" value="2" />
-          <entry key="md" value="1" />
+          <entry key="html" value="6" />
+          <entry key="hx" value="12" />
+          <entry key="json" value="5" />
+          <entry key="md" value="2" />
           <entry key="sh" value="2" />
+          <entry key="yml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="2" />
-          <entry key="Haxe" value="5" />
-          <entry key="JSON" value="2" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="HTML" value="6" />
+          <entry key="Haxe" value="12" />
+          <entry key="JSON" value="5" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="hx" value="786" />
-          <entry key="json" value="88" />
-          <entry key="md" value="180" />
+          <entry key="html" value="44" />
+          <entry key="hx" value="1634" />
+          <entry key="json" value="230" />
+          <entry key="md" value="209" />
           <entry key="sh" value="80" />
+          <entry key="yml" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="80" />
-          <entry key="Haxe" value="786" />
-          <entry key="JSON" value="88" />
-          <entry key="PLAIN_TEXT" value="180" />
+          <entry key="HTML" value="44" />
+          <entry key="Haxe" value="1634" />
+          <entry key="JSON" value="230" />
+          <entry key="PLAIN_TEXT" value="209" />
+          <entry key="YAML" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -67,28 +88,38 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nice/Build.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+            <state relative-caret-position="555">
+              <caret line="37" column="69" selection-start-line="37" selection-start-column="69" selection-end-line="37" selection-end-column="69" />
+              <folding>
+                <element signature="e#15#43#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nice/core/Post.hx">
+        <entry file="file://$PROJECT_DIR$/nice/util/ConfigFile.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="28" column="59" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="59" />
+            <state relative-caret-position="300">
+              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+              <folding>
+                <element signature="e#20#37#0" expanded="true" />
+                <marker date="1540169276000" expanded="true" signature="175:422" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nice/Collection.hx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+              <folding>
+                <element signature="e#15#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,8 +127,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nice/Main.hx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+            <state relative-caret-position="462">
+              <caret line="37" column="51" selection-start-line="37" selection-start-column="51" selection-end-line="37" selection-end-column="51" />
+              <folding>
+                <element signature="e#15#42#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,16 +140,52 @@
         <entry file="file://$PROJECT_DIR$/haxelib.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="65" selection-start-line="8" selection-start-column="65" selection-end-line="8" selection-end-column="65" />
+              <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nice/cli/Cli.hx">
+        <entry file="file://$PROJECT_DIR$/bin/_posts/nice.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+            <state relative-caret-position="150">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/_layouts/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nice/core/Post.hx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="28" column="59" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/_pages/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -141,11 +211,19 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/nice.sh" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/nice/Build.hx" />
         <option value="$PROJECT_DIR$/nice/core/Post.hx" />
         <option value="$PROJECT_DIR$/nice/cli/Cli.hx" />
         <option value="$PROJECT_DIR$/run.sh" />
+        <option value="$PROJECT_DIR$/bin/globals.yml" />
+        <option value="$PROJECT_DIR$/nice/util/ConfigFile.hx" />
+        <option value="$PROJECT_DIR$/nice/Collection.hx" />
+        <option value="$PROJECT_DIR$/nice/core/Layout.hx" />
+        <option value="$PROJECT_DIR$/nice/Build.hx" />
+        <option value="$PROJECT_DIR$/bin/globals.json" />
+        <option value="$PROJECT_DIR$/bin/_pages/index.html" />
+        <option value="$PROJECT_DIR$/bin/_posts/nice.html" />
+        <option value="$PROJECT_DIR$/bin/_layouts/index.html" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/nice/Main.hx" />
         <option value="$PROJECT_DIR$/haxelib.json" />
       </list>
@@ -179,13 +257,30 @@
             <path>
               <item name="Nice" type="b2602c69:ProjectViewProjectNode" />
               <item name="Nice" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Nice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Nice" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Nice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Nice" type="462c0819:PsiDirectoryNode" />
               <item name="nice" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Nice" type="b2602c69:ProjectViewProjectNode" />
               <item name="Nice" type="462c0819:PsiDirectoryNode" />
               <item name="nice" type="462c0819:PsiDirectoryNode" />
-              <item name="cli" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Nice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Nice" type="462c0819:PsiDirectoryNode" />
+              <item name="nice" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -194,7 +289,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540090580065" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540242666558" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -304,7 +399,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1542811" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15670437" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -318,7 +413,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32876712" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.31506848" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.19726028" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32876712" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32876712" />
@@ -332,36 +427,18 @@
       <window_info anchor="right" id="Maven Projects" order="7" />
     </layout>
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.md" />
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/nice.sh" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nice/Build.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nice/core/Post.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="59" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -372,17 +449,123 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/_posts/nog.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nice/Layouts.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nice/core/Directory.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nice/core/Layout.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+          <folding>
+            <element signature="e#20#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/_pages/404.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nice/core/Post.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="28" column="59" selection-start-line="28" selection-start-column="59" selection-end-line="28" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nice/util/ConfigFile.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
+            <element signature="e#20#37#0" expanded="true" />
+            <marker date="1540169276000" expanded="true" signature="175:422" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nice/Collection.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="72" column="13" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+          <folding>
+            <element signature="e#15#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/_pages/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/_posts/nice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/_layouts/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nice/Build.hx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="69" selection-start-line="37" selection-start-column="69" selection-end-line="37" selection-end-column="69" />
+          <folding>
+            <element signature="e#15#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/globals.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/nice/Main.hx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        <state relative-caret-position="462">
+          <caret line="37" column="51" selection-start-line="37" selection-start-column="51" selection-end-line="37" selection-end-column="51" />
+          <folding>
+            <element signature="e#15#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/haxelib.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="65" selection-start-line="8" selection-start-column="65" selection-end-line="8" selection-end-column="65" />
+          <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
         </state>
       </provider>
     </entry>

@@ -1,8 +1,10 @@
 package nice;
 
+import nice.util.ConfigFile;
 import nice.core.Post;
 import nice.core.Layout;
 import nice.core.Directory;
+import nice.util.ConfigFile;
 
 class Build
 {
@@ -11,12 +13,15 @@ class Build
     private static var layouts : Layouts;
     private static var pages : Collection;
 
+    private static var globalVariables : ConfigFile;
+
     public static function process()
     {
         posts = new Collection("_posts");
         pages = new Collection("_pages");
         layouts = new Layouts();
         assets = new Assets();
+        globalVariables = new ConfigFile("globals.json");
     }
 
     public static function compile()
@@ -29,8 +34,8 @@ class Build
 
         assets.copy();
 
-        posts.render(layouts, posts, pages, "_public/_posts");
-        pages.render(layouts, posts, pages, "_public");
+        posts.render(layouts, posts, pages, globalVariables.getData(), "_public/_posts");
+        pages.render(layouts, posts, pages, globalVariables.getData(), "_public");
     }
 
     public static function clean(path : String)

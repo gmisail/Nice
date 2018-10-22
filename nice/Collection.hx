@@ -1,5 +1,7 @@
 package nice;
 
+import haxe.Json;
+
 import nice.core.Directory;
 import nice.core.Post;
 
@@ -60,7 +62,7 @@ class Collection
         });
     }
 
-    public function render(layouts : Layouts, posts : Collection, pages : Collection, saveTo : String) 
+    public function render(layouts : Layouts, posts : Collection, pages : Collection, globals : Json, saveTo : String)
     {
         for(item in getAll())
         {
@@ -70,7 +72,7 @@ class Collection
                 template = layouts.getLayout("index.html");
             }
 
-            var renderedPost = template.compilePost(item, posts, pages);
+            var renderedPost = template.compilePost(item, posts, pages, globals);
             item.save(saveTo, renderedPost);
         }
     }

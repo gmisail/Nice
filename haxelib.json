@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["neko", "html", "web", "static-site-generator"],
     "description": "Simple static site generator.",
-    "version": "2.3.1",
+    "version": "2.3.2",
     "classPath": "nice/",
-    "releasenote": "Added help prompt and some cool text effects.",
+    "releasenote": "globals.json holds global variables for templates.",
     "contributors": ["gmisail"],
     "dependencies": {
         "yaml": "",
