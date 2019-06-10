@@ -6,7 +6,20 @@ Nice is distributed through haxelib. To install, type into terminal:
 
 `haxelib install nice`
 
-Once you have Nice installed, you need to set up your website. To do so, create a new folder and populate it with the following files and folders:
+Now, there are two ways to setup a new Nice project: the automated method or the manual method.
+
+### Automatic
+
+- Create a new folder
+- Run the `haxelib run Nice create` command inside this folder
+- Create a layout in the _layouts folder (named 'index.html')
+- Create a page in the _pages folder (named 'index.html')
+- Your project should now be set up!
+- Run `haxelib run Nice build` to build your website
+
+### Manual
+
+Create a new folder and populate it with the following files and folders:
 
 - _assets/
 - _layouts/
@@ -25,15 +38,6 @@ To build your site, run this command:
  ```
 
 Your site will output to the `_public` folder.
-
-> Pro tip:
-> Instead of running 'haxelib run Nice ...' copy the following code to `.bashrc` so you only have to run `nice`!
-
-```
-nice () {
-    haxelib run Nice
-}
-```
 
 ## Theming
 
@@ -80,3 +84,17 @@ Hello!
 ```
 
 Dates are formatted as: `YYYYMMDD`
+
+## Pages
+
+Pages are nearly identical to posts, however they do not have a time stamp. They are intended to be used for static information, or rather information that does not change often. 
+
+```
+---
+title: My Page Title!
+---
+
+<p>
+This is my page!
+</p>
+```
