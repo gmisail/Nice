@@ -1,4 +1,4 @@
-# Nice
+![Logo](https://raw.githubusercontent.com/gmisail/Nice/master/NiceLogo.png)
 
 ## Installation
 
