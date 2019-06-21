@@ -1,5 +1,8 @@
 ![Logo](/NiceLogo.png)
 
+## What is Nice?
+
+Nice is a simple static site generator that makes it incredibly easy for developers to generate static webpages. 
 
 ## Installation
 
