@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["neko", "html", "web", "static-site-generator"],
     "description": "Simple static site generator.",
-    "version": "2.3.2",
+    "version": "2.4",
     "classPath": "nice/",
-    "releasenote": "globals.json holds global variables for templates.",
+    "releasenote": "Added create-post & create-page commands",
     "contributors": ["gmisail"],
     "dependencies": {
         "yaml": "",
