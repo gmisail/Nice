@@ -2,6 +2,8 @@ package nice;
 
 import nice.core.Directory;
 import nice.cli.Cli;
+import nice.cli.Create;
+
 import sys.io.File;
 
 class Main
@@ -24,6 +26,8 @@ class Main
             Sys.println(" ~ A static site generator that is not mean. ~\n");
 
             Sys.println("create -> Generate a new project in the current directory.");
+            Sys.println("create-post -> Create a blank post.");
+            Sys.println("create-page -> Create a blank page.");
             Sys.println("build -> Build the project in the current directory.");
         }
 
@@ -41,6 +45,16 @@ class Main
             Directory.create("_posts");
             Directory.create("_layouts");
             Directory.create("_public");
+        }
+
+        cli.onCreatePage = function(name : String)
+        {
+            Create.page(name);
+        }
+
+        cli.onCreatePost = function(name : String)
+        {
+            Create.post(name);
         }
 
         cli.process();
