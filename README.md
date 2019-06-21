@@ -1,4 +1,5 @@
-# Nice
+![Logo](/NiceLogo.png)
+
 
 ## Installation
 
