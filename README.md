@@ -9,6 +9,9 @@ Nice is distributed through haxelib. To install, type into terminal:
 
 Once you have Nice installed, you need to set up your website. To do so, create a new folder and populate it with the following files and folders:
 
+> Pro tip:
+> Instead of creating these folders, you can run the ```haxelib run nice create``` command and generate the folders automatically!
+
 - _assets/
 - _layouts/
 - _layouts/index.html
@@ -26,15 +29,6 @@ To build your site, run this command:
  ```
 
 Your site will output to the `_public` folder.
-
-> Pro tip:
-> Instead of running 'haxelib run Nice ...' copy the following code to `.bashrc` so you only have to run `nice`!
-
-```
-nice () {
-    haxelib run Nice
-}
-```
 
 ## Theming
 
@@ -67,7 +61,9 @@ You can use the following variables in your Mustache templates:
 ```
 ## Posts
 
-Posts are very easy to create; all you have to do is create a new file in the `_posts` folder with a HTML extension. 
+Posts are very easy to create; all you have to do is create a new file in the `_posts` folder with a HTML extension. You can do this manually or by using the command `haxelib run nice create-post PutYourPostNameHere`.
+
+A normal post will look like this:
 
 ```
 ---
@@ -81,3 +77,21 @@ Hello!
 ```
 
 Dates are formatted as: `YYYYMMDD`
+
+## Pages
+
+Pages are very similar to posts, however they are not sorted chronologically.
+
+To create a new page, all you have to do is create a new file in the `_pages` folder with a HTML extension. Much like posts, there are two ways to do this: manually or with the command line. Using the command line, you will need to run the `haxelib run nice create-page PutYourPageNameHere` command.
+
+A normal page will look like this:
+
+```
+---
+title: About Me
+---
+
+<p>
+Let me tell you about myself...
+</p>
+```
