@@ -34,6 +34,11 @@ class Cli
 
     }
 
+    public dynamic function onCreateLayout(name : String)
+    {
+
+    }
+
     public function process()
     {
         var command = args[0];
@@ -51,6 +56,8 @@ class Cli
                 onCreatePage(name);
             case "create-post":
                 onCreatePost(name);
+            case "create-layout":
+                onCreateLayout(name);
             default:
                 onDefault();
         }

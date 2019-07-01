@@ -25,10 +25,11 @@ class Main
 
             Sys.println(" ~ A static site generator that is not mean. ~\n");
 
-            Sys.println("create -> Generate a new project in the current directory.");
-            Sys.println("create-post -> Create a blank post.");
-            Sys.println("create-page -> Create a blank page.");
-            Sys.println("build -> Build the project in the current directory.");
+            Sys.println("create -------> Generate a new project in the current directory.");
+            Sys.println("create-post --> Create a blank post.");
+            Sys.println("create-page --> Create a blank page.");
+            Sys.println("create-layout-> Create a basic layout.");
+            Sys.println("build --------> Build the project in the current directory.");
         }
 
         cli.onBuild = function()
@@ -45,6 +46,10 @@ class Main
             Directory.create("_posts");
             Directory.create("_layouts");
             Directory.create("_public");
+
+            Create.layout("index");
+            Create.page("index");
+            Create.post("MyFirstPost");
         }
 
         cli.onCreatePage = function(name : String)
@@ -55,6 +60,11 @@ class Main
         cli.onCreatePost = function(name : String)
         {
             Create.post(name);
+        }
+
+        cli.onCreateLayout = function(name : String)
+        {
+            Create.layout(name);
         }
 
         cli.process();
