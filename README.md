@@ -10,28 +10,21 @@ Nice is distributed through haxelib. To install, type into terminal:
 
 `haxelib install nice`
 
-Once you have Nice installed, you need to set up your website. To do so, create a new folder and populate it with the following files and folders:
+Once you have Nice installed, you need to set up your website. Nice makes it very easy to hit the ground running with a new project.
 
-> Pro tip:
-> Instead of creating these folders, you can run the ```haxelib run nice create``` command and generate the folders automatically!
+```
+mkdir MyNewSite
+cd MyNewSite
+haxelib run Nice create
+haxelib run Nice build
+```
 
-- _assets/
-- _layouts/
-- _layouts/index.html
-- _pages/
-- _pages/index.html
-- _posts/
-- _public/
+First, you will create a new folder. Inside of this folder, you are going to create a new project and then build it. Easy, right? If you want to see your site in action, you can start a web server inside of the `_public` folder.
 
-This is all you need to generate a Nice project!
-
-To build your site, run this command:
- 
- ```
- haxelib run nice build
- ```
-
-Your site will output to the `_public` folder.
+```
+cd _public
+python -m SimpleHTTPServer
+```
 
 ## Theming
 
