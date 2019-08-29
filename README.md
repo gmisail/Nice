@@ -26,6 +26,17 @@ cd _public
 python -m SimpleHTTPServer
 ```
 
+## Commands
+
+Nice comes with a catalog of commands that make it incredibly easy to create, build, and manage your project.
+
+```
+haxelib run Nice build 
+haxelib run Nice create
+haxelib run Nice create <post/page/layout> <name>
+haxelib run Nice delete <post/page/layout> <name>
+```
+
 ## Theming
 
 Nice does not come with a pre-installed theme or design. The user must design their own theme using HTML & Mustache.
@@ -57,7 +68,7 @@ You can use the following variables in your Mustache templates:
 ```
 ## Posts
 
-Posts are very easy to create; all you have to do is create a new file in the `_posts` folder with a HTML extension. You can do this manually or by using the command `haxelib run nice create-post PutYourPostNameHere`.
+Posts are very easy to create; all you have to do is create a new file in the `_posts` folder with a HTML extension. You can do this manually or by using the command `haxelib run nice create post PutYourPostNameHere`.
 
 A normal post will look like this:
 
@@ -78,7 +89,7 @@ Dates are formatted as: `YYYYMMDD`
 
 Pages are very similar to posts, however they are not sorted chronologically.
 
-To create a new page, all you have to do is create a new file in the `_pages` folder with a HTML extension. Much like posts, there are two ways to do this: manually or with the command line. Using the command line, you will need to run the `haxelib run nice create-page PutYourPageNameHere` command.
+To create a new page, all you have to do is create a new file in the `_pages` folder with a HTML extension. Much like posts, there are two ways to do this: manually or with the command line. Using the command line, you will need to run the `haxelib run nice create page PutYourPageNameHere` command.
 
 A normal page will look like this:
 

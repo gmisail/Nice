@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["neko", "html", "web", "static-site-generator"],
     "description": "Simple static site generator.",
-    "version": "2.4.2",
+    "version": "3.0.0",
     "classPath": "nice/",
-    "releasenote": "create command generates all required files automatically.",
+    "releasenote": "Improved the command line interface with more flexible commands and helpful error messages",
     "contributors": ["gmisail"],
     "dependencies": {
         "yaml": "",

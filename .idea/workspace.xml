@@ -2,49 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f452d1b-6aba-47ea-94e2-140fb78f813f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bin/old/_posts/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/old/globals.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Nice.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nice/cli/Command.hx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nice/cli/Controller.hx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nice/cli/Output.hx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nice/cli/commands/BuildCommand.hx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nice/cli/commands/CreateCommand.hx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nice/cli/commands/DefaultCommand.hx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nice/cli/commands/DeleteCommand.hx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_assets/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_assets/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_assets/nog.gif" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_assets/nog.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_assets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_layouts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_layouts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_pages/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_pages/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_pages/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_pages/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_posts/implementingscreenshake.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_posts/implementingscreenshake.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_posts/mitblueprint.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_posts/mitblueprint.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_posts/nice.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_posts/nice.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_posts/nog.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_posts/nog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_posts/showdown.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_posts/showdown.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_posts/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_posts/ultimatetictactoe.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_posts/ultimatetictactoe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_assets/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_assets/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_assets/nog.gif" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_assets/nog.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_assets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/implementingscreenshake.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_posts/implementingscreenshake.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/mitblueprint.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_posts/mitblueprint.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/nice.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_posts/nice.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/nog.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_posts/nog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/showdown.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_posts/showdown.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_posts/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/_posts/ultimatetictactoe.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/_posts/ultimatetictactoe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/_public/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/old/_public/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/globals.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/nice.n" beforeDir="false" afterPath="$PROJECT_DIR$/bin/nice.n" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/nice.n" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_assets/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_assets/nog.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_assets/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_layouts/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_pages/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_pages/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_pages/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_posts/implementingscreenshake.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_posts/mitblueprint.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_posts/nice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_posts/nog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_posts/showdown.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_posts/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_posts/ultimatetictactoe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_assets/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_assets/nog.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_assets/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/implementingscreenshake.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/mitblueprint.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/nice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/nog.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/showdown.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/ultimatetictactoe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/_public/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/old/globals.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev.hxml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.hxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/haxelib.json" beforeDir="false" afterPath="$PROJECT_DIR$/haxelib.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/Assets.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/Build.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/Collection.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/Layouts.hx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/nice/Main.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/Main.hx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/cli/Cli.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/cli/Cli.hx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/cli/Create.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/cli/Create.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/cli/Cli.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/cli/Create.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/core/Directory.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/core/Layout.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/core/Post.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/util/ConfigFile.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/util/DateStamp.hx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run.n" beforeDir="false" afterPath="$PROJECT_DIR$/run.n" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,97 +67,25 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nice/cli/Cli.hx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nice/cli/Create.hx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/nice/Main.hx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="30" column="66" lean-forward="true" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/haxelib.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nice/core/Layout.hx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HaxeClass" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/nice/cli/Create.hx" />
-        <option value="$PROJECT_DIR$/nice/cli/Cli.hx" />
-        <option value="$PROJECT_DIR$/bin/_posts/nice.html" />
-        <option value="$PROJECT_DIR$/haxelib.json" />
-        <option value="$PROJECT_DIR$/nice/Main.hx" />
-      </list>
-    </option>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="IgjEYExO" />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Nice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Nice" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
-  </component>
+  <component name="ProjectId" id="1OTh3xrKf836tSeJQPzY3toGLWH" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -193,187 +133,37 @@
       <option name="presentableId" value="Default" />
       <updated>1562012854431</updated>
       <workItem from="1562012856476" duration="1467000" />
+      <workItem from="1563674211795" duration="99000" />
+      <workItem from="1564007302971" duration="307000" />
+      <workItem from="1564095244925" duration="159000" />
+      <workItem from="1564243064552" duration="3373000" />
+      <workItem from="1564320815437" duration="304000" />
+      <workItem from="1564352586462" duration="2362000" />
+      <workItem from="1564514257878" duration="3360000" />
+      <workItem from="1564777093429" duration="634000" />
+      <workItem from="1565648091367" duration="102000" />
+      <workItem from="1566931139870" duration="1590000" />
+      <workItem from="1566963941673" duration="2183000" />
+      <workItem from="1567008963066" duration="2828000" />
+      <workItem from="1567037579141" duration="909000" />
+      <workItem from="1567087015545" duration="4917000" />
     </task>
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1467000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bin/old/_layouts/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nice/cli/Cli.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="36" column="56" selection-start-line="36" selection-start-column="56" selection-end-line="36" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nice/core/Post.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-264">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nice/core/Layout.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nice/cli/Create.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/old/_posts/nice.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/old/_layouts/fun.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/_layouts/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/_pages/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/_posts/MyFirstPost.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/haxelib.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nice/Main.hx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="30" column="66" lean-forward="true" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
