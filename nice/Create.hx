@@ -6,7 +6,8 @@ class Create
 {
     private static var DEFAULT_POST_FRONTMATTER : String = "---\ntitle: New Post\n---\n";
     private static var DEFAULT_PAGE_FRONTMATTER : String = "---\ntitle: New Page\n---\n";
-    
+
+    /* default post / page content */
     private static var DEFAULT_CONTENT : String = "Add some content here.";
 
     /* this is wicked messy, think of a better way to hardcode the template data */

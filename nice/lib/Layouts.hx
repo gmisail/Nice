@@ -8,6 +8,9 @@ class Layouts
     private var directory : Directory;
     private var layouts : Map<String, Layout>;
 
+    /*
+        Open the layouts folder and load all of the file contents
+    * */
     public function new()
     {
         directory = new Directory("_layouts");
@@ -19,6 +22,9 @@ class Layouts
         }
     }
 
+    /*
+        Get a layout by name
+    * */
     public function getLayout(name : String)
     {
         return layouts.get(name);

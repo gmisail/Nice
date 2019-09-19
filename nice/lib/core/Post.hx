@@ -3,23 +3,20 @@ package nice.lib.core;
 import sys.io.File;
 import yaml.Yaml;
 
-import nice.lib.util.DateStamp;
-
 class Post
 {
-    public var name : String;           // Name of post's file
-    public var content : String;        // The post's total content
-    public var body : String;           // The post body / text
-    public var title : String;          // Title of the post
-    public var date : Int;              // Date the post was created
-    public var tags : Array<String>;    // Post tags
-    public var template : String;       // The template that the post uses
-    public var state : String;          // Whether or not the page is hidden or not
-    public var language : String;       // Markdown or HTML?
-    public var order : Int;             // What order do you want the pages to be in?
+    private var name : String;           // Name of post's file
+    private var content : String;        // The post's total content
+    private var body : String;           // The post body / text
+    private var title : String;          // Title of the post
+    private var date : Date;              // Date the post was created
+    private var tags : Array<String>;    // Post tags
+    private var template : String;       // The template that the post uses
+    private var state : String;          // Whether or not the page is hidden or not
+    private var language : String;       // Markdown or HTML?
+    private var order : Int;             // What order do you want the pages to be in?
 
-    public var frontmatter : Dynamic;
-    public var dateStamp : DateStamp;
+    private var frontmatter : Dynamic;
 
     public function new(name : String, content : String)
     {
@@ -41,17 +38,7 @@ class Post
         if(template == null) template = "index.html";
         if(state == null) state = "visible";
         if(language == null) language = "html";
-
-        var actualDate = true;
-
-        if(date == null)
-        {
-            date = 10000000;
-            actualDate = false;
-        }
-
-        dateStamp = new DateStamp(date, actualDate);
-
+        if(date == null) date = Date.now();
         if(order == null) order = -1;
 
         this.body = frontmatterContent[2];
@@ -73,5 +60,35 @@ class Post
     public function save(path : String, rendered : String)
     {
         File.saveContent(path + "/" + name, rendered);
+    }
+
+    public function getDate() : Date
+    {
+        return date;
+    }
+
+    public function getTitle() : String
+    {
+        return title;
+    }
+
+    public function getState() : String
+    {
+        return state;
+    }
+
+    public function getName() : String
+    {
+        return name;
+    }
+
+    public function getOrder() : Int
+    {
+        return order;
+    }
+
+    public function getTemplate() : String
+    {
+        return template;
     }
 }

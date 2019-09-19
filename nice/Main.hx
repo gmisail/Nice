@@ -11,6 +11,7 @@ class Main
 {
     public static function main()
     {
+        /* initialize the command controller */
         var controller = new Controller();
         controller.addDefault(new DefaultCommand());
         controller.add(new BuildCommand());

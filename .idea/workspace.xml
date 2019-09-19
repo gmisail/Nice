@@ -2,60 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f452d1b-6aba-47ea-94e2-140fb78f813f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nice/cli/Command.hx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nice/cli/Controller.hx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nice/cli/Output.hx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nice/cli/commands/BuildCommand.hx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nice/cli/commands/CreateCommand.hx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nice/cli/commands/DefaultCommand.hx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nice/cli/commands/DeleteCommand.hx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/nice.n" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_assets/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_assets/nog.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_assets/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_layouts/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_pages/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_pages/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_pages/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_posts/implementingscreenshake.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_posts/mitblueprint.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_posts/nice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_posts/nog.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_posts/showdown.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_posts/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_posts/ultimatetictactoe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_assets/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_assets/nog.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_assets/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/implementingscreenshake.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/mitblueprint.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/nice.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/nog.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/showdown.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/_posts/ultimatetictactoe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/_public/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/old/globals.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev.hxml" beforeDir="false" afterPath="$PROJECT_DIR$/dev.hxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/haxelib.json" beforeDir="false" afterPath="$PROJECT_DIR$/haxelib.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/Assets.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/Build.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/Collection.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/Layouts.hx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/Create.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/Create.hx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nice/Main.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/Main.hx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/cli/Cli.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/cli/Create.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/core/Directory.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/core/Layout.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/core/Post.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/util/ConfigFile.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/util/DateStamp.hx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.n" beforeDir="false" afterPath="$PROJECT_DIR$/run.n" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/lib/Layouts.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/Layouts.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/lib/core/Post.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/core/Post.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/lib/util/DateStamp.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/util/DateStamp.hx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,6 +41,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -147,6 +100,10 @@
       <workItem from="1567008963066" duration="2828000" />
       <workItem from="1567037579141" duration="909000" />
       <workItem from="1567087015545" duration="4917000" />
+      <workItem from="1567558033289" duration="34000" />
+      <workItem from="1567558085389" duration="756000" />
+      <workItem from="1567815706670" duration="175000" />
+      <workItem from="1568751299790" duration="372000" />
     </task>
     <servers />
   </component>

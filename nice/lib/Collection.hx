@@ -1,6 +1,7 @@
 package nice.lib;
 
 import haxe.Json;
+import haxe.ds.ArraySort;
 
 import nice.lib.core.Directory;
 import nice.lib.core.Post;
@@ -25,7 +26,7 @@ class Collection
             {
                 var post = new Post(item, directory.getFile(item));
                 items.push(post);
-                if(post.state != 'hidden')
+                if(post.getState() != 'hidden')
                 {
                     visible.push(post);
                 }
@@ -35,7 +36,7 @@ class Collection
 
     public function getItems() : Array<Post>
     {
-        sortByDate();
+        //Sortbydate();
         sortByOrder();
 
         return visible;
@@ -46,20 +47,22 @@ class Collection
         return items;
     }
     
+    /*
     public function sortByDate()
     {
-        haxe.ds.ArraySort.sort(visible, function(itemA, itemB) : Int {
-            if (itemA.date > itemB.date) return -1;
-            else if (itemA.date < itemB.date) return 1;
+        ArraySort.sort(visible, function(itemA, itemB) : Int {
+            if (itemA.dateStamp.compare(itemB.dateStamp)) return -1;
+            else if (itemB.dateStamp.compare(itemA.dateStamp)) return 1;
             return 0;
         });
     }
+    */
 
     public function sortByOrder()
     {
-        haxe.ds.ArraySort.sort(visible, function(itemA, itemB) : Int {
-            if (itemA.order < itemB.order) return -1;
-            else if (itemA.order > itemB.order) return 1;
+        ArraySort.sort(visible, function(itemA, itemB) : Int {
+            if (itemA.getOrder() < itemB.getOrder()) return -1;
+            else if (itemA.getOrder() > itemB.getOrder()) return 1;
             return 0;
         });
     }
@@ -68,13 +71,13 @@ class Collection
     {
         for(item in getAll())
         {
-            var template = layouts.getLayout(item.template);
+            var template = layouts.getLayout(item.getTemplate());
             if(template == null)
             {
                 template = layouts.getLayout("index.html");
             }
 
-            Output.text("Compiling " + item.name);
+            Output.text("Compiling " + item.getName());
 
             var renderedPost = template.compilePost(item, posts, pages, globals);
             item.save(saveTo, renderedPost);
