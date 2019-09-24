@@ -15,7 +15,7 @@ Once you have Nice installed, you need to set up your website. Nice makes it ver
 ```
 mkdir MyNewSite
 cd MyNewSite
-haxelib run Nice create
+haxelib run Nice create project
 haxelib run Nice build
 ```
 
@@ -75,7 +75,7 @@ A normal post will look like this:
 ```
 ---
 title: My Post Title!
-date: 20000909
+date: 2001-01-23
 ---
 
 <p>
@@ -83,7 +83,7 @@ Hello!
 </p>
 ```
 
-Dates are formatted as: `YYYYMMDD`
+Dates follow the [YAML standard.](https://github.com/mikestead/hx-yaml)
 
 ## Pages
 
