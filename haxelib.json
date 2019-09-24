@@ -4,7 +4,7 @@
     "license": "MIT",
     "tags": ["neko", "html", "web", "static-site-generator"],
     "description": "Simple static site generator.",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "classPath": "nice/",
     "releasenote": "Improved the command line interface with more flexible commands and helpful error messages",
     "contributors": ["gmisail"],

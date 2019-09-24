@@ -2,6 +2,12 @@ package nice;
 
 import sys.io.File;
 
+import nice.lib.core.Directory;
+
+/*
+ *  Manages the creation of new posts, pages, layouts, etc.  
+ */
+
 class Create
 {
     private static var DEFAULT_POST_FRONTMATTER : String = "---\ntitle: New Post\n---\n";
@@ -26,5 +32,20 @@ class Create
     public static function layout(name : String)
     {
         File.saveContent("_layouts/" + name + ".html", DEFAULT_LAYOUT);
+    }
+
+    public static function project()
+    {
+        File.saveContent("config.json", "{}");
+        
+        Directory.create("_assets");
+        Directory.create("_pages");
+        Directory.create("_posts");
+        Directory.create("_layouts");
+        Directory.create("_public");
+        
+        layout("index");
+        page("index");
+        post("MyFirstPost");
     }
 }

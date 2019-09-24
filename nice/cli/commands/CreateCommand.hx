@@ -1,7 +1,6 @@
 package nice.cli.commands;
 
 import sys.io.File;
-import nice.lib.core.Directory;
 
 class CreateCommand extends Command
 {
@@ -12,33 +11,20 @@ class CreateCommand extends Command
 
     public override function onExecute(args : Array<String>)
     {
-        if(args.length <= 0)
+        var name : String = args[1];
+        var type = args[0];
+    
+        if(name == null)
         {
-            File.saveContent("config.json", "{}");
-            Directory.create("_assets");
-            Directory.create("_pages");
-            Directory.create("_posts");
-            Directory.create("_layouts");
-            Directory.create("_public");
-
-            Create.layout("index");
-            Create.page("index");
-            Create.post("MyFirstPost");
+            Output.error("You must give your " + type + " a name!");
         }
-        else
-        {
-            var name : String = args[1];
-            var type = args[0];
-
-            if(name == null)
-            {
-                Output.error("You must give your " + type + " a name!");
-            }
-
-            if(type == "post") Create.post(name);
-            else if(type == "page") Create.page(name);
-            else if(type == "layout") Create.layout(name);
-            else Output.error("Unrecognized type " + type);
-        }
+    
+        if(type == "post") Create.post(name);
+        else if(type == "page") Create.page(name);
+        else if(type == "layout") Create.layout(name);
+        else if(type == "project") Create.project();
+    
+        else Output.error("Unrecognized type " + type);
+    
     }
 }
