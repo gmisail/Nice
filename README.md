@@ -23,7 +23,8 @@ First, you will create a new folder. Inside of this folder, you are going to cre
 
 ```
 cd _public
-python -m SimpleHTTPServer
+python -m SimpleHTTPServer  # python 2
+python3 -m http.server      # python 3
 ```
 
 ## Commands
