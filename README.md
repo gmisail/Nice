@@ -32,8 +32,7 @@ Nice comes with a catalog of commands that make it incredibly easy to create, bu
 
 ```
 haxelib run Nice build 
-haxelib run Nice create
-haxelib run Nice create <post/page/layout> <name>
+haxelib run Nice create <project/post/page/layout> <name>
 haxelib run Nice delete <post/page/layout> <name>
 ```
 
