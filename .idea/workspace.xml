@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f452d1b-6aba-47ea-94e2-140fb78f813f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nice/Create.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/Create.hx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nice/Main.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/Main.hx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/lib/Layouts.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/Layouts.hx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/lib/core/Post.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/core/Post.hx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nice/lib/util/DateStamp.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/util/DateStamp.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/cli/commands/DeleteCommand.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/cli/commands/DeleteCommand.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/lib/Build.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/Build.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/lib/Collection.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/Collection.hx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nice/lib/core/Directory.hx" beforeDir="false" afterPath="$PROJECT_DIR$/nice/lib/core/Directory.hx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,6 +107,8 @@
       <workItem from="1567558085389" duration="756000" />
       <workItem from="1567815706670" duration="175000" />
       <workItem from="1568751299790" duration="372000" />
+      <workItem from="1569644769599" duration="1396000" />
+      <workItem from="1569686701750" duration="993000" />
     </task>
     <servers />
   </component>

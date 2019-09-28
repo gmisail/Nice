@@ -89,7 +89,7 @@ Dates follow the [YAML standard.](https://github.com/mikestead/hx-yaml)
 
 Pages are very similar to posts, however they are not sorted chronologically.
 
-To create a new page, all you have to do is create a new file in the `_pages` folder with a HTML extension. Much like posts, there are two ways to do this: manually or with the command line. Using the command line, you will need to run the `haxelib run nice create page PutYourPageNameHere` command.
+To create a new page, all you have to do is create a new file in the `bin._pages` folder with a HTML extension. Much like posts, there are two ways to do this: manually or with the command line. Using the command line, you will need to run the `haxelib run nice create page PutYourPageNameHere` command.
 
 A normal page will look like this:
 

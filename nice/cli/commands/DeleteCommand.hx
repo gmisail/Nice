@@ -18,7 +18,7 @@ class DeleteCommand extends Command
 
             var prefix = "";
             if(type == "post") prefix = "_posts/";
-            else if(type == "page") prefix = "_pages/";
+            else if(type == "page") prefix = "bin._pages/";
             else if(type == "layout") prefix = "_layouts/";
             else
             {

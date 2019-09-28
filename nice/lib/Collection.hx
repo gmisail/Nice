@@ -1,5 +1,6 @@
 package nice.lib;
 
+import nice.lib.core.Layout;
 import haxe.Json;
 import haxe.ds.ArraySort;
 
@@ -71,15 +72,21 @@ class Collection
     {
         for(item in getAll())
         {
-            var template = layouts.getLayout(item.getTemplate());
-            if(template == null)
+            var layout : Layout = layouts.getLayout(item.getTemplate());
+            if(layout == null)
             {
-                template = layouts.getLayout("index.html");
+                if(layouts.getLayout("index.html") == null)
+                {
+                    Output.error("You must have a default layout (index.html) defined!");
+                    Sys.exit(1);
+                }
+
+                layout = layouts.getLayout("index.html");
             }
 
             Output.text("Compiling " + item.getName());
 
-            var renderedPost = template.compilePost(item, posts, pages, globals);
+            var renderedPost = layout.compilePost(item, posts, pages, globals);
             item.save(saveTo, renderedPost);
         }
     }

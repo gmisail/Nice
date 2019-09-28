@@ -1,5 +1,6 @@
 package nice.lib.core;
 
+import nice.cli.Output;
 import sys.FileSystem;
 import sys.io.File;
 
@@ -12,6 +13,13 @@ class Directory
     public function new(local : String)
     {
         this.local = local;
+
+        if(!FileSystem.exists(this.local))
+        {
+            Output.error("Cannot find directory /" + this.local + ".");
+            Sys.exit(1);
+        }
+
         this.names = FileSystem.readDirectory(this.local);
         this.contents = loadFiles(this.names);
     }

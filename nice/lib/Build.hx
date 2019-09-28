@@ -1,5 +1,6 @@
 package nice.lib;
 
+import sys.FileSystem;
 import nice.lib.util.ConfigFile;
 import nice.lib.core.Post;
 import nice.lib.core.Layout;
@@ -41,19 +42,19 @@ class Build
 
     public static function clean(path : String)
     {
-        if (sys.FileSystem.exists(path) && sys.FileSystem.isDirectory(path))
+        if (FileSystem.exists(path) && sys.FileSystem.isDirectory(path))
         {
-            var entries = sys.FileSystem.readDirectory(path);
+            var entries = FileSystem.readDirectory(path);
             for (entry in entries)
             {
-                if (sys.FileSystem.isDirectory(path + '/' + entry))
+                if (FileSystem.isDirectory(path + '/' + entry))
                 {
                     clean(path + '/' + entry);
-                    sys.FileSystem.deleteDirectory(path + '/' + entry);
+                    FileSystem.deleteDirectory(path + '/' + entry);
                 }
                 else
                 {
-                    sys.FileSystem.deleteFile(path + '/' + entry);
+                    FileSystem.deleteFile(path + '/' + entry);
                 }
             }
         }

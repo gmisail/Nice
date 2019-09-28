@@ -18,6 +18,7 @@ class Main
         controller.add(new CreateCommand());
         controller.add(new DeleteCommand());
 
+        /* Set the current working directory in the production version */
         #if !dev
             var currentDir = Sys.args().pop();
             Sys.setCwd(currentDir);
