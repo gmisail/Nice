@@ -13,10 +13,17 @@ class CreateCommand extends Command
     {
         var name : String = args[1];
         var type = args[0];
-    
+
+        if(type == null)
+        {
+            Output.error("Create command cannot be empty!");
+            Sys.exit(1);
+        }
+
         if(name == null)
         {
             Output.error("You must give your " + type + " a name!");
+            Sys.exit(1);
         }
     
         if(type == "post") Create.post(name);

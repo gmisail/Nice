@@ -11,9 +11,9 @@ class Layouts
     /*
         Open the layouts folder and load all of the file contents
     * */
-    public function new()
+    public function new(path : String)
     {
-        directory = new Directory("_layouts");
+        directory = new Directory(path);
 
         layouts = new Map();
         for(layout in directory.files())

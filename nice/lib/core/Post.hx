@@ -1,5 +1,6 @@
 package nice.lib.core;
 
+import sys.FileSystem;
 import sys.io.File;
 import yaml.Yaml;
 
@@ -59,7 +60,15 @@ class Post
 
     public function save(path : String, rendered : String)
     {
-        File.saveContent(path + "/" + name, rendered);
+        if(FileSystem.exists(path))
+        {
+            File.saveContent(path + "/" + name, rendered);
+        }
+        else
+        {
+            FileSystem.createDirectory(path + "/");
+            File.saveContent(path + "/" + name, rendered);
+        }
     }
 
     public function getDate() : Date

@@ -9,17 +9,17 @@ class Assets extends Directory
 {
     private var subdirectories : Array<Directory>;
 
-    public function new()
+    public function new(path : String)
     {
-        super("_assets");
+        super(path);
 
         subdirectories = [];
 
         for(file in files())
         {
-            if(FileSystem.isDirectory('_assets/$file'))
+            if(FileSystem.isDirectory('${this.local}/$file'))
             {
-                subdirectories.push(new Directory('_assets/$file'));
+                subdirectories.push(new Directory('${this.local}/$file'));
             }
         }
     }
@@ -28,7 +28,7 @@ class Assets extends Directory
     {
         for(file in files())
         {
-            if(!FileSystem.isDirectory('_assets/$file'))
+            if(!FileSystem.isDirectory('${this.local}/$file'))
             {
                 File.copy('_assets/$file', '_public/_assets/$file');
             }
@@ -36,10 +36,10 @@ class Assets extends Directory
 
         for(subdirectory in subdirectories)
         {
-            Directory.create('_public/${subdirectory.local}');
+            Directory.create('${this.local}/${subdirectory.local}');
             for(subfile in subdirectory.files())
             {
-                File.copy('${subdirectory.local}/$subfile', '_public/${subdirectory.local}/$subfile');
+                File.copy('${subdirectory.local}/$subfile', '${this.local}/${subdirectory.local}/$subfile');
             }
         }
     }

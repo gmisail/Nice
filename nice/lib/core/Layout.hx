@@ -27,7 +27,7 @@ class Layout
      * @param globals 
      * @return String
      */
-    public function compilePost(post : Post, posts : Collection, pages : Collection, globals : Json) : String
+    public function compilePost(post : Post, posts : Collection, pages : Collection, variables : Json) : String
     {
         var date = {
             day: post.getDate().getDate(),
@@ -35,7 +35,7 @@ class Layout
             year: post.getDate().getFullYear()
         };
 
-        return compile({title: post.getTitle(), body: post.compile(), date: date, posts: posts.getItems(), pages: pages.getItems(), globals : globals});
+        return compile({title: post.getTitle(), body: post.compile(), date: date, posts: posts.getItems(), pages: pages.getItems(), variables : variables});
     }
 
     public function compile(context : {}) : String

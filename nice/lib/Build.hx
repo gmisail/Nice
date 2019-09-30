@@ -14,16 +14,16 @@ class Build
     private static var layouts : Layouts;
     private static var pages : Collection;
 
-    private static var globalVariables : ConfigFile;
+    private static var config : ConfigFile;
 
     public static function process()
     {
-        posts = new Collection("_posts");
-        pages = new Collection("_pages");
-        layouts = new Layouts();
-        assets = new Assets();
+        config = new ConfigFile("config.json");
 
-        globalVariables = new ConfigFile("config.json");
+        posts = new Collection(config.getPostsPath());
+        pages = new Collection(config.getPagesPath());
+        layouts = new Layouts(config.getLayoutsPath());
+        assets = new Assets(config.getAssetsPath());
     }
 
     public static function compile()
@@ -36,8 +36,8 @@ class Build
 
         assets.copy();
 
-        posts.render(layouts, posts, pages, globalVariables.getData(), "_public/_posts");
-        pages.render(layouts, posts, pages, globalVariables.getData(), "_public");
+        posts.render(layouts, posts, pages, config.getVariables(), config.getOutputPath() + "/_posts");
+        pages.render(layouts, posts, pages, config.getVariables(), config.getOutputPath());
     }
 
     public static function clean(path : String)
