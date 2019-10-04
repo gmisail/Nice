@@ -102,3 +102,25 @@ title: About Me
 Let me tell you about myself...
 </p>
 ```
+
+## Configuration Files
+
+Configuration files allow you to alter the build process and define variables that you can use in your layout files. 
+
+```
+{
+  "assetsPath": "_assets",
+  "postsPath": "_posts",
+  "pagesPath": "_pages",
+  "layoutsPath": "_layouts",
+  "outputPath": "_public",
+
+  "variables": {
+    "title": "john's site",
+    "name": {
+      "first": "john",
+      "last": "smith"
+    }
+  }
+}
+```
