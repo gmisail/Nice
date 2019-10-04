@@ -1,6 +1,7 @@
 package nice.lib.core;
 
 import haxe.Json;
+import nice.lib.Collection;
 import nice.lib.core.Post;
 
 class Layout
@@ -38,6 +39,10 @@ class Layout
         return compile({title: post.getTitle(), body: post.compile(), date: date, posts: posts.getItems(), pages: pages.getItems(), variables : variables});
     }
 
+    /**
+     * Compiles layout using the given context
+     * @param context 
+     */
     public function compile(context : {}) : String
     {
         return Mustache.render(content, context);
