@@ -18,7 +18,7 @@ class Build
 
     public static function process()
     {
-        config = new ConfigFile("config.json");
+        config = new ConfigFile("config.yaml");
 
         posts = new Collection(config.getPostsPath());
         pages = new Collection(config.getPagesPath());

@@ -1,7 +1,9 @@
 package nice.lib.util;
 
-import haxe.Json;
 import sys.io.File;
+
+import yaml.Yaml;
+import yaml.Parser;
 
 typedef ConfigData = {
     var assetsPath : String;
@@ -13,55 +15,63 @@ typedef ConfigData = {
 }
 
 /*
-    Manages the config.json file and helps load properties
+    Manages the config.yaml file and helps load properties
 */
 class ConfigFile
 {
     private var path : String;
     private var content : String;
-    private var json : ConfigData;
+    private var data : ConfigData;
 
     public function new(path : String)
     {
         this.path = path;
         this.content = File.getContent(path);
-        this.json = Json.parse(this.content);
+
+        if(this.content.length != 0)
+        {
+            this.data = Yaml.read(path, Parser.options().useObjects());
+        }
+        else
+        {
+            this.data = null;
+        }
     }
 
     public function getVariables() : Dynamic
     {
-        if (json.variables == null) return {};
-        else return json.variables;
+        if (data == null || data.variables == null) return {};
+        else return data.variables;
     }
 
     public function getOutputPath() : String
     {
-        if(json.outputPath == null) return "_public";
-        return json.outputPath;
+        if(data == null || data.outputPath == null) return "_public";
+        return data.outputPath;
     }
 
     public function getPostsPath(): String
     {
-        if(json.postsPath == null) return "_posts";
-        return json.postsPath;
+        if(data == null || data.postsPath == null) return "_posts";
+        return data.postsPath;
     }
 
     public function getPagesPath(): String
     {
-        if(json.pagesPath == null) return "_pages";
-        return json.pagesPath;
+        if(data == null || data.pagesPath == null) return "_pages";
+        return data.pagesPath;
     }
 
     public function getLayoutsPath(): String
     {
-        if(json.layoutsPath == null) return "_layouts";
-        return json.layoutsPath;
+        if(data == null || data.layoutsPath == null) return "_layouts";
+        return data.layoutsPath;
     }
 
     public function getAssetsPath(): String
     {
-        if(json.assetsPath == null) return "_assets";
-        return json.assetsPath;
+        if(data == null || data.assetsPath == null) return "_assets";
+        return data.assetsPath;
     }
 
 }
