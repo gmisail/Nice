@@ -1,3 +1,4 @@
 bin/
 .idea/
-run.n
+
+*.n
