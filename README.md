@@ -108,19 +108,16 @@ Let me tell you about myself...
 Configuration files allow you to alter the build process and define variables that you can use in your layout files. 
 
 ```
-{
-  "assetsPath": "_assets",
-  "postsPath": "_posts",
-  "pagesPath": "_pages",
-  "layoutsPath": "_layouts",
-  "outputPath": "_public",
+paths:
+  assets: _assets
+  layouts: _layouts
+  pages: _pages
+  posts: _posts
+  output: _public
 
-  "variables": {
-    "title": "john's site",
-    "name": {
-      "first": "john",
-      "last": "smith"
-    }
-  }
-}
+variables:
+  title: john's site
+  name:
+    first: john
+    last: smith
 ```
