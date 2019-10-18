@@ -6,11 +6,13 @@ import yaml.Yaml;
 import yaml.Parser;
 
 typedef ConfigData = {
-    var assetsPath : String;
-    var postsPath : String;
-    var pagesPath : String;
-    var layoutsPath : String;
-    var outputPath : String;
+    var paths: {
+        var assets : String;
+        var posts : String;
+        var pages : String;
+        var layouts : String;
+        var output : String;
+    }
     var variables: {};
 }
 
@@ -46,32 +48,32 @@ class ConfigFile
 
     public function getOutputPath() : String
     {
-        if(data == null || data.outputPath == null) return "_public";
-        return data.outputPath;
+        if(data == null || data.paths == null || data.paths.output == null) return "_public";
+        return data.paths.output;
     }
 
     public function getPostsPath(): String
     {
-        if(data == null || data.postsPath == null) return "_posts";
-        return data.postsPath;
+        if(data == null || data.paths == null || data.paths.posts == null) return "_posts";
+        return data.paths.posts;
     }
 
     public function getPagesPath(): String
     {
-        if(data == null || data.pagesPath == null) return "_pages";
-        return data.pagesPath;
+        if(data == null || data.paths == null || data.paths.pages == null) return "_pages";
+        return data.paths.pages;
     }
 
     public function getLayoutsPath(): String
     {
-        if(data == null || data.layoutsPath == null) return "_layouts";
-        return data.layoutsPath;
+        if(data == null || data.paths == null || data.paths.layouts == null) return "_layouts";
+        return data.paths.layouts;
     }
 
     public function getAssetsPath(): String
     {
-        if(data == null || data.assetsPath == null) return "_assets";
-        return data.assetsPath;
+        if(data == null || data.paths == null || data.paths.assets == null) return "_assets";
+        return data.paths.assets;
     }
 
 }
