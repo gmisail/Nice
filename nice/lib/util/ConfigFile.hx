@@ -13,7 +13,9 @@ typedef ConfigData = {
         var layouts : String;
         var output : String;
     }
+    
     var variables: {};
+    var platform: String;
 }
 
 /*
@@ -76,4 +78,10 @@ class ConfigFile
         return data.paths.assets;
     }
 
+    public function getPlatform(): String
+    {
+        if(data == null || data.platform == null) return Platform.DEFAULT;
+        else if(data.platform == "github pages") return Platform.GITHUB_PAGES;
+        else return Platform.DEFAULT;
+    }
 }

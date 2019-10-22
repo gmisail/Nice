@@ -1,7 +1,10 @@
 package nice.lib;
 
+import sys.io.File;
 import sys.FileSystem;
+
 import nice.lib.util.ConfigFile;
+import nice.lib.util.Platform;
 import nice.lib.core.Post;
 import nice.lib.core.Layout;
 import nice.lib.core.Directory;
@@ -28,11 +31,16 @@ class Build
 
     public static function compile()
     {
-        clean("_public");
+        clean(config.getOutputPath());
 
-        Directory.create("_public");
-        Directory.create("_public/_posts");
-        Directory.create("_public/_assets");
+        Directory.create(config.getOutputPath());
+        Directory.create(config.getOutputPath() + "/_posts");
+        Directory.create(config.getOutputPath() + "/_assets");
+
+        if(config.getPlatform() == Platform.GITHUB_PAGES)
+        {
+            File.saveContent(config.getOutputPath() + "/.nojekyll", "");
+        }
 
         assets.copy();
 
