@@ -2,7 +2,7 @@
 
 ## What is Nice?
 
-Nice is a simple static site generator that makes it easy for developers to generate static webpages. 
+Nice is a simple static site generator that makes it ~~easy~~ easier for developers to generate static webpages. 
 
 ## Installation
 
