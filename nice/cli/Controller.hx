@@ -1,5 +1,8 @@
 package nice.cli;
 
+import nice.cli.Command;
+import nice.cli.Output;
+
 class Controller
 {
     private var defaultCommand : Command;
@@ -28,7 +31,9 @@ class Controller
                 currentCommand.onExecute(arguments);
             }
             else
-                Output.error("Could not find command " + command);
+            {
+                Output.error("Unknown command");
+            }
         }
         else
         {

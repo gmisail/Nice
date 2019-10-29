@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-if [ $1 = 'dev' ]
+if [[ $1 = 'dev' ]]
 then
-    echo 'Building development version...'
+    echo '[Nice-Dev] Building development version...'
     haxe dev.hxml
     cd bin
     neko nice.n build
 else
-    echo 'Building release version...'
+    echo '[Nice-Dev] Building release version...'
     haxe build.hxml
 fi
 
-echo 'Done.'
+echo '[Nice-Dev] Done.'

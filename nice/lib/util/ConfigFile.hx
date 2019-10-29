@@ -1,9 +1,13 @@
 package nice.lib.util;
 
+import sys.FileSystem;
 import sys.io.File;
 
 import yaml.Yaml;
 import yaml.Parser;
+
+import nice.cli.Output;
+import nice.lib.util.Platform;
 
 typedef ConfigData = {
     var paths: {
@@ -30,7 +34,18 @@ class ConfigFile
     public function new(path : String)
     {
         this.path = path;
-        this.content = File.getContent(path);
+
+        if(FileSystem.exists(path))
+        {
+            this.content = File.getContent(path);
+        }
+        else
+        {
+            this.content = "";
+
+            Output.error("Cannot find config.yaml!");
+            Sys.exit(1);
+        }
 
         if(this.content.length != 0)
         {
