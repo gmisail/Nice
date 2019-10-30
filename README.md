@@ -88,7 +88,7 @@ Hello!
 </p>
 ```
 
-Dates follow the [YAML standard.](https://github.com/mikestead/hx-yaml)
+Dates follow the [YAML standard.](https://github.com/mikestead/hx-yaml) The values that you use in posts are exposed to the layouts using the Date object (the `date` variable.)
 
 ## Pages
 
