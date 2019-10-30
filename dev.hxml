@@ -2,7 +2,10 @@
 -lib yaml
 -lib hxmustache
 -lib markdown
-# -lib hxnodejs
+-lib Console.hx
+
+# UNCOMMENT TO TARGET NODE.JS
+#-lib hxnodejs
 
 # build
 -cp nice

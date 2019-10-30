@@ -4,16 +4,26 @@ import nice.lib.core.Layout;
 import haxe.Json;
 import haxe.ds.ArraySort;
 
+import nice.lib.Layouts;
+import nice.lib.Collection;
 import nice.lib.core.Directory;
 import nice.lib.core.Post;
 
 import nice.cli.Output;
+
+enum SortType
+{
+    ORDER;
+    DATE_NEWEST_TO_OLDEST;
+    DATE_OLDEST_TO_NEWEST;
+}
 
 class Collection
 {
     private var directory : Directory;
     private var items : Array<Post>; 
     private var visible : Array<Post>; /* posts have a 'state' property which determines whether or not it can be exposed to HTML. */
+   
 
     public function new(dir : String)
     {
@@ -37,8 +47,10 @@ class Collection
 
     public function getItems() : Array<Post>
     {
+       visible.sort(Post.compareReverse);
+        
         //Sortbydate();
-        sortByOrder();
+        //sortByOrder();
 
         return visible;
     }
@@ -48,26 +60,6 @@ class Collection
         return items;
     }
     
-    /*
-    public function sortByDate()
-    {
-        ArraySort.sort(visible, function(itemA, itemB) : Int {
-            if (itemA.dateStamp.compare(itemB.dateStamp)) return -1;
-            else if (itemB.dateStamp.compare(itemA.dateStamp)) return 1;
-            return 0;
-        });
-    }
-    */
-
-    public function sortByOrder()
-    {
-        ArraySort.sort(visible, function(itemA, itemB) : Int {
-            if (itemA.getOrder() < itemB.getOrder()) return -1;
-            else if (itemA.getOrder() > itemB.getOrder()) return 1;
-            return 0;
-        });
-    }
-
     public function render(layouts : Layouts, posts : Collection, pages : Collection, globals : Json, saveTo : String)
     {
         for(item in getAll())

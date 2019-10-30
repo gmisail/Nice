@@ -3,12 +3,11 @@ package nice.lib;
 import sys.io.File;
 import sys.FileSystem;
 
-import nice.lib.util.ConfigFile;
 import nice.lib.util.Platform;
-import nice.lib.core.Post;
-import nice.lib.core.Layout;
-import nice.lib.core.Directory;
 import nice.lib.util.ConfigFile;
+
+import nice.lib.*;
+import nice.lib.core.Directory;
 
 class Build
 {

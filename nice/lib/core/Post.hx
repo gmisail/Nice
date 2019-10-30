@@ -2,7 +2,10 @@ package nice.lib.core;
 
 import sys.FileSystem;
 import sys.io.File;
+
 import yaml.Yaml;
+
+import nice.cli.Output;
 
 class Post
 {
@@ -39,7 +42,17 @@ class Post
         if(template == null) template = "index.html";
         if(state == null) state = "visible";
         if(language == null) language = "html";
-        if(date == null) date = Date.now();
+
+        if(date == null || !Std.is(date, Date)) 
+        {
+            if(date != null && !Std.is(date, Date))
+            {
+                Output.warning("Unknown 'Date' type. Output may be unexpected. (" + this.name + ")");
+            }
+
+            date = Date.now();
+        }
+
         if(order == null) order = -1;
 
         this.body = frontmatterContent[2];
@@ -99,5 +112,36 @@ class Post
     public function getTemplate() : String
     {
         return template;
+    }
+
+    /**
+    *    SORTING
+    */
+    public static function compare(a : Post, b : Post) : Int
+    {
+        if(a.getDate().getFullYear() < b.getDate().getFullYear()) return -1;                 
+        else if(a.getDate().getFullYear() == b.getDate().getFullYear() && a.getDate().getMonth() < b.getDate().getMonth()) return -1;      
+        else if(a.getDate().getFullYear() == b.getDate().getFullYear() && a.getDate().getMonth() == b.getDate().getMonth() && a.getDate().getDate() < b.getDate().getDate()) return -1;
+        else if(a.getDate().getFullYear() == b.getDate().getFullYear() && a.getDate().getMonth() == b.getDate().getMonth() && a.getDate().getDate() == b.getDate().getDate()) return 0;
+
+        return 1;
+    }
+
+    public static function compareReverse(a : Post, b : Post) : Int
+    {
+        if(a.getDate().getFullYear() > b.getDate().getFullYear()) return -1;                 
+        else if(a.getDate().getFullYear() == b.getDate().getFullYear() && a.getDate().getMonth() > b.getDate().getMonth()) return -1;      
+        else if(a.getDate().getFullYear() == b.getDate().getFullYear() && a.getDate().getMonth() == b.getDate().getMonth() && a.getDate().getDate() > b.getDate().getDate()) return -1;
+        else if(a.getDate().getFullYear() == b.getDate().getFullYear() && a.getDate().getMonth() == b.getDate().getMonth() && a.getDate().getDate() == b.getDate().getDate()) return 0;
+
+        return 1;
+    }
+
+    public static function compareOrder(a : Post, b : Post) : Int
+    {
+        if(a.getOrder() < b.getOrder()) return -1;                 
+        else if(a.getOrder() > b.getOrder()) return 1;
+
+        return 0;
     }
 }

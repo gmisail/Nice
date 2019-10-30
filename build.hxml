@@ -2,6 +2,7 @@
 -lib yaml
 -lib hxmustache
 -lib markdown
+-lib Console.hx
 
 # build
 -cp nice

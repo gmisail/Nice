@@ -7,6 +7,7 @@ import yaml.Yaml;
 import yaml.Parser;
 
 import nice.cli.Output;
+import nice.lib.core.Post;
 import nice.lib.util.Platform;
 
 typedef ConfigData = {
@@ -19,7 +20,11 @@ typedef ConfigData = {
     }
     
     var variables: {};
+
     var platform: String;
+
+    var sortPosts: String;
+    var sortPages: String;
 }
 
 /*
@@ -99,4 +104,16 @@ class ConfigFile
         else if(data.platform == "github pages") return Platform.GITHUB_PAGES;
         else return Platform.DEFAULT;
     }
+
+    /*public function getSortPages() : SortType
+    {
+        if(data == null || data.sortPages == null) return true;
+        else return data.sortPages;
+    }
+
+    public function getSortPosts() : SortType
+    {
+        if(data == null || data.sortPosts == null) return Post.ORDER;
+        else return data.sortPosts;
+    }*/
 }

@@ -1,6 +1,8 @@
 package nice.cli.commands;
 
-import sys.io.File;
+import nice.Create;
+import nice.cli.Command;
+import nice.cli.Output;
 
 class CreateCommand extends Command
 {
