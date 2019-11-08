@@ -47,6 +47,10 @@ You can use the following variables in your Mustache templates:
 - body - Body content (In your template, you MUST use triple braces ({{{body}}})! Without them, the page will not render properly)
 - pages - Array of your site's pages.
 - posts - Array of your site's posts.
+- date - the current post's Date object
+- date.day - the current post's day (integer from 1-31)
+- date.month - the current post's month (integer from 1 - 12)
+- date.year - the current post's year (4 digit integer)
 
 ### _layout/index.html Example
 
@@ -66,6 +70,7 @@ You can use the following variables in your Mustache templates:
     </body>
 </html>
 ```
+
 ## Posts
 
 Posts are very easy to create; all you have to do is create a new file in the `_posts` folder with a HTML extension. You can do this manually or by using the command `haxelib run nice create post PutYourPostNameHere`.
@@ -83,13 +88,13 @@ Hello!
 </p>
 ```
 
-Dates follow the [YAML standard.](https://github.com/mikestead/hx-yaml)
+Dates follow the [YAML standard.](https://github.com/mikestead/hx-yaml) The values that you use in posts are exposed to the layouts using the Date object (the `date` variable.)
 
 ## Pages
 
 Pages are very similar to posts, however they are not sorted chronologically.
 
-To create a new page, all you have to do is create a new file in the `bin._pages` folder with a HTML extension. Much like posts, there are two ways to do this: manually or with the command line. Using the command line, you will need to run the `haxelib run nice create page PutYourPageNameHere` command.
+To create a new page, all you have to do is create a new file in the `_pages` folder with a HTML extension. Much like posts, there are two ways to do this: manually or with the command line. Using the command line, you will need to run the `haxelib run nice create page PutYourPageNameHere` command.
 
 A normal page will look like this:
 
