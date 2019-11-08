@@ -4,13 +4,14 @@
     "license": "MIT",
     "tags": ["neko", "html", "web", "static-site-generator"],
     "description": "Simple static site generator.",
-    "version": "3.2.0",
+    "version": "3.3.0",
     "classPath": "nice/",
-    "releasenote": "Configuration files, now with YAML!",
+    "releasenote": "Sorting, colors, and bug fixes",
     "contributors": ["gmisail"],
     "dependencies": {
         "yaml": "",
         "hxmustache": "",
-        "markdown": ""
+        "markdown": "",
+        "console.hx": ""
     }
   }

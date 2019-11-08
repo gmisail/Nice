@@ -23,13 +23,14 @@ class Collection
     private var directory : Directory;
     private var items : Array<Post>; 
     private var visible : Array<Post>; /* posts have a 'state' property which determines whether or not it can be exposed to HTML. */
-   
+    private var sort : String;
 
-    public function new(dir : String)
+    public function new(dir : String, ?sort : String = "none")
     {
-        directory = new Directory(dir);
-        items = [];
-        visible = [];
+        this.directory = new Directory(dir);
+        this.items = [];
+        this.visible = [];
+        this.sort = sort;
         
         for(item in directory.files())
         {
@@ -47,10 +48,17 @@ class Collection
 
     public function getItems() : Array<Post>
     {
-       visible.sort(Post.compareReverse);
-        
-        //Sortbydate();
-        //sortByOrder();
+        switch(sort)
+        {
+            case "newest-to-oldest":
+                visible.sort(Post.compareReverse);
+            case "oldest-to-newest":
+                visible.sort(Post.compare);
+            case "order":
+                visible.sort(Post.compareOrder);
+            default:
+                sort = "none";
+        }
 
         return visible;
     }

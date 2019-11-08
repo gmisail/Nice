@@ -22,8 +22,8 @@ class Build
     {
         config = new ConfigFile("config.yaml");
 
-        posts = new Collection(config.getPostsPath());
-        pages = new Collection(config.getPagesPath());
+        posts = new Collection(config.getPostsPath(), config.getSortPosts());
+        pages = new Collection(config.getPagesPath(), config.getSortPages());
         layouts = new Layouts(config.getLayoutsPath());
         assets = new Assets(config.getAssetsPath());
     }

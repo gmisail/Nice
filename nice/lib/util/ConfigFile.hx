@@ -105,15 +105,15 @@ class ConfigFile
         else return Platform.DEFAULT;
     }
 
-    /*public function getSortPages() : SortType
+    public function getSortPages() : String
     {
-        if(data == null || data.sortPages == null) return true;
+        if(data == null || data.sortPages == null) return "none";
         else return data.sortPages;
     }
 
-    public function getSortPosts() : SortType
+    public function getSortPosts() : String
     {
-        if(data == null || data.sortPosts == null) return Post.ORDER;
+        if(data == null || data.sortPosts == null) return "none";
         else return data.sortPosts;
-    }*/
+    }
 }

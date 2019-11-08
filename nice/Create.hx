@@ -26,7 +26,7 @@ class Create
 
     public static function page(name : String)
     {
-        File.saveContent("bin._pages/" + name + ".html", DEFAULT_PAGE_FRONTMATTER + DEFAULT_CONTENT);
+        File.saveContent("_pages/" + name + ".html", DEFAULT_PAGE_FRONTMATTER + DEFAULT_CONTENT);
     }
 
     public static function layout(name : String)
@@ -39,7 +39,7 @@ class Create
         File.saveContent("config.yaml", "");
         
         Directory.create("_assets");
-        Directory.create("bin._pages");
+        Directory.create("_pages");
         Directory.create("_posts");
         Directory.create("_layouts");
         Directory.create("_public");
