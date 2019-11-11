@@ -9,85 +9,93 @@ import nice.cli.Output;
 
 class Post
 {
-    private var name : String;           // Name of post's file
-    private var content : String;        // The post's total content
-    private var body : String;           // The post body / text
-    private var title : String;          // Title of the post
-    private var date : Date;              // Date the post was created
-    private var tags : Array<String>;    // Post tags
-    private var template : String;       // The template that the post uses
-    private var state : String;          // Whether or not the page is hidden or not
-    private var language : String;       // Markdown or HTML?
-    private var order : Int;             // What order do you want the pages to be in?
+    var _name : String;           // Name of post's file
+    var _content : String;        // The post's total content
+    var _body : String;           // The post body / text
+    var _title : String;          // Title of the post
+    var _date : Date;              // Date the post was created
+    var _tags : Array<String>;    // Post tags
+    var _template : String;       // The template that the post uses
+    var _state : String;          // Whether or not the page is hidden or not
+    var _language : String;       // Markdown or HTML?
+    var _order : Int;             // What order do you want the pages to be in?
 
-    private var frontmatter : Dynamic;
+    var _frontmatter : Dynamic;
 
     public function new(name : String, content : String)
     {
-        this.name = name;
-        this.content = content;
+        this._name = name;
+        this._content = content;
         
-        var frontmatterContent : Array<String> = this.content.split("---");
+        var frontmatterContent : Array<String> = this._content.split("---");
+        
+        this._frontmatter = Yaml.parse(frontmatterContent[1]);
+        this._createBody(frontmatterContent);
 
-        this.createBody(frontmatterContent);
+        this._title = _frontmatter.get("title");
+        this._tags = _frontmatter.get("tags");
+        this._date = _frontmatter.get("date");
+        this._template = _frontmatter.get("template");
+        this._state = _frontmatter.get("state");
+        this._language = _frontmatter.get("language");
+        this._order = _frontmatter.get("order");
 
-        this.frontmatter = Yaml.parse(frontmatterContent[1]);
-
-        this.title = frontmatter.get("title");
-        this.tags = frontmatter.get("tags");
-        this.date = frontmatter.get("date");
-        this.template = frontmatter.get("template");
-        this.state = frontmatter.get("state");
-        this.language = frontmatter.get("language");
-        this.order = frontmatter.get("order");
-
-        if(tags == null) tags = [];
-        if(template == null) template = "index.html";
-        if(state == null) state = "visible";
-        if(language == null) language = "html";
+        if(_tags == null) _tags = [];
+        if(_template == null) _template = "index.html";
+        if(_state == null) _state = "visible";
+        if(_language == null) _language = "html";
 
         /**
          * Date does not exist so set it to the time of compilation
          */
-        if(date == null || !Std.is(date, Date)) 
+        if(_date == null || !Std.is(_date, Date)) 
         {
-            date = Date.now();
+            _date = Date.now();
         }
 
         /**
          * Date exists, but it is not of type 'Date'
          */
-        else if(date != null && !Std.is(date, Date))
+        else if(_date != null && !Std.is(_date, Date))
         {
-            Output.warning("Unknown 'Date' type. Output may be unexpected. (" + this.name + ")");
+            Output.warning("Unknown 'Date' type. Output may be unexpected. (" + this._name + ")");
         }
 
-        if(order == null) order = -1;
+        if(_order == null) _order = -1;
     }
 
+    /**
+     * Compiles the post and returns the output as a String
+     * @return String
+     */
     public function compile() : String
     {
-        switch(language)
+        switch(_language)
         {
             case "html":
-                return body;
+                return _body;
             case "markdown":
-                return Markdown.markdownToHtml(body);
+                return Markdown.markdownToHtml(_body);
             default:
-                return body;
+                return _body;
         }
     }
 
+    /**
+     * Saves the output to the filesystem. If the path doesn't exist, create a new path
+     * @param path 
+     * @param rendered 
+     */
     public function save(path : String, rendered : String)
     {
         if(FileSystem.exists(path))
         {
-            File.saveContent(path + "/" + name, rendered);
+            File.saveContent(path + "/" + _name, rendered);
         }
         else
         {
             FileSystem.createDirectory(path + "/");
-            File.saveContent(path + "/" + name, rendered);
+            File.saveContent(path + "/" + _name, rendered);
         }
     }
 
@@ -97,7 +105,7 @@ class Post
      */
     public function getDate() : Date
     {
-        return date;
+        return _date;
     }
 
     /**
@@ -106,7 +114,7 @@ class Post
      */
     public function getTitle() : String
     {
-        return title;
+        return _title;
     }
 
     /**
@@ -115,7 +123,7 @@ class Post
      */
     public function getState() : String
     {
-        return state;
+        return _state;
     }
 
     /**
@@ -124,7 +132,7 @@ class Post
      */
     public function getName() : String
     {
-        return name;
+        return _name;
     }
 
     /**
@@ -133,7 +141,7 @@ class Post
      */
     public function getOrder() : Int
     {
-        return order;
+        return _order;
     }
 
     /**
@@ -142,12 +150,15 @@ class Post
      */
     public function getTemplate() : String
     {
-        return template;
+        return _template;
     }
 
     /**
-    *    SORTING
-    */
+     * Sort from least to greatest
+     * @param a 
+     * @param b 
+     * @return Int
+     */
     public static function compare(a : Post, b : Post) : Int
     {
         if(a.getDate().getFullYear() < b.getDate().getFullYear()) return -1;                 
@@ -158,6 +169,12 @@ class Post
         return 1;
     }
 
+    /**
+     * Sort from greatest to least
+     * @param a 
+     * @param b 
+     * @return Int
+     */
     public static function compareReverse(a : Post, b : Post) : Int
     {
         if(a.getDate().getFullYear() > b.getDate().getFullYear()) return -1;                 
@@ -168,6 +185,12 @@ class Post
         return 1;
     }
 
+    /**
+     * Sort based on the order value
+     * @param a 
+     * @param b 
+     * @return Int
+     */
     public static function compareOrder(a : Post, b : Post) : Int
     {
         if(a.getOrder() < b.getOrder()) return -1;                 
@@ -176,7 +199,11 @@ class Post
         return 0;
     }
 
-    private function createBody(frontmatterContent : Array<String>) : Void
+    /**
+     * Prepare the body content for compilation
+     * @param frontmatterContent 
+     */
+    function _createBody(frontmatterContent : Array<String>)
     {
         if(frontmatterContent.length > 2)
         {
@@ -191,11 +218,11 @@ class Post
                 current += frontmatterContent[i];
             }
 
-            this.body = current;
+            this._body = current;
         }
         else
         {
-            this.body = frontmatterContent[2];
+            this._body = frontmatterContent[2];
         }
     }
 }
