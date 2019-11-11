@@ -2,3 +2,5 @@ bin/
 .idea/
 
 *.n
+*.hxml
+*.sh
