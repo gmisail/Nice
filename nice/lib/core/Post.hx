@@ -43,14 +43,20 @@ class Post
         if(state == null) state = "visible";
         if(language == null) language = "html";
 
+        /**
+         * Date does not exist so set it to the time of compilation
+         */
         if(date == null || !Std.is(date, Date)) 
         {
-            if(date != null && !Std.is(date, Date))
-            {
-                Output.warning("Unknown 'Date' type. Output may be unexpected. (" + this.name + ")");
-            }
-
             date = Date.now();
+        }
+
+        /**
+         * Date exists, but it is not of type 'Date'
+         */
+        else if(date != null && !Std.is(date, Date))
+        {
+            Output.warning("Unknown 'Date' type. Output may be unexpected. (" + this.name + ")");
         }
 
         if(order == null) order = -1;
@@ -84,16 +90,28 @@ class Post
         }
     }
 
+    /**
+     * Get the post's date stamp. If it does not exist, it returns the date of compilation
+     * @return Date
+     */
     public function getDate() : Date
     {
         return date;
     }
 
+    /**
+     * Get the title of the current post / page
+     * @return String
+     */
     public function getTitle() : String
     {
         return title;
     }
 
+    /**
+     * Get whether or not the current post is visible, invisible, etc.
+     * @return String
+     */
     public function getState() : String
     {
         return state;
