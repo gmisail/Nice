@@ -27,7 +27,10 @@ class Post
         this.name = name;
         this.content = content;
         
-        var frontmatterContent = this.content.split("---");
+        var frontmatterContent : Array<String> = this.content.split("---");
+
+        this.createBody(frontmatterContent);
+
         this.frontmatter = Yaml.parse(frontmatterContent[1]);
 
         this.title = frontmatter.get("title");
@@ -60,8 +63,6 @@ class Post
         }
 
         if(order == null) order = -1;
-
-        this.body = frontmatterContent[2];
     }
 
     public function compile() : String
@@ -117,16 +118,28 @@ class Post
         return state;
     }
 
+    /**
+     * Get the name of the current file
+     * @return String
+     */
     public function getName() : String
     {
         return name;
     }
 
+    /**
+     * Get the order of the file, if given. If not, return -1.
+     * @return Int
+     */
     public function getOrder() : Int
     {
         return order;
     }
 
+    /**
+     * Get the current post's template
+     * @return String
+     */
     public function getTemplate() : String
     {
         return template;
@@ -161,5 +174,28 @@ class Post
         else if(a.getOrder() > b.getOrder()) return 1;
 
         return 0;
+    }
+
+    private function createBody(frontmatterContent : Array<String>) : Void
+    {
+        if(frontmatterContent.length > 2)
+        {
+            var current : String = "";
+            for(i in 2...frontmatterContent.length)
+            {
+                if(i != 2)
+                {
+                    current += " --- ";
+                }
+
+                current += frontmatterContent[i];
+            }
+
+            this.body = current;
+        }
+        else
+        {
+            this.body = frontmatterContent[2];
+        }
     }
 }
