@@ -7,6 +7,9 @@
 # UNCOMMENT TO TARGET NODE.JS
 #-lib hxnodejs
 
+# options
+--no-traces
+
 # build
 -cp nice
 -main nice.Main

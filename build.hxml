@@ -4,6 +4,9 @@
 -lib markdown
 -lib Console.hx
 
+# options
+--no-traces
+
 # build
 -cp nice
 -main nice.Main

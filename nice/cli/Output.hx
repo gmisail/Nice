@@ -8,13 +8,13 @@ package nice.cli;
 
 class Output
 {
-    private static var prefix = "[Nice] ";
+    private static var prefix = "<red>[Nice]</> ";
     private static var errorPrefix = "**";
     private static var warningPrefix = "!!";
 
     public static function text(msg : String)
     {
-        Console.println(prefix + msg);
+        Console.printlnFormatted(prefix + msg);
     }
 
     public static function error(msg : String)
