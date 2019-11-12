@@ -3,23 +3,25 @@ package nice.lib;
 import sys.FileSystem;
 import sys.io.File;
 
-import nice.lib.core.Directory;
+import nice.fs.Directory;
 
 class Assets extends Directory
 {
-    private var subdirectories : Array<Directory>;
+    private var _subdirectories : Array<Directory>;
 
     public function new(path : String)
     {
         super(path);
 
-        subdirectories = [];
+        _subdirectories = [];
 
         for(file in files())
         {
-            if(FileSystem.isDirectory('${this.local}/$file'))
+            var subdirectoryPath = '${getLocalPath()}/$file';
+
+            if(FileSystem.isDirectory(subdirectoryPath))
             {
-                subdirectories.push(new Directory('${this.local}/$file'));
+                _subdirectories.push(new Directory(subdirectoryPath));
             }
         }
     }
@@ -28,18 +30,25 @@ class Assets extends Directory
     {
         for(file in files())
         {
-            if(!FileSystem.isDirectory('${this.local}/$file'))
+            if(!FileSystem.isDirectory('${getLocalPath()}/$file'))
             {
-                File.copy('_assets/$file', '_public/_assets/$file');
+                var from = '_assets/$file';
+                var to =  '_public/_assets/$file';
+
+                File.copy(from, to);
             }
         }
 
-        for(subdirectory in subdirectories)
+        for(subdirectory in _subdirectories)
         {
-            Directory.create('${this.local}/${subdirectory.local}');
+            Directory.create('${getLocalPath()}/${subdirectory.getLocalPath()}');
+
             for(subfile in subdirectory.files())
             {
-                File.copy('${subdirectory.local}/$subfile', '${this.local}/${subdirectory.local}/$subfile');
+                var from = '${subdirectory.getLocalPath()}/$subfile';
+                var to = '${getLocalPath()}/${subdirectory.getLocalPath()}/$subfile';
+
+                File.copy(from, to);
             }
         }
     }

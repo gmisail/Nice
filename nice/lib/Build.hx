@@ -1,13 +1,13 @@
 package nice.lib;
 
-import sys.io.File;
 import sys.FileSystem;
+import sys.io.File;
 
-import nice.lib.util.Platform;
-import nice.lib.util.ConfigFile;
+import nice.fs.Directory;
 
 import nice.lib.*;
-import nice.lib.core.Directory;
+import nice.lib.util.Platform;
+import nice.lib.util.ConfigFile;
 
 class Build
 {
@@ -49,7 +49,7 @@ class Build
 
     public static function clean(path : String)
     {
-        if (FileSystem.exists(path) && sys.FileSystem.isDirectory(path))
+        if (FileSystem.exists(path) && FileSystem.isDirectory(path))
         {
             var entries = FileSystem.readDirectory(path);
             for (entry in entries)

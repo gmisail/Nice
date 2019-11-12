@@ -4,9 +4,10 @@ import nice.lib.core.Layout;
 import haxe.Json;
 import haxe.ds.ArraySort;
 
+import nice.fs.Directory;
+
 import nice.lib.Layouts;
 import nice.lib.Collection;
-import nice.lib.core.Directory;
 import nice.lib.core.Post;
 
 import nice.cli.Output;

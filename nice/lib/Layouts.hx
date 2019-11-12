@@ -1,6 +1,6 @@
 package nice.lib;
 
-import nice.lib.core.Directory;
+import nice.fs.Directory;
 import nice.lib.core.Layout;
 
 class Layouts

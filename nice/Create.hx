@@ -2,7 +2,7 @@ package nice;
 
 import sys.io.File;
 
-import nice.lib.core.Directory;
+import nice.fs.Directory;
 
 /*
  *  Manages the creation of new posts, pages, layouts, etc.  

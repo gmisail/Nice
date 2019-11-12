@@ -10,7 +10,7 @@ import nice.cli.Output;
 import nice.lib.core.Post;
 import nice.lib.util.Platform;
 
-typedef ConfigData = {
+typedef Config_data = {
     var paths: {
         var assets : String;
         var posts : String;
@@ -32,88 +32,88 @@ typedef ConfigData = {
 */
 class ConfigFile
 {
-    private var path : String;
-    private var content : String;
-    private var data : ConfigData;
+    private var _path : String;
+    private var _content : String;
+    private var _data : Config_data;
 
     public function new(path : String)
     {
-        this.path = path;
+        this._path = path;
 
         if(FileSystem.exists(path))
         {
-            this.content = File.getContent(path);
+            this._content = File.getContent(path);
         }
         else
         {
-            this.content = "";
+            this._content = "";
 
             Output.error("Cannot find config.yaml!");
             Sys.exit(1);
         }
 
-        if(this.content.length != 0)
+        if(this._content.length != 0)
         {
-            this.data = Yaml.read(path, Parser.options().useObjects());
+            this._data = Yaml.read(path, Parser.options().useObjects());
         }
         else
         {
-            this.data = null;
+            this._data = null;
         }
     }
 
     public function getVariables() : Dynamic
     {
-        if (data == null || data.variables == null) return {};
-        else return data.variables;
+        if (_data == null || _data.variables == null) return {};
+        else return _data.variables;
     }
 
     public function getOutputPath() : String
     {
-        if(data == null || data.paths == null || data.paths.output == null) return "_public";
-        return data.paths.output;
+        if(_data == null || _data.paths == null || _data.paths.output == null) return "_public";
+        return _data.paths.output;
     }
 
     public function getPostsPath(): String
     {
-        if(data == null || data.paths == null || data.paths.posts == null) return "_posts";
-        return data.paths.posts;
+        if(_data == null || _data.paths == null || _data.paths.posts == null) return "_posts";
+        return _data.paths.posts;
     }
 
     public function getPagesPath(): String
     {
-        if(data == null || data.paths == null || data.paths.pages == null) return "_pages";
-        return data.paths.pages;
+        if(_data == null || _data.paths == null || _data.paths.pages == null) return "_pages";
+        return _data.paths.pages;
     }
 
     public function getLayoutsPath(): String
     {
-        if(data == null || data.paths == null || data.paths.layouts == null) return "_layouts";
-        return data.paths.layouts;
+        if(_data == null || _data.paths == null || _data.paths.layouts == null) return "_layouts";
+        return _data.paths.layouts;
     }
 
     public function getAssetsPath(): String
     {
-        if(data == null || data.paths == null || data.paths.assets == null) return "_assets";
-        return data.paths.assets;
+        if(_data == null || _data.paths == null || _data.paths.assets == null) return "_assets";
+        return _data.paths.assets;
     }
 
     public function getPlatform(): String
     {
-        if(data == null || data.platform == null) return Platform.DEFAULT;
-        else if(data.platform == "github pages") return Platform.GITHUB_PAGES;
+        if(_data == null || _data.platform == null) return Platform.DEFAULT;
+        else if(_data.platform == "github pages") return Platform.GITHUB_PAGES;
         else return Platform.DEFAULT;
     }
 
     public function getSortPages() : String
     {
-        if(data == null || data.sortPages == null) return "none";
-        else return data.sortPages;
+        if(_data == null || _data.sortPages == null) return "none";
+        else return _data.sortPages;
     }
 
     public function getSortPosts() : String
     {
-        if(data == null || data.sortPosts == null) return "none";
-        else return data.sortPosts;
+        if(_data == null || _data.sortPosts == null) return "none";
+        else return _data.sortPosts;
     }
 }
