@@ -11,40 +11,40 @@ import nice.lib.util.ConfigFile;
 
 class Build
 {
-    private static var assets : Assets;
-    private static var posts : Collection;
-    private static var layouts : Layouts;
-    private static var pages : Collection;
+    private static var _assets : Assets;
+    private static var _posts : Collection;
+    private static var _layouts : Layouts;
+    private static var _pages : Collection;
 
-    private static var config : ConfigFile;
+    private static var _config : ConfigFile;
 
     public static function process()
     {
-        config = new ConfigFile("config.yaml");
+        _config = new ConfigFile("config.yaml");
 
-        posts = new Collection(config.getPostsPath(), config.getSortPosts());
-        pages = new Collection(config.getPagesPath(), config.getSortPages());
-        layouts = new Layouts(config.getLayoutsPath());
-        assets = new Assets(config.getAssetsPath());
+        _posts = new Collection(_config.getPostsPath(), _config.getSortPosts());
+        _pages = new Collection(_config.getPagesPath(), _config.getSortPages());
+        _layouts = new Layouts(_config.getLayoutsPath());
+        _assets = new Assets(_config.getAssetsPath());
     }
 
     public static function compile()
     {
-        clean(config.getOutputPath());
+        clean(_config.getOutputPath());
 
-        Directory.create(config.getOutputPath());
-        Directory.create(config.getOutputPath() + "/_posts");
-        Directory.create(config.getOutputPath() + "/_assets");
+        Directory.create(_config.getOutputPath());
+        Directory.create(_config.getOutputPath() + "/_posts");
+        Directory.create(_config.getOutputPath() + "/_assets");
 
-        if(config.getPlatform() == Platform.GITHUB_PAGES)
+        if(_config.getPlatform() == Platform.GITHUB_PAGES)
         {
-            File.saveContent(config.getOutputPath() + "/.nojekyll", "");
+            File.saveContent(_config.getOutputPath() + "/.nojekyll", "");
         }
 
-        assets.copy();
+        _assets.copy();
 
-        posts.render(layouts, posts, pages, config.getVariables(), config.getOutputPath() + "/_posts");
-        pages.render(layouts, posts, pages, config.getVariables(), config.getOutputPath());
+        _posts.render(_layouts, _posts, _pages, _config.getVariables(), _config.getOutputPath() + "/_posts");
+        _pages.render(_layouts, _posts, _pages, _config.getVariables(), _config.getOutputPath());
     }
 
     public static function clean(path : String)

@@ -5,20 +5,20 @@ import nice.lib.core.Layout;
 
 class Layouts
 {
-    private var directory : Directory;
-    private var layouts : Map<String, Layout>;
+    private var _directory : Directory;
+    private var _layouts : Map<String, Layout>;
 
     /*
         Open the layouts folder and load all of the file contents
     * */
     public function new(path : String)
     {
-        directory = new Directory(path);
+        _directory = new Directory(path);
 
-        layouts = new Map();
-        for(layout in directory.files())
+        _layouts = new Map();
+        for(layout in _directory.files())
         {
-            layouts.set(layout, new Layout(layout, directory.getFile(layout)));
+            _layouts.set(layout, new Layout(layout, _directory.getFile(layout)));
         }
     }
 
@@ -27,6 +27,6 @@ class Layouts
     * */
     public function getLayout(name : String)
     {
-        return layouts.get(name);
+        return _layouts.get(name);
     }
 }

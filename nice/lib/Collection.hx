@@ -21,54 +21,70 @@ enum SortType
 
 class Collection
 {
-    private var directory : Directory;
-    private var items : Array<Post>; 
-    private var visible : Array<Post>; /* posts have a 'state' property which determines whether or not it can be exposed to HTML. */
-    private var sort : String;
+    private var _directory : Directory;
+    private var _items : Array<Post>; 
+    private var _visible : Array<Post>; /* posts have a 'state' property which determines whether or not it can be exposed to HTML. */
+    private var _sort : String;
 
     public function new(dir : String, ?sort : String = "none")
     {
-        this.directory = new Directory(dir);
-        this.items = [];
-        this.visible = [];
-        this.sort = sort;
+        this._directory = new Directory(dir);
+        this._items = [];
+        this._visible = [];
+        this._sort = sort;
         
-        for(item in directory.files())
+        for(item in _directory.files())
         {
             if(item != ".DS_Store") /* hidden file on macOS */
             {
-                var post = new Post(item, directory.getFile(item));
-                items.push(post);
+                var post = new Post(item, _directory.getFile(item));
+                _items.push(post);
                 if(post.getState() != 'hidden')
                 {
-                    visible.push(post);
+                    _visible.push(post);
                 }
             }
         }
     }
 
+    /**
+     * Returns an array of all of the sorted, visible posts
+     * @return Array<Post>
+     */
     public function getItems() : Array<Post>
     {
-        switch(sort)
+        switch(_sort)
         {
             case "newest-to-oldest":
-                visible.sort(Post.compareReverse);
+                _visible.sort(Post.compareReverse);
             case "oldest-to-newest":
-                visible.sort(Post.compare);
+                _visible.sort(Post.compare);
             case "order":
-                visible.sort(Post.compareOrder);
+                _visible.sort(Post.compareOrder);
             default:
-                sort = "none";
+                _sort = "none";
         }
 
-        return visible;
+        return _visible;
     }
 
+    /**
+     * Returns an array of all posts (includes visible & non-visible)
+     * @return Array<Post>
+     */
     public function getAll() : Array<Post>
     {
-        return items;
+        return _items;
     }
     
+    /**
+     * Compiles every post / page stored in a collection and writes it to its respective directory
+     * @param layouts 
+     * @param posts 
+     * @param pages 
+     * @param globals 
+     * @param saveTo 
+     */
     public function render(layouts : Layouts, posts : Collection, pages : Collection, globals : Json, saveTo : String)
     {
         for(item in getAll())
