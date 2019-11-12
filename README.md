@@ -64,12 +64,15 @@ You can use the following variables in your Mustache templates:
         <h2>Other posts</h2>
         <ul>
     	    {{#posts}}
-            	<li><a href="/_posts/{{name}}">{{title}}</a></li>
+            	<li><a href="/_posts/{{_name}}">{{_title}}</a></li>
     	    {{/posts}}
         </ul>
     </body>
 </html>
 ```
+
+> Note:
+> All variables within the Post / Page object is prefixed with an underscore.
 
 ## Posts
 
