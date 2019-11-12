@@ -72,7 +72,7 @@ You can use the following variables in your Mustache templates:
 ```
 
 > Note:
-> All variables within the Post / Page object is prefixed with an underscore.
+> All variables within the Post / Page object are prefixed with an underscore.
 
 ## Posts
 
