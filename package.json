@@ -1,5 +1,5 @@
 {
-  "name": "nice",
+  "name": "nice-site",
   "version": "3.0.0",
   "description": "A static site generator that isn't mean.",
   "main": "run.js",
