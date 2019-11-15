@@ -10,6 +10,8 @@ import nice.lib.Layouts;
 import nice.lib.Collection;
 import nice.lib.core.Post;
 
+import nice.rss.RSS;
+
 import nice.cli.Output;
 
 enum SortType
@@ -87,6 +89,8 @@ class Collection
      */
     public function render(layouts : Layouts, posts : Collection, pages : Collection, globals : Json, saveTo : String)
     {
+        var rss = new RSS();
+
         for(item in getAll())
         {
             var layout : Layout = layouts.getLayout(item.getTemplate());
@@ -103,8 +107,12 @@ class Collection
 
             Output.text("Compiling " + item.getName());
 
+            rss.add(item.getTitle());
+
             var renderedPost = layout.compilePost(item, posts, pages, globals);
             item.save(saveTo, renderedPost);
         }
+
+        Output.text(rss.generate());
     }
 }

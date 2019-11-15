@@ -1335,6 +1335,77 @@ Type["typeof"] = function(v) {
 		return ValueType.TUnknown;
 	}
 };
+var Xml = function(nodeType) {
+	this.nodeType = nodeType;
+	this.children = [];
+	this.attributeMap = new haxe_ds_StringMap();
+};
+Xml.__name__ = ["Xml"];
+Xml.createElement = function(name) {
+	var xml = new Xml(Xml.Element);
+	if(xml.nodeType != Xml.Element) {
+		throw new js__$Boot_HaxeError("Bad node type, expected Element but found " + xml.nodeType);
+	}
+	xml.nodeName = name;
+	return xml;
+};
+Xml.prototype = {
+	nodeType: null
+	,nodeName: null
+	,nodeValue: null
+	,parent: null
+	,children: null
+	,attributeMap: null
+	,get: function(att) {
+		if(this.nodeType != Xml.Element) {
+			throw new js__$Boot_HaxeError("Bad node type, expected Element but found " + this.nodeType);
+		}
+		var _this = this.attributeMap;
+		if(__map_reserved[att] != null) {
+			return _this.getReserved(att);
+		} else {
+			return _this.h[att];
+		}
+	}
+	,set: function(att,value) {
+		if(this.nodeType != Xml.Element) {
+			throw new js__$Boot_HaxeError("Bad node type, expected Element but found " + this.nodeType);
+		}
+		var _this = this.attributeMap;
+		if(__map_reserved[att] != null) {
+			_this.setReserved(att,value);
+		} else {
+			_this.h[att] = value;
+		}
+	}
+	,attributes: function() {
+		if(this.nodeType != Xml.Element) {
+			throw new js__$Boot_HaxeError("Bad node type, expected Element but found " + this.nodeType);
+		}
+		return this.attributeMap.keys();
+	}
+	,addChild: function(x) {
+		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
+			throw new js__$Boot_HaxeError("Bad node type, expected Element or Document but found " + this.nodeType);
+		}
+		if(x.parent != null) {
+			x.parent.removeChild(x);
+		}
+		this.children.push(x);
+		x.parent = this;
+	}
+	,removeChild: function(x) {
+		if(this.nodeType != Xml.Document && this.nodeType != Xml.Element) {
+			throw new js__$Boot_HaxeError("Bad node type, expected Element or Document but found " + this.nodeType);
+		}
+		if(HxOverrides.remove(this.children,x)) {
+			x.parent = null;
+			return true;
+		}
+		return false;
+	}
+	,__class__: Xml
+};
 var haxe_IMap = function() { };
 haxe_IMap.__name__ = ["haxe","IMap"];
 haxe_IMap.prototype = {
@@ -1658,6 +1729,164 @@ haxe_macro_ComplexType.TAnonymous = function(fields) { var $x = ["TAnonymous",2,
 haxe_macro_ComplexType.TParent = function(t) { var $x = ["TParent",3,t]; $x.__enum__ = haxe_macro_ComplexType; $x.toString = $estr; return $x; };
 haxe_macro_ComplexType.TExtend = function(p,fields) { var $x = ["TExtend",4,p,fields]; $x.__enum__ = haxe_macro_ComplexType; $x.toString = $estr; return $x; };
 haxe_macro_ComplexType.TOptional = function(t) { var $x = ["TOptional",5,t]; $x.__enum__ = haxe_macro_ComplexType; $x.toString = $estr; return $x; };
+var haxe_xml_Printer = function(pretty) {
+	this.output = new StringBuf();
+	this.pretty = pretty;
+};
+haxe_xml_Printer.__name__ = ["haxe","xml","Printer"];
+haxe_xml_Printer.print = function(xml,pretty) {
+	if(pretty == null) {
+		pretty = false;
+	}
+	var printer = new haxe_xml_Printer(pretty);
+	printer.writeNode(xml,"");
+	return printer.output.b;
+};
+haxe_xml_Printer.prototype = {
+	output: null
+	,pretty: null
+	,writeNode: function(value,tabs) {
+		var _g = value.nodeType;
+		switch(_g) {
+		case 0:
+			this.output.b += Std.string(tabs + "<");
+			if(value.nodeType != Xml.Element) {
+				throw new js__$Boot_HaxeError("Bad node type, expected Element but found " + value.nodeType);
+			}
+			this.output.b += Std.string(value.nodeName);
+			var attribute = value.attributes();
+			while(attribute.hasNext()) {
+				var attribute1 = attribute.next();
+				this.output.b += Std.string(" " + attribute1 + "=\"");
+				var input = StringTools.htmlEscape(value.get(attribute1),true);
+				this.output.b += Std.string(input);
+				this.output.b += "\"";
+			}
+			if(this.hasChildren(value)) {
+				this.output.b += ">";
+				if(this.pretty) {
+					this.output.b += "\n";
+				}
+				if(value.nodeType != Xml.Document && value.nodeType != Xml.Element) {
+					throw new js__$Boot_HaxeError("Bad node type, expected Element or Document but found " + value.nodeType);
+				}
+				var child = HxOverrides.iter(value.children);
+				while(child.hasNext()) {
+					var child1 = child.next();
+					this.writeNode(child1,this.pretty ? tabs + "\t" : tabs);
+				}
+				this.output.b += Std.string(tabs + "</");
+				if(value.nodeType != Xml.Element) {
+					throw new js__$Boot_HaxeError("Bad node type, expected Element but found " + value.nodeType);
+				}
+				this.output.b += Std.string(value.nodeName);
+				this.output.b += ">";
+				if(this.pretty) {
+					this.output.b += "\n";
+				}
+			} else {
+				this.output.b += "/>";
+				if(this.pretty) {
+					this.output.b += "\n";
+				}
+			}
+			break;
+		case 1:
+			if(value.nodeType == Xml.Document || value.nodeType == Xml.Element) {
+				throw new js__$Boot_HaxeError("Bad node type, unexpected " + value.nodeType);
+			}
+			var nodeValue = value.nodeValue;
+			if(nodeValue.length != 0) {
+				var input1 = tabs + StringTools.htmlEscape(nodeValue);
+				this.output.b += Std.string(input1);
+				if(this.pretty) {
+					this.output.b += "\n";
+				}
+			}
+			break;
+		case 2:
+			this.output.b += Std.string(tabs + "<![CDATA[");
+			if(value.nodeType == Xml.Document || value.nodeType == Xml.Element) {
+				throw new js__$Boot_HaxeError("Bad node type, unexpected " + value.nodeType);
+			}
+			var input2 = StringTools.trim(value.nodeValue);
+			this.output.b += Std.string(input2);
+			this.output.b += "]]>";
+			if(this.pretty) {
+				this.output.b += "\n";
+			}
+			break;
+		case 3:
+			if(value.nodeType == Xml.Document || value.nodeType == Xml.Element) {
+				throw new js__$Boot_HaxeError("Bad node type, unexpected " + value.nodeType);
+			}
+			var commentContent = value.nodeValue;
+			var _this_r = new RegExp("[\n\r\t]+","g".split("u").join(""));
+			commentContent = commentContent.replace(_this_r,"");
+			commentContent = "<!--" + commentContent + "-->";
+			this.output.b += tabs == null ? "null" : "" + tabs;
+			var input3 = StringTools.trim(commentContent);
+			this.output.b += Std.string(input3);
+			if(this.pretty) {
+				this.output.b += "\n";
+			}
+			break;
+		case 4:
+			if(value.nodeType == Xml.Document || value.nodeType == Xml.Element) {
+				throw new js__$Boot_HaxeError("Bad node type, unexpected " + value.nodeType);
+			}
+			this.output.b += Std.string("<!DOCTYPE " + value.nodeValue + ">");
+			if(this.pretty) {
+				this.output.b += "\n";
+			}
+			break;
+		case 5:
+			if(value.nodeType == Xml.Document || value.nodeType == Xml.Element) {
+				throw new js__$Boot_HaxeError("Bad node type, unexpected " + value.nodeType);
+			}
+			this.output.b += Std.string("<?" + value.nodeValue + "?>");
+			if(this.pretty) {
+				this.output.b += "\n";
+			}
+			break;
+		case 6:
+			if(value.nodeType != Xml.Document && value.nodeType != Xml.Element) {
+				throw new js__$Boot_HaxeError("Bad node type, expected Element or Document but found " + value.nodeType);
+			}
+			var child2 = HxOverrides.iter(value.children);
+			while(child2.hasNext()) {
+				var child3 = child2.next();
+				this.writeNode(child3,tabs);
+			}
+			break;
+		}
+	}
+	,hasChildren: function(value) {
+		if(value.nodeType != Xml.Document && value.nodeType != Xml.Element) {
+			throw new js__$Boot_HaxeError("Bad node type, expected Element or Document but found " + value.nodeType);
+		}
+		var child = HxOverrides.iter(value.children);
+		while(child.hasNext()) {
+			var child1 = child.next();
+			var _g = child1.nodeType;
+			switch(_g) {
+			case 0:case 1:
+				return true;
+			case 2:case 3:
+				if(child1.nodeType == Xml.Document || child1.nodeType == Xml.Element) {
+					throw new js__$Boot_HaxeError("Bad node type, unexpected " + child1.nodeType);
+				}
+				if(StringTools.ltrim(child1.nodeValue).length != 0) {
+					return true;
+				}
+				break;
+			default:
+			}
+		}
+		return false;
+	}
+	,__class__: haxe_xml_Printer
+};
 var js__$Boot_HaxeError = function(val) {
 	Error.call(this);
 	this.val = val;
@@ -3767,6 +3996,7 @@ nice_lib_Collection.prototype = {
 		return this._items;
 	}
 	,render: function(layouts,posts,pages,globals,saveTo) {
+		var rss = new nice_rss_RSS();
 		var _g = 0;
 		var _g1 = this.getAll();
 		while(_g < _g1.length) {
@@ -3781,9 +4011,11 @@ nice_lib_Collection.prototype = {
 				layout = layouts.getLayout("index.html");
 			}
 			nice_cli_Output.text("Compiling " + item.getName());
+			rss.add(item.getTitle());
 			var renderedPost = layout.compilePost(item,posts,pages,globals);
 			item.save(saveTo,renderedPost);
 		}
+		nice_cli_Output.text(rss.generate());
 	}
 	,__class__: nice_lib_Collection
 };
@@ -4057,6 +4289,32 @@ nice_lib_util_ConfigFile.prototype = {
 };
 var nice_lib_util_Platform = function() { };
 nice_lib_util_Platform.__name__ = ["nice","lib","util","Platform"];
+var nice_rss_RSS = function() {
+	this._version = "2.0";
+	this._root = Xml.createElement("rss");
+	this._root.set("version",this._version);
+	this._channel = Xml.createElement("channel");
+	this._root.addChild(this._channel);
+};
+nice_rss_RSS.__name__ = ["nice","rss","RSS"];
+nice_rss_RSS.prototype = {
+	_root: null
+	,_channel: null
+	,_version: null
+	,add: function(title) {
+		var itemElement = Xml.createElement("item");
+		var titleElement = Xml.createElement("title");
+		if(titleElement.nodeType == Xml.Document || titleElement.nodeType == Xml.Element) {
+			throw new js__$Boot_HaxeError("Bad node type, unexpected " + titleElement.nodeType);
+		}
+		titleElement.nodeValue = title;
+		itemElement.addChild(titleElement);
+	}
+	,generate: function() {
+		return haxe_xml_Printer.print(this._root);
+	}
+	,__class__: nice_rss_RSS
+};
 var sys_FileSystem = function() { };
 sys_FileSystem.__name__ = ["sys","FileSystem"];
 sys_FileSystem.exists = function(path) {
@@ -7295,6 +7553,8 @@ mustache_Writer.entityMap = (function($this) {
 mustache_Writer.escapeRe = new EReg("[&<>\"'`=/]","g");
 Mustache.tags = ["{{","}}"];
 Mustache.defaultWriter = new mustache_Writer();
+Xml.Element = 0;
+Xml.Document = 6;
 js_Boot.__toStr = ({ }).toString;
 markdown_BlockSyntax.RE_EMPTY = new EReg("^([ \\t]*)$","");
 markdown_BlockSyntax.RE_SETEXT = new EReg("^((=+)|(-+))$","");
