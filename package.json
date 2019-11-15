@@ -1,0 +1,25 @@
+{
+  "name": "nice",
+  "version": "3.0.0",
+  "description": "A static site generator that isn't mean.",
+  "main": "run.js",
+  "bin": {
+    "nice": "nice.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmisail/Nice.git"
+  },
+  "keywords": [
+    "html",
+    "static-site-generator",
+    "js",
+    "haxe"
+  ],
+  "author": "Graham Misail",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gmisail/Nice/issues"
+  },
+  "homepage": "https://github.com/gmisail/Nice#readme"
+}

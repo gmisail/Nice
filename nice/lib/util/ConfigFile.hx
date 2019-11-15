@@ -54,7 +54,12 @@ class ConfigFile
 
         if(this._content.length != 0)
         {
-            this._data = Yaml.read(path, Parser.options().useObjects());
+            #if sys
+                this._data = Yaml.read(path, Parser.options().useObjects());
+            #else 
+                var fileData = File.getContent(path);
+                this._data = Yaml.parse(fileData);
+            #end
         }
         else
         {
