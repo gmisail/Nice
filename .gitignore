@@ -4,3 +4,4 @@ bin/
 *.n
 *.hxml
 *.sh
+*.js
