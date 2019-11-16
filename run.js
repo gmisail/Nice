@@ -1349,6 +1349,17 @@ Xml.createElement = function(name) {
 	xml.nodeName = name;
 	return xml;
 };
+Xml.createPCData = function(data) {
+	var xml = new Xml(Xml.PCData);
+	if(xml.nodeType == Xml.Document || xml.nodeType == Xml.Element) {
+		throw new js__$Boot_HaxeError("Bad node type, unexpected " + xml.nodeType);
+	}
+	xml.nodeValue = data;
+	return xml;
+};
+Xml.createDocument = function() {
+	return new Xml(Xml.Document);
+};
 Xml.prototype = {
 	nodeType: null
 	,nodeName: null
@@ -3905,8 +3916,8 @@ nice_lib_Build.compile = function() {
 		js_node_Fs.writeFileSync(nice_lib_Build._config.getOutputPath() + "/.nojekyll","");
 	}
 	nice_lib_Build._assets.copy();
-	nice_lib_Build._posts.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config.getVariables(),nice_lib_Build._config.getOutputPath() + "/_posts");
-	nice_lib_Build._pages.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config.getVariables(),nice_lib_Build._config.getOutputPath());
+	nice_lib_Build._posts.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config,nice_lib_Build._config.getOutputPath() + "/_posts",true);
+	nice_lib_Build._pages.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config,nice_lib_Build._config.getOutputPath(),false);
 };
 nice_lib_Build.clean = function(path) {
 	if(sys_FileSystem.exists(path) && sys_FileSystem.isDirectory(path)) {
@@ -3995,8 +4006,10 @@ nice_lib_Collection.prototype = {
 	,getAll: function() {
 		return this._items;
 	}
-	,render: function(layouts,posts,pages,globals,saveTo) {
-		var rss = new nice_rss_RSS();
+	,render: function(layouts,posts,pages,config,saveTo,isPost) {
+		if(isPost == null) {
+			isPost = false;
+		}
 		var _g = 0;
 		var _g1 = this.getAll();
 		while(_g < _g1.length) {
@@ -4011,11 +4024,9 @@ nice_lib_Collection.prototype = {
 				layout = layouts.getLayout("index.html");
 			}
 			nice_cli_Output.text("Compiling " + item.getName());
-			rss.add(item.getTitle());
-			var renderedPost = layout.compilePost(item,posts,pages,globals);
+			var renderedPost = layout.compilePost(item,posts,pages,config.getVariables());
 			item.save(saveTo,renderedPost);
 		}
-		nice_cli_Output.text(rss.generate());
 	}
 	,__class__: nice_lib_Collection
 };
@@ -4225,6 +4236,13 @@ nice_lib_util_ConfigFile.prototype = {
 	_path: null
 	,_content: null
 	,_data: null
+	,getUrl: function() {
+		if(this._data == null || this._data.url == null) {
+			return "/";
+		} else {
+			return this._data.url;
+		}
+	}
 	,getVariables: function() {
 		if(this._data == null || this._data.variables == null) {
 			return { };
@@ -4291,27 +4309,48 @@ var nice_lib_util_Platform = function() { };
 nice_lib_util_Platform.__name__ = ["nice","lib","util","Platform"];
 var nice_rss_RSS = function() {
 	this._version = "2.0";
+	this._document = Xml.createDocument();
 	this._root = Xml.createElement("rss");
 	this._root.set("version",this._version);
+	this._document.addChild(this._root);
 	this._channel = Xml.createElement("channel");
 	this._root.addChild(this._channel);
 };
 nice_rss_RSS.__name__ = ["nice","rss","RSS"];
 nice_rss_RSS.prototype = {
-	_root: null
+	_document: null
+	,_root: null
 	,_channel: null
 	,_version: null
-	,add: function(title) {
-		var itemElement = Xml.createElement("item");
-		var titleElement = Xml.createElement("title");
-		if(titleElement.nodeType == Xml.Document || titleElement.nodeType == Xml.Element) {
-			throw new js__$Boot_HaxeError("Bad node type, unexpected " + titleElement.nodeType);
+	,add: function(titleVal,linkVal,body) {
+		if(body == null) {
+			body = "";
 		}
-		titleElement.nodeValue = title;
-		itemElement.addChild(titleElement);
+		var item = Xml.createElement("item");
+		var title = Xml.createElement("title");
+		title.addChild(Xml.createPCData(titleVal));
+		var link = Xml.createElement("link");
+		link.addChild(Xml.createPCData(linkVal));
+		var desc = Xml.createElement("description");
+		desc.addChild(Xml.createPCData(this._getDescription(body)));
+		item.addChild(title);
+		item.addChild(link);
+		item.addChild(desc);
+		this._channel.addChild(item);
 	}
 	,generate: function() {
-		return haxe_xml_Printer.print(this._root);
+		return haxe_xml_Printer.print(this._document,true);
+	}
+	,_getDescription: function(body,limit) {
+		if(limit == null) {
+			limit = 100;
+		}
+		if(body.length > limit) {
+			var trimmedData = HxOverrides.substr(body,0,limit);
+			trimmedData += "...";
+			return trimmedData;
+		}
+		return body;
 	}
 	,__class__: nice_rss_RSS
 };
@@ -7554,6 +7593,7 @@ mustache_Writer.escapeRe = new EReg("[&<>\"'`=/]","g");
 Mustache.tags = ["{{","}}"];
 Mustache.defaultWriter = new mustache_Writer();
 Xml.Element = 0;
+Xml.PCData = 1;
 Xml.Document = 6;
 js_Boot.__toStr = ({ }).toString;
 markdown_BlockSyntax.RE_EMPTY = new EReg("^([ \\t]*)$","");

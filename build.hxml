@@ -3,6 +3,7 @@
 -lib hxmustache
 -lib markdown
 -lib Console.hx
+-lib hscript
 
 # options
 --no-traces

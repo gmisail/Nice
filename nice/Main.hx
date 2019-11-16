@@ -5,6 +5,8 @@ import nice.cli.commands.*;
 import nice.cli.Controller;
 import nice.lib.Build;
 
+import nice.plugin.*;
+
 import sys.io.File;
 
 class Main

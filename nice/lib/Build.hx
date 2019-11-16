@@ -8,6 +8,7 @@ import nice.fs.Directory;
 import nice.lib.*;
 import nice.lib.util.Platform;
 import nice.lib.util.ConfigFile;
+import nice.plugin.PluginManager;
 
 class Build
 {
@@ -15,6 +16,8 @@ class Build
     private static var _posts : Collection;
     private static var _layouts : Layouts;
     private static var _pages : Collection;
+    private static var _plugin_manager : PluginManager;
+    private static var _plugins : Directory;
 
     private static var _config : ConfigFile;
 
@@ -26,6 +29,16 @@ class Build
         _pages = new Collection(_config.getPagesPath(), _config.getSortPages());
         _layouts = new Layouts(_config.getLayoutsPath());
         _assets = new Assets(_config.getAssetsPath());
+
+        _plugin_manager = new PluginManager("_plugins");
+        _plugins = new Directory("_plugins");
+
+        for(name in _plugins.files())
+        {
+            _plugin_manager.add(name);
+        }
+
+        _plugin_manager.execute();
     }
 
     public static function compile()

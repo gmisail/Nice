@@ -26,4 +26,9 @@ class Output
     {
         Console.printlnFormatted("<green>" + prefix + warningPrefix + " " + msg + " " + warningPrefix + "</>");
     }
+
+    public static function plugin(msg : String)
+    {
+        Console.printlnFormatted("<blue>" + prefix + "(Plugin) " + msg + " " + "</>");
+    }
 }
