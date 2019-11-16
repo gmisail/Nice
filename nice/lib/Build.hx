@@ -30,15 +30,18 @@ class Build
         _layouts = new Layouts(_config.getLayoutsPath());
         _assets = new Assets(_config.getAssetsPath());
 
-        _plugin_manager = new PluginManager("_plugins");
-        _plugins = new Directory("_plugins");
-
-        for(name in _plugins.files())
+        if(FileSystem.exists("_plugins"))
         {
-            _plugin_manager.add(name);
-        }
+            _plugin_manager = new PluginManager("_plugins");
+            _plugins = new Directory("_plugins");
+            
+            for(name in _plugins.files())
+            {
+                _plugin_manager.add(name);
+            }
 
-        _plugin_manager.execute();
+            _plugin_manager.execute(_posts.getItems(), _pages.getItems());
+        }
     }
 
     public static function compile()

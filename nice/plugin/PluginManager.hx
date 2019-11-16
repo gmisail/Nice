@@ -3,6 +3,7 @@ package nice.plugin;
 import hscript.Parser;
 
 import nice.cli.Output;
+import nice.lib.core.Post;
 
 class PluginManager
 {
@@ -15,12 +16,21 @@ class PluginManager
         _plugins = [];
     }
 
+    /**
+     * Add a plugin by name 
+     * @param name 
+     */
     public function add(name : String) : Void
     {
         _plugins.push(new Plugin(_path + "/" + name));
     }
 
-    public function execute() : Void
+    /**
+     * Execute all loaded plugins
+     * @param posts 
+     * @param pages 
+     */
+    public function execute(posts : Array<Post>, pages : Array<Post>) : Void
     {
         var programs = [];
         var parser = new hscript.Parser();
@@ -32,11 +42,9 @@ class PluginManager
 
         var interp = new hscript.Interp();
 
-        /**
-         * TODO: Export all of the website related variables
-         */
-        interp.variables.set("Math",Math);
-        interp.variables.set("angles",[0,1,2,3]); 
+        interp.variables.set("posts", posts);
+        interp.variables.set("pages", pages); 
+        interp.variables.set("print", Output.plugin);
 
         for(program in programs)
         {
