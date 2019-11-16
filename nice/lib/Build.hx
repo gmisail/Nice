@@ -43,8 +43,8 @@ class Build
 
         _assets.copy();
 
-        _posts.render(_layouts, _posts, _pages, _config.getVariables(), _config.getOutputPath() + "/_posts");
-        _pages.render(_layouts, _posts, _pages, _config.getVariables(), _config.getOutputPath());
+        _posts.render(_layouts, _posts, _pages, _config, _config.getOutputPath() + "/_posts", true);
+        _pages.render(_layouts, _posts, _pages, _config, _config.getOutputPath(), false);
     }
 
     public static function clean(path : String)

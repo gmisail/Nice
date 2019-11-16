@@ -21,6 +21,8 @@ typedef Config_data = {
     
     var variables: {};
 
+    var url : String;
+
     var platform: String;
 
     var sortPosts: String;
@@ -65,6 +67,12 @@ class ConfigFile
         {
             this._data = null;
         }
+    }
+
+    public function getUrl() : String
+    {
+        if(_data == null || _data.url == null) return "/";
+        else return _data.url;
     }
 
     public function getVariables() : Dynamic

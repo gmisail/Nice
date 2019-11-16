@@ -14,6 +14,8 @@ import nice.rss.RSS;
 
 import nice.cli.Output;
 
+import nice.lib.util.ConfigFile;
+
 enum SortType
 {
     ORDER;
@@ -87,9 +89,12 @@ class Collection
      * @param globals 
      * @param saveTo 
      */
-    public function render(layouts : Layouts, posts : Collection, pages : Collection, globals : Json, saveTo : String)
+    public function render(layouts : Layouts, posts : Collection, pages : Collection, config : ConfigFile, saveTo : String, ?isPost : Bool = false)
     {
-        var rss = new RSS();
+       // var rss : RSS;
+
+       // if(isPost) 
+       //     rss = new RSS();
 
         for(item in getAll())
         {
@@ -107,12 +112,12 @@ class Collection
 
             Output.text("Compiling " + item.getName());
 
-            rss.add(item.getTitle());
+            var renderedPost = layout.compilePost(item, posts, pages, config.getVariables());
 
-            var renderedPost = layout.compilePost(item, posts, pages, globals);
+          //  if(isPost) 
+           //     rss.add(item.getTitle(), config.getUrl() + "/_posts/" + item.getName());
+
             item.save(saveTo, renderedPost);
         }
-
-        Output.text(rss.generate());
     }
 }
