@@ -1,18 +1,25 @@
 {
-    "name": "Nice",
-    "url" : "https://github.com/gmisail/Nice",
-    "license": "MIT",
-    "tags": ["neko", "html", "web", "static-site-generator"],
-    "description": "Simple static site generator.",
-    "version": "3.3.0",
-    "classPath": "nice/",
-    "releasenote": "Sorting, colors, and bug fixes",
-    "contributors": ["gmisail"],
-    "dependencies": {
-        "yaml": "",
-        "hxmustache": "",
-        "markdown": "",
-        "console.hx": "",
-        "hscript": ""
-    }
-  }
+	"name": "Nice",
+	"license": "MIT",
+	"tags": [
+		"neko",
+		"html",
+		"web",
+		"static-site-generator"
+	],
+	"classPath": "nice/",
+	"description": "Simple static site generator.",
+	"contributors": [
+		"gmisail"
+	],
+	"releasenote": "Support for Plugins",
+	"version": "3.3.1",
+	"url": "https://github.com/gmisail/Nice",
+	"dependencies": {
+		"yaml": "",
+		"hxmustache": "",
+		"console.hx": "",
+		"markdown": "",
+		"hscript": ""
+	}
+}
