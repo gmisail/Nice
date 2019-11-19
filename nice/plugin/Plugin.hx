@@ -2,6 +2,8 @@ package nice.plugin;
 
 import sys.io.File;
 
+import nice.cli.Output;
+
 class Plugin
 {
     var _source : String;
@@ -23,5 +25,10 @@ class Plugin
     public function getSource() : String
     {
         return _source;
+    }
+
+    public function getPath() : String
+    {
+        return _path;
     }
 }

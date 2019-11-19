@@ -32,23 +32,21 @@ class PluginManager
      */
     public function execute(posts : Array<Post>, pages : Array<Post>) : Void
     {
-        var programs = [];
         var parser = new hscript.Parser();
-
-        for(plugin in _plugins)
-        {
-            programs.push(parser.parseString(plugin.getSource()));
-        }
-
         var interp = new hscript.Interp();
 
         interp.variables.set("posts", posts);
         interp.variables.set("pages", pages); 
         interp.variables.set("print", Output.plugin);
 
-        for(program in programs)
+        for(plugin in _plugins)
         {
-            Output.plugin(interp.execute(program));
+            Output.plugin("Executing Plugin: " + plugin.getPath());
+            
+            var output = interp.execute(parser.parseString(plugin.getSource()));
+
+            if(output != null)
+                Output.plugin(output);
         }
     }
 }

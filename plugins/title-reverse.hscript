@@ -1,0 +1,7 @@
+for(post in posts)
+{
+    var title = post.getTitle(); 
+    var title_chars = title.split(''); 
+    title_chars.reverse(); 
+    post.setTitle(title_chars.join(''));
+}

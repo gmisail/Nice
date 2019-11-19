@@ -129,3 +129,8 @@ variables:
     first: john
     last: smith
 ```
+
+## Plugins
+
+Plugins are written in a Haxe's official scripting language, hscript. They allow the user to customize the build process without having to recompile the Nice library itself. Installing plugins is incredibly easy; all you need to do is create a folder named `_plugins` in the root directory of your project and add
+`.hscript` files to it. Examples of plugins are available in the `plugins` folder.

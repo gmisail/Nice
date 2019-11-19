@@ -154,6 +154,20 @@ class Post
     }
 
     /**
+     * Set the title of the current post / page
+     * @param title 
+     */
+    public function setTitle(title : String) : Void
+    {
+        this._title = title;
+    }
+
+    public function setBody(content : String) : Void
+    {
+        this._body = content;
+    }
+
+    /**
      * Sort from least to greatest
      * @param a 
      * @param b 
@@ -203,7 +217,7 @@ class Post
      * Prepare the body content for compilation
      * @param frontmatterContent 
      */
-    function _createBody(frontmatterContent : Array<String>)
+    private function _createBody(frontmatterContent : Array<String>)
     {
         if(frontmatterContent.length > 2)
         {

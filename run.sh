@@ -17,6 +17,9 @@ then
         cd bin
         neko nice.n build
     fi
+elif [[ $1 = 'submit' ]]
+then
+    haxelib run submit
 else
     echo '[Nice] Building release version...'
 
