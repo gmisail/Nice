@@ -12,13 +12,23 @@ import nice.plugin.PluginManager;
 
 class Build
 {
+    /**
+     * Paths
+     */
     private static var _assets : Assets;
     private static var _posts : Collection;
     private static var _layouts : Layouts;
     private static var _pages : Collection;
+
+    /**
+     * Plugins
+     */
     private static var _plugin_manager : PluginManager;
     private static var _plugins : Directory;
 
+    /**
+     * Configuration
+     */
     private static var _config : ConfigFile;
 
     public static function process()

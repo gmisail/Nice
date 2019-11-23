@@ -1,6 +1,7 @@
 package nice.plugin;
 
 import hscript.Parser;
+import hscript.Interp;
 
 import nice.cli.Output;
 import nice.lib.core.Post;
@@ -9,6 +10,8 @@ class PluginManager
 {
     var _path : String;
     var _plugins : Array<Plugin>;
+
+    var _interp : Interp;
 
     public function new(path : String)
     {
@@ -33,17 +36,18 @@ class PluginManager
     public function execute(posts : Array<Post>, pages : Array<Post>) : Void
     {
         var parser = new hscript.Parser();
-        var interp = new hscript.Interp();
+        
+        _interp = new hscript.Interp();
 
-        interp.variables.set("posts", posts);
-        interp.variables.set("pages", pages); 
-        interp.variables.set("print", Output.plugin);
+        _interp.variables.set("posts", posts);
+        _interp.variables.set("pages", pages); 
+        _interp.variables.set("print", Output.plugin);
 
         for(plugin in _plugins)
         {
             Output.plugin("Executing Plugin: " + plugin.getPath());
             
-            var output = interp.execute(parser.parseString(plugin.getSource()));
+            var output = _interp.execute(parser.parseString(plugin.getSource()));
 
             if(output != null)
                 Output.plugin(output);

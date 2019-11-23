@@ -30,12 +30,15 @@ class Collection
     private var _visible : Array<Post>; /* posts have a 'state' property which determines whether or not it can be exposed to HTML. */
     private var _sort : String;
 
+    private var _tags : Map<String, Array<Post>>;
+
     public function new(dir : String, ?sort : String = "none")
     {
         this._directory = new Directory(dir);
         this._items = [];
         this._visible = [];
         this._sort = sort;
+        this._tags = new Map();
         
         for(item in _directory.files())
         {
@@ -76,9 +79,14 @@ class Collection
      * Returns an array of all posts (includes visible & non-visible)
      * @return Array<Post>
      */
-    public function getAll() : Array<Post>
+    public function getAllItems() : Array<Post>
     {
         return _items;
+    }
+
+    public function renderTags(tags : Map<String, Array<Post>>)
+    {
+        
     }
     
     /**
@@ -87,17 +95,30 @@ class Collection
      * @param posts 
      * @param pages 
      * @param globals 
-     * @param saveTo 
+     * @param path 
      */
-    public function render(layouts : Layouts, posts : Collection, pages : Collection, config : ConfigFile, saveTo : String, ?isPost : Bool = false)
+    public function render(layouts : Layouts, posts : Collection, pages : Collection, config : ConfigFile, path : String, ?isPost : Bool = false)
     {
-       // var rss : RSS;
-
-       // if(isPost) 
-       //     rss = new RSS();
-
-        for(item in getAll())
+        for(item in getAllItems())
         {
+            /**
+             * Manage / Create Tags
+             */
+            if(item.getTag() != null && _tags.exists(item.getTag()))
+            {
+                _tags.get(item.getTag()).push(item);
+            }
+            else if(item.getTag() != null)
+            {
+                var tagNames = [];
+                tagNames.push(item);
+
+                _tags.set(item.getTag(), tagNames);
+            }
+
+            /**
+             * Find the layout that the post needs and inject the post into it
+             */
             var layout : Layout = layouts.getLayout(item.getTemplate());
             if(layout == null)
             {
@@ -112,12 +133,10 @@ class Collection
 
             Output.text("Compiling " + item.getName());
 
-            var renderedPost = layout.compilePost(item, posts, pages, config.getVariables());
-
-          //  if(isPost) 
-           //     rss.add(item.getTitle(), config.getUrl() + "/_posts/" + item.getName());
-
-            item.save(saveTo, renderedPost);
+            var rendered = layout.compilePost(item, posts, pages, config.getVariables());
+            item.save(path, rendered);
         }
+
+
     }
 }

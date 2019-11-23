@@ -8,7 +8,7 @@ package nice.cli;
 
 class Output
 {
-    private static var prefix = "<red>[Nice]</> ";
+    private static var prefix = "<red>==></> ";
     private static var errorPrefix = "**";
     private static var warningPrefix = "!!";
 

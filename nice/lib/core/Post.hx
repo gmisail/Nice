@@ -13,8 +13,8 @@ class Post
     var _content : String;        // The post's total content
     var _body : String;           // The post body / text
     var _title : String;          // Title of the post
-    var _date : Date;              // Date the post was created
-    var _tags : Array<String>;    // Post tags
+    var _date : Date;             // Date the post was created
+    var _tag : String;            // Post tags
     var _template : String;       // The template that the post uses
     var _state : String;          // Whether or not the page is hidden or not
     var _language : String;       // Markdown or HTML?
@@ -33,14 +33,14 @@ class Post
         this._createBody(frontmatterContent);
 
         this._title = _frontmatter.get("title");
-        this._tags = _frontmatter.get("tags");
+        this._tag = _frontmatter.get("tag");
         this._date = _frontmatter.get("date");
         this._template = _frontmatter.get("template");
         this._state = _frontmatter.get("state");
         this._language = _frontmatter.get("language");
         this._order = _frontmatter.get("order");
+        this._tag = _frontmatter.get("tag");
 
-        if(_tags == null) _tags = [];
         if(_template == null) _template = "index.html";
         if(_state == null) _state = "visible";
         if(_language == null) _language = "html";
@@ -154,6 +154,15 @@ class Post
     }
 
     /**
+     * Get the current post's tag
+     * @return String
+     */
+    public function getTag() : String
+    {
+        return _tag;
+    }
+
+    /**
      * Set the title of the current post / page
      * @param title 
      */
@@ -162,6 +171,10 @@ class Post
         this._title = title;
     }
 
+    /**
+     * Set the body content
+     * @param content 
+     */
     public function setBody(content : String) : Void
     {
         this._body = content;
