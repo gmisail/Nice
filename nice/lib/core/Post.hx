@@ -88,14 +88,33 @@ class Post
      */
     public function save(path : String, rendered : String)
     {
-        if(FileSystem.exists(path))
+        var components = _name.split(".");
+        var extension = components[components.length - 1];
+        var output = _name;
+
+        if(extension != "html")
         {
-            File.saveContent(path + "/" + _name, rendered);
+            output = "";
+
+            for(i in 0...components.length)
+            {
+                if(i != components.length - 1)
+                {
+                    output += components[i] + ".";
+                }
+            }
+
+            output += "html";
+        }
+
+        if(FileSystem.exists(output))
+        {
+            File.saveContent(path + "/" + output, rendered);
         }
         else
         {
             FileSystem.createDirectory(path + "/");
-            File.saveContent(path + "/" + _name, rendered);
+            File.saveContent(path + "/" + output, rendered);
         }
     }
 

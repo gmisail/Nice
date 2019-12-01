@@ -9,19 +9,10 @@ import nice.fs.Directory;
 import nice.lib.Layouts;
 import nice.lib.Collection;
 import nice.lib.core.Post;
-
-import nice.rss.RSS;
-
-import nice.cli.Output;
-
 import nice.lib.util.ConfigFile;
 
-enum SortType
-{
-    ORDER;
-    DATE_NEWEST_TO_OLDEST;
-    DATE_OLDEST_TO_NEWEST;
-}
+import nice.rss.RSS;
+import nice.cli.Output;
 
 class Collection
 {

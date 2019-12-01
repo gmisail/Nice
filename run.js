@@ -8405,16 +8405,6 @@ nice_lib_Build.clean = function(path) {
 		}
 	}
 };
-var nice_lib_SortType = { __ename__ : true, __constructs__ : ["ORDER","DATE_NEWEST_TO_OLDEST","DATE_OLDEST_TO_NEWEST"] };
-nice_lib_SortType.ORDER = ["ORDER",0];
-nice_lib_SortType.ORDER.toString = $estr;
-nice_lib_SortType.ORDER.__enum__ = nice_lib_SortType;
-nice_lib_SortType.DATE_NEWEST_TO_OLDEST = ["DATE_NEWEST_TO_OLDEST",1];
-nice_lib_SortType.DATE_NEWEST_TO_OLDEST.toString = $estr;
-nice_lib_SortType.DATE_NEWEST_TO_OLDEST.__enum__ = nice_lib_SortType;
-nice_lib_SortType.DATE_OLDEST_TO_NEWEST = ["DATE_OLDEST_TO_NEWEST",2];
-nice_lib_SortType.DATE_OLDEST_TO_NEWEST.toString = $estr;
-nice_lib_SortType.DATE_OLDEST_TO_NEWEST.__enum__ = nice_lib_SortType;
 var nice_lib_Collection = function(dir,sort) {
 	if(sort == null) {
 		sort = "none";
@@ -8423,6 +8413,7 @@ var nice_lib_Collection = function(dir,sort) {
 	this._items = [];
 	this._visible = [];
 	this._sort = sort;
+	this._tags = new haxe_ds_StringMap();
 	var item = this._directory.files();
 	while(item.hasNext()) {
 		var item1 = item.next();
@@ -8442,6 +8433,7 @@ nice_lib_Collection.prototype = {
 	,_items: null
 	,_visible: null
 	,_sort: null
+	,_tags: null
 	,getItems: function() {
 		var _g = this._sort;
 		switch(_g) {
@@ -8459,18 +8451,50 @@ nice_lib_Collection.prototype = {
 		}
 		return this._visible;
 	}
-	,getAll: function() {
+	,getAllItems: function() {
 		return this._items;
 	}
-	,render: function(layouts,posts,pages,config,saveTo,isPost) {
+	,renderTags: function(tags) {
+	}
+	,render: function(layouts,posts,pages,config,path,isPost) {
 		if(isPost == null) {
 			isPost = false;
 		}
 		var _g = 0;
-		var _g1 = this.getAll();
+		var _g1 = this.getAllItems();
 		while(_g < _g1.length) {
 			var item = _g1[_g];
 			++_g;
+			var tmp;
+			if(item.getTag() != null) {
+				var this1 = this._tags;
+				var key = item.getTag();
+				var _this = this1;
+				if(__map_reserved[key] != null) {
+					tmp = _this.existsReserved(key);
+				} else {
+					tmp = _this.h.hasOwnProperty(key);
+				}
+			} else {
+				tmp = false;
+			}
+			if(tmp) {
+				var this2 = this._tags;
+				var key1 = item.getTag();
+				var _this1 = this2;
+				(__map_reserved[key1] != null ? _this1.getReserved(key1) : _this1.h[key1]).push(item);
+			} else if(item.getTag() != null) {
+				var tagNames = [];
+				tagNames.push(item);
+				var this3 = this._tags;
+				var key2 = item.getTag();
+				var _this2 = this3;
+				if(__map_reserved[key2] != null) {
+					_this2.setReserved(key2,tagNames);
+				} else {
+					_this2.h[key2] = tagNames;
+				}
+			}
 			var layout = layouts.getLayout(item.getTemplate());
 			if(layout == null) {
 				if(layouts.getLayout("index.html") == null) {
@@ -8480,8 +8504,8 @@ nice_lib_Collection.prototype = {
 				layout = layouts.getLayout("index.html");
 			}
 			nice_cli_Output.text("Compiling " + item.getName());
-			var renderedPost = layout.compilePost(item,posts,pages,config.getVariables());
-			item.save(saveTo,renderedPost);
+			var rendered = layout.compilePost(item,posts,pages,config.getVariables());
+			item.save(path,rendered);
 		}
 	}
 	,__class__: nice_lib_Collection
@@ -8545,15 +8569,13 @@ var nice_lib_core_Post = function(name,content) {
 	this._frontmatter = yaml_Yaml.parse(frontmatterContent[1]);
 	this._createBody(frontmatterContent);
 	this._title = this._frontmatter.get("title");
-	this._tags = this._frontmatter.get("tags");
+	this._tag = this._frontmatter.get("tag");
 	this._date = this._frontmatter.get("date");
 	this._template = this._frontmatter.get("template");
 	this._state = this._frontmatter.get("state");
 	this._language = this._frontmatter.get("language");
 	this._order = this._frontmatter.get("order");
-	if(this._tags == null) {
-		this._tags = [];
-	}
+	this._tag = this._frontmatter.get("tag");
 	if(this._template == null) {
 		this._template = "index.html";
 	}
@@ -8612,7 +8634,7 @@ nice_lib_core_Post.prototype = {
 	,_body: null
 	,_title: null
 	,_date: null
-	,_tags: null
+	,_tag: null
 	,_template: null
 	,_state: null
 	,_language: null
@@ -8630,11 +8652,26 @@ nice_lib_core_Post.prototype = {
 		}
 	}
 	,save: function(path,rendered) {
-		if(sys_FileSystem.exists(path)) {
-			js_node_Fs.writeFileSync(path + "/" + this._name,rendered);
+		var components = this._name.split(".");
+		var extension = components[components.length - 1];
+		var output = this._name;
+		if(extension != "html") {
+			output = "";
+			var _g1 = 0;
+			var _g = components.length;
+			while(_g1 < _g) {
+				var i = _g1++;
+				if(i != components.length - 1) {
+					output += components[i] + ".";
+				}
+			}
+			output += "html";
+		}
+		if(sys_FileSystem.exists(output)) {
+			js_node_Fs.writeFileSync(path + "/" + output,rendered);
 		} else {
 			sys_FileSystem.createDirectory(path + "/");
-			js_node_Fs.writeFileSync(path + "/" + this._name,rendered);
+			js_node_Fs.writeFileSync(path + "/" + output,rendered);
 		}
 	}
 	,getDate: function() {
@@ -8654,6 +8691,15 @@ nice_lib_core_Post.prototype = {
 	}
 	,getTemplate: function() {
 		return this._template;
+	}
+	,getTag: function() {
+		return this._tag;
+	}
+	,setTitle: function(title) {
+		this._title = title;
+	}
+	,setBody: function(content) {
+		this._body = content;
 	}
 	,_createBody: function(frontmatterContent) {
 		if(frontmatterContent.length > 2) {
@@ -8780,6 +8826,9 @@ nice_plugin_Plugin.prototype = {
 	,getSource: function() {
 		return this._source;
 	}
+	,getPath: function() {
+		return this._path;
+	}
 	,__class__: nice_plugin_Plugin
 };
 var nice_plugin_PluginManager = function(path) {
@@ -8791,44 +8840,42 @@ nice_plugin_PluginManager.__name__ = ["nice","plugin","PluginManager"];
 nice_plugin_PluginManager.prototype = {
 	_path: null
 	,_plugins: null
+	,_interp: null
 	,add: function(name) {
 		this._plugins.push(new nice_plugin_Plugin(this._path + "/" + name));
 	}
 	,execute: function(posts,pages) {
-		var programs = [];
 		var parser = new hscript_Parser();
-		var _g = 0;
-		var _g1 = this._plugins;
-		while(_g < _g1.length) {
-			var plugin = _g1[_g];
-			++_g;
-			programs.push(parser.parseString(plugin.getSource()));
-		}
-		var interp = new hscript_Interp();
-		var _this = interp.variables;
+		this._interp = new hscript_Interp();
+		var _this = this._interp.variables;
 		if(__map_reserved["posts"] != null) {
 			_this.setReserved("posts",posts);
 		} else {
 			_this.h["posts"] = posts;
 		}
-		var _this1 = interp.variables;
+		var _this1 = this._interp.variables;
 		if(__map_reserved["pages"] != null) {
 			_this1.setReserved("pages",pages);
 		} else {
 			_this1.h["pages"] = pages;
 		}
-		var _this2 = interp.variables;
+		var _this2 = this._interp.variables;
 		var value = nice_cli_Output.plugin;
 		if(__map_reserved["print"] != null) {
 			_this2.setReserved("print",value);
 		} else {
 			_this2.h["print"] = value;
 		}
-		var _g2 = 0;
-		while(_g2 < programs.length) {
-			var program = programs[_g2];
-			++_g2;
-			nice_cli_Output.plugin(interp.execute(program));
+		var _g = 0;
+		var _g1 = this._plugins;
+		while(_g < _g1.length) {
+			var plugin = _g1[_g];
+			++_g;
+			nice_cli_Output.plugin("Executing Plugin: " + plugin.getPath());
+			var output = this._interp.execute(parser.parseString(plugin.getSource()));
+			if(output != null) {
+				nice_cli_Output.plugin(output);
+			}
 		}
 	}
 	,__class__: nice_plugin_PluginManager
@@ -12194,7 +12241,7 @@ nice_Create.DEFAULT_POST_FRONTMATTER = "---\ntitle: New Post\n---\n";
 nice_Create.DEFAULT_PAGE_FRONTMATTER = "---\ntitle: New Page\n---\n";
 nice_Create.DEFAULT_CONTENT = "Add some content here.";
 nice_Create.DEFAULT_LAYOUT = "<html>\n<body>\n<h1>My cool blog!</h1>\n<h3>{{title}}</h3>\n<p>{{{body}}}</p>\n<hr>\n<h2>Other posts</h2>\n<ul>\n{{#posts}}\n<li><a href=\"/_posts/{{name}}\">{{title}}</a></li>\n{{/posts}}\n</ul>\n</body>\n</html>";
-nice_cli_Output.prefix = "<red>[Nice]</> ";
+nice_cli_Output.prefix = "<red>==></> ";
 nice_cli_Output.errorPrefix = "**";
 nice_cli_Output.warningPrefix = "!!";
 nice_cli_commands_DefaultCommand.logo = "d8b   db d888888b  .o88b. d88888b\n888o  88   `88'   d8P  Y8 88'\n88V8o 88    88    8P      88ooooo\n88 V8o88    88    8b      88~~~~~\n88  V888   .88.   Y8b  d8 88.\nVP   V8P Y888888P  `Y88P' Y88888P";
