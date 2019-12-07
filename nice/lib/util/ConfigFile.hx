@@ -10,7 +10,7 @@ import nice.cli.Output;
 import nice.lib.core.Post;
 import nice.lib.util.Platform;
 
-typedef Config_data = {
+typedef ConfigData = {
     var paths: {
         var assets : String;
         var posts : String;
@@ -22,8 +22,8 @@ typedef Config_data = {
     var variables: {};
 
     var url : String;
-
     var platform: String;
+    var theme: String;
 
     var sortPosts: String;
     var sortPages: String;
@@ -36,7 +36,7 @@ class ConfigFile
 {
     private var _path : String;
     private var _content : String;
-    private var _data : Config_data;
+    private var _data : ConfigData;
 
     public function new(path : String)
     {
@@ -79,6 +79,12 @@ class ConfigFile
     {
         if (_data == null || _data.variables == null) return {};
         else return _data.variables;
+    }
+
+    public function getTheme() : String
+    {
+        if(_data == null || _data.theme == null) return "default";
+        else return _data.theme;
     }
 
     public function getOutputPath() : String

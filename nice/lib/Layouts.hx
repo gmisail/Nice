@@ -12,7 +12,7 @@ class Layouts
         Open the layouts folder and load all of the file contents
     * */
     public function new(path : String)
-    {
+    {        
         _directory = new Directory(path);
 
         _layouts = new Map();

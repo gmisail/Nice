@@ -32,7 +32,7 @@ class Assets extends Directory
         {
             if(!FileSystem.isDirectory('${getLocalPath()}/$file'))
             {
-                var from = '_assets/$file';
+                var from = '${getLocalPath()}/$file';
                 var to =  '_public/_assets/$file';
 
                 File.copy(from, to);

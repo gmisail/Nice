@@ -12240,7 +12240,7 @@ mustache_Parser.curlyRe = new EReg("\\s*\\}","");
 nice_Create.DEFAULT_POST_FRONTMATTER = "---\ntitle: New Post\n---\n";
 nice_Create.DEFAULT_PAGE_FRONTMATTER = "---\ntitle: New Page\n---\n";
 nice_Create.DEFAULT_CONTENT = "Add some content here.";
-nice_Create.DEFAULT_LAYOUT = "<html>\n<body>\n<h1>My cool blog!</h1>\n<h3>{{title}}</h3>\n<p>{{{body}}}</p>\n<hr>\n<h2>Other posts</h2>\n<ul>\n{{#posts}}\n<li><a href=\"/_posts/{{name}}\">{{title}}</a></li>\n{{/posts}}\n</ul>\n</body>\n</html>";
+nice_Create.DEFAULT_LAYOUT = "<html>\n<body>\n<h1>My cool blog!</h1>\n<h3>{{title}}</h3>\n<p>{{{body}}}</p>\n<hr>\n<h2>Other posts</h2>\n<ul>\n{{#posts}}\n<li><a href=\"/_posts/{{_name}}\">{{_title}}</a></li>\n{{/posts}}\n</ul>\n</body>\n</html>";
 nice_cli_Output.prefix = "<red>==></> ";
 nice_cli_Output.errorPrefix = "**";
 nice_cli_Output.warningPrefix = "!!";

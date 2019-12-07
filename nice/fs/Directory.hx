@@ -43,6 +43,30 @@ class Directory
     }
 
     /**
+     * Delete the content of the current directory
+     * @param path 
+     */
+    public static function clean(path : String)
+    {
+        if (FileSystem.exists(path) && FileSystem.isDirectory(path))
+        {
+            var entries = FileSystem.readDirectory(path);
+            for (entry in entries)
+            {
+                if (FileSystem.isDirectory(path + '/' + entry))
+                {
+                    clean(path + '/' + entry);
+                    FileSystem.deleteDirectory(path + '/' + entry);
+                }
+                else
+                {
+                    FileSystem.deleteFile(path + '/' + entry);
+                }
+            }
+        }
+    }
+
+    /**
      * Returns the _contents of a file in the directory
      * @param name 
      * @return content

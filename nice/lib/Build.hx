@@ -15,7 +15,7 @@ class Build
     /**
      * Paths
      */
-    private static var _assets : Assets;
+    private static var _assets : Array<Assets>;
     private static var _posts : Collection;
     private static var _layouts : Layouts;
     private static var _pages : Collection;
@@ -37,8 +37,26 @@ class Build
 
         _posts = new Collection(_config.getPostsPath(), _config.getSortPosts());
         _pages = new Collection(_config.getPagesPath(), _config.getSortPages());
-        _layouts = new Layouts(_config.getLayoutsPath());
-        _assets = new Assets(_config.getAssetsPath());
+        
+        _assets = [];
+        _assets.push(new Assets(_config.getAssetsPath()));
+
+
+        if(_config.getTheme() == "default")
+        {
+            _layouts = new Layouts(_config.getLayoutsPath());
+        }
+
+        if(FileSystem.exists("_themes"))
+        {
+            var theme = _config.getTheme();
+
+            if(theme != "default")
+            {
+                _layouts = new Layouts("_themes/" + theme + "/_layouts");
+                _assets.push(new Assets("_themes/" + theme + "/_assets"));
+            }
+        }
 
         if(FileSystem.exists("_plugins"))
         {
@@ -56,40 +74,20 @@ class Build
 
     public static function compile()
     {
-        clean(_config.getOutputPath());
-
+        Directory.clean(_config.getOutputPath());
         Directory.create(_config.getOutputPath());
         Directory.create(_config.getOutputPath() + "/_posts");
         Directory.create(_config.getOutputPath() + "/_assets");
 
         if(_config.getPlatform() == Platform.GITHUB_PAGES)
-        {
             File.saveContent(_config.getOutputPath() + "/.nojekyll", "");
+    
+        for(asset in _assets)
+        {
+            asset.copy();
         }
-
-        _assets.copy();
 
         _posts.render(_layouts, _posts, _pages, _config, _config.getOutputPath() + "/_posts", true);
         _pages.render(_layouts, _posts, _pages, _config, _config.getOutputPath(), false);
-    }
-
-    public static function clean(path : String)
-    {
-        if (FileSystem.exists(path) && FileSystem.isDirectory(path))
-        {
-            var entries = FileSystem.readDirectory(path);
-            for (entry in entries)
-            {
-                if (FileSystem.isDirectory(path + '/' + entry))
-                {
-                    clean(path + '/' + entry);
-                    FileSystem.deleteDirectory(path + '/' + entry);
-                }
-                else
-                {
-                    FileSystem.deleteFile(path + '/' + entry);
-                }
-            }
-        }
     }
 }
