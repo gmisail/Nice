@@ -39,10 +39,40 @@ class Build
         _posts = new Collection(_config.getPostsPath(), _config.getSortPosts(), ItemType.POST);
         _pages = new Collection(_config.getPagesPath(), _config.getSortPages(), ItemType.PAGE);
         
+        loadAssets();
+        loadThemes();
+        loadPlugins();
+    }
+
+    public static function compile()
+    {
+        var outputPath = _config.getOutputPath();
+
+        Directory.clean(outputPath);
+        Directory.create(outputPath);
+        Directory.create(outputPath + "/_posts");
+        Directory.create(outputPath + "/_assets");
+
+        if(_config.getPlatform() == Platform.GITHUB_PAGES)
+            File.saveContent(outputPath + "/.nojekyll", "");
+    
+        for(asset in _assets)
+        {
+            asset.copy();
+        }
+
+        _posts.render(_layouts, _posts, _pages, _config, outputPath + "/_posts", true);
+        _pages.render(_layouts, _posts, _pages, _config, outputPath, false);
+    }
+
+    private static function loadAssets()
+    {
         _assets = [];
         _assets.push(new Assets(_config.getAssetsPath()));
+    }
 
-
+    private static function loadThemes()
+    {
         if(_config.getTheme() == "default")
         {
             _layouts = new Layouts(_config.getLayoutsPath());
@@ -58,7 +88,10 @@ class Build
                 _assets.push(new Assets("_themes/" + theme + "/_assets"));
             }
         }
+    }
 
+    private static function loadPlugins()
+    {
         if(FileSystem.exists("_plugins"))
         {
             _plugin_manager = new PluginManager("_plugins");
@@ -71,24 +104,5 @@ class Build
 
             _plugin_manager.execute(_posts.getItems(), _pages.getItems());
         }
-    }
-
-    public static function compile()
-    {
-        Directory.clean(_config.getOutputPath());
-        Directory.create(_config.getOutputPath());
-        Directory.create(_config.getOutputPath() + "/_posts");
-        Directory.create(_config.getOutputPath() + "/_assets");
-
-        if(_config.getPlatform() == Platform.GITHUB_PAGES)
-            File.saveContent(_config.getOutputPath() + "/.nojekyll", "");
-    
-        for(asset in _assets)
-        {
-            asset.copy();
-        }
-
-        _posts.render(_layouts, _posts, _pages, _config, _config.getOutputPath() + "/_posts", true);
-        _pages.render(_layouts, _posts, _pages, _config, _config.getOutputPath(), false);
     }
 }
