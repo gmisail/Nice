@@ -8378,38 +8378,20 @@ $hxClasses["nice.lib.Build"] = nice_lib_Build;
 nice_lib_Build.__name__ = ["nice","lib","Build"];
 nice_lib_Build.process = function() {
 	nice_lib_Build._config = new nice_lib_util_ConfigFile("config.yaml");
-	nice_lib_Build._posts = new nice_lib_Collection(nice_lib_Build._config.getPostsPath(),nice_lib_Build._config.getSortPosts());
-	nice_lib_Build._pages = new nice_lib_Collection(nice_lib_Build._config.getPagesPath(),nice_lib_Build._config.getSortPages());
-	nice_lib_Build._assets = [];
-	nice_lib_Build._assets.push(new nice_lib_Assets(nice_lib_Build._config.getAssetsPath()));
-	if(nice_lib_Build._config.getTheme() == "default") {
-		nice_lib_Build._layouts = new nice_lib_Layouts(nice_lib_Build._config.getLayoutsPath());
-	}
-	if(sys_FileSystem.exists("_themes")) {
-		var theme = nice_lib_Build._config.getTheme();
-		if(theme != "default") {
-			nice_lib_Build._layouts = new nice_lib_Layouts("_themes/" + theme + "/_layouts");
-			nice_lib_Build._assets.push(new nice_lib_Assets("_themes/" + theme + "/_assets"));
-		}
-	}
-	if(sys_FileSystem.exists("_plugins")) {
-		nice_lib_Build._plugin_manager = new nice_plugin_PluginManager("_plugins");
-		nice_lib_Build._plugins = new nice_fs_Directory("_plugins");
-		var name = nice_lib_Build._plugins.files();
-		while(name.hasNext()) {
-			var name1 = name.next();
-			nice_lib_Build._plugin_manager.add(name1);
-		}
-		nice_lib_Build._plugin_manager.execute(nice_lib_Build._posts.getItems(),nice_lib_Build._pages.getItems());
-	}
+	nice_lib_Build._posts = new nice_lib_Collection(nice_lib_Build._config.getPostsPath(),nice_lib_Build._config.getSortPosts(),nice_lib_util_ItemType.POST);
+	nice_lib_Build._pages = new nice_lib_Collection(nice_lib_Build._config.getPagesPath(),nice_lib_Build._config.getSortPages(),nice_lib_util_ItemType.PAGE);
+	nice_lib_Build.loadAssets();
+	nice_lib_Build.loadThemes();
+	nice_lib_Build.loadPlugins();
 };
 nice_lib_Build.compile = function() {
-	nice_fs_Directory.clean(nice_lib_Build._config.getOutputPath());
-	nice_fs_Directory.create(nice_lib_Build._config.getOutputPath());
-	nice_fs_Directory.create(nice_lib_Build._config.getOutputPath() + "/_posts");
-	nice_fs_Directory.create(nice_lib_Build._config.getOutputPath() + "/_assets");
+	var outputPath = nice_lib_Build._config.getOutputPath();
+	nice_fs_Directory.clean(outputPath);
+	nice_fs_Directory.create(outputPath);
+	nice_fs_Directory.create(outputPath + "/_posts");
+	nice_fs_Directory.create(outputPath + "/_assets");
 	if(nice_lib_Build._config.getPlatform() == nice_lib_util_Platform.GITHUB_PAGES) {
-		js_node_Fs.writeFileSync(nice_lib_Build._config.getOutputPath() + "/.nojekyll","");
+		js_node_Fs.writeFileSync(outputPath + "/.nojekyll","");
 	}
 	var _g = 0;
 	var _g1 = nice_lib_Build._assets;
@@ -8418,10 +8400,38 @@ nice_lib_Build.compile = function() {
 		++_g;
 		asset.copy();
 	}
-	nice_lib_Build._posts.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config,nice_lib_Build._config.getOutputPath() + "/_posts",true);
-	nice_lib_Build._pages.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config,nice_lib_Build._config.getOutputPath(),false);
+	nice_lib_Build._posts.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config,outputPath + "/_posts",true);
+	nice_lib_Build._pages.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config,outputPath,false);
 };
-var nice_lib_Collection = function(dir,sort) {
+nice_lib_Build.loadAssets = function() {
+	nice_lib_Build._assets = [];
+	nice_lib_Build._assets.push(new nice_lib_Assets(nice_lib_Build._config.getAssetsPath()));
+};
+nice_lib_Build.loadThemes = function() {
+	if(nice_lib_Build._config.getTheme() == "default") {
+		nice_lib_Build._layouts = new nice_lib_Layouts(nice_lib_Build._config.getLayoutsPath());
+	}
+	if(sys_FileSystem.exists("_themes")) {
+		var theme = nice_lib_Build._config.getTheme();
+		if(theme != "default") {
+			nice_lib_Build._layouts = new nice_lib_Layouts(nice_lib_Build._config.getThemesPath() + "/" + theme + "/_layouts");
+			nice_lib_Build._assets.push(new nice_lib_Assets(nice_lib_Build._config.getThemesPath() + "/" + theme + "/_assets"));
+		}
+	}
+};
+nice_lib_Build.loadPlugins = function() {
+	if(sys_FileSystem.exists("_plugins")) {
+		nice_lib_Build._plugin_manager = new nice_plugin_PluginManager(nice_lib_Build._config.getPluginsPath());
+		nice_lib_Build._plugins = new nice_fs_Directory(nice_lib_Build._config.getPluginsPath());
+		var name = nice_lib_Build._plugins.files();
+		while(name.hasNext()) {
+			var name1 = name.next();
+			nice_lib_Build._plugin_manager.add(name1);
+		}
+		nice_lib_Build._plugin_manager.execute(nice_lib_Build._posts.getItems(),nice_lib_Build._pages.getItems());
+	}
+};
+var nice_lib_Collection = function(dir,sort,type) {
 	if(sort == null) {
 		sort = "none";
 	}
@@ -8430,6 +8440,7 @@ var nice_lib_Collection = function(dir,sort) {
 	this._visible = [];
 	this._sort = sort;
 	this._tags = new haxe_ds_StringMap();
+	this._type = type;
 	var item = this._directory.files();
 	while(item.hasNext()) {
 		var item1 = item.next();
@@ -8449,6 +8460,7 @@ nice_lib_Collection.prototype = {
 	,_items: null
 	,_visible: null
 	,_sort: null
+	,_type: null
 	,_tags: null
 	,getItems: function() {
 		var _g = this._sort;
@@ -8520,7 +8532,7 @@ nice_lib_Collection.prototype = {
 				layout = layouts.getLayout("index.html");
 			}
 			nice_cli_Output.text("Compiling " + item.getName());
-			var rendered = layout.compilePost(item,posts,pages,config.getVariables());
+			var rendered = layout.compilePost(item,posts,pages,config.getVariables(),this._type == nice_lib_util_ItemType.POST);
 			item.save(path,rendered);
 		}
 	}
@@ -8566,9 +8578,10 @@ nice_lib_core_Layout.__name__ = ["nice","lib","core","Layout"];
 nice_lib_core_Layout.prototype = {
 	name: null
 	,content: null
-	,compilePost: function(post,posts,pages,variables) {
+	,compilePost: function(post,posts,pages,variables,showDate) {
 		var date = { day : post.getDate().getDate(), month : post.getDate().getMonth() + 1, year : post.getDate().getFullYear()};
-		return this.compile({ title : post.getTitle(), body : post.compile(), date : date, posts : posts.getItems(), pages : pages.getItems(), variables : variables});
+		var context = { title : post.getTitle(), body : post.compile(), date : date, posts : posts.getItems(), pages : pages.getItems(), is_post : showDate, variables : variables};
+		return this.compile(context);
 	}
 	,compile: function(context) {
 		var template = this.content;
@@ -8583,7 +8596,8 @@ var nice_lib_core_Post = function(name,content) {
 	this._content = content;
 	var frontmatterContent = this._content.split("---");
 	this._frontmatter = yaml_Yaml.parse(frontmatterContent[1]);
-	this._createBody(frontmatterContent);
+	this.createBody(frontmatterContent);
+	this.updateExtension();
 	this._title = this._frontmatter.get("title");
 	this._tag = this._frontmatter.get("tag");
 	this._date = this._frontmatter.get("date");
@@ -8668,26 +8682,11 @@ nice_lib_core_Post.prototype = {
 		}
 	}
 	,save: function(path,rendered) {
-		var components = this._name.split(".");
-		var extension = components[components.length - 1];
-		var output = this._name;
-		if(extension != "html") {
-			output = "";
-			var _g1 = 0;
-			var _g = components.length;
-			while(_g1 < _g) {
-				var i = _g1++;
-				if(i != components.length - 1) {
-					output += components[i] + ".";
-				}
-			}
-			output += "html";
-		}
-		if(sys_FileSystem.exists(output)) {
-			js_node_Fs.writeFileSync(path + "/" + output,rendered);
+		if(sys_FileSystem.exists(this._name)) {
+			js_node_Fs.writeFileSync(path + "/" + this._name,rendered);
 		} else {
 			sys_FileSystem.createDirectory(path + "/");
-			js_node_Fs.writeFileSync(path + "/" + output,rendered);
+			js_node_Fs.writeFileSync(path + "/" + this._name,rendered);
 		}
 	}
 	,getDate: function() {
@@ -8717,7 +8716,7 @@ nice_lib_core_Post.prototype = {
 	,setBody: function(content) {
 		this._body = content;
 	}
-	,_createBody: function(frontmatterContent) {
+	,createBody: function(frontmatterContent) {
 		if(frontmatterContent.length > 2) {
 			var current = "";
 			var _g1 = 2;
@@ -8733,6 +8732,24 @@ nice_lib_core_Post.prototype = {
 		} else {
 			this._body = frontmatterContent[2];
 		}
+	}
+	,updateExtension: function() {
+		var components = this._name.split(".");
+		var extension = components[components.length - 1];
+		var output = this._name;
+		if(extension != "html") {
+			output = "";
+			var _g1 = 0;
+			var _g = components.length;
+			while(_g1 < _g) {
+				var i = _g1++;
+				if(i != components.length - 1) {
+					output += components[i] + ".";
+				}
+			}
+			output += "html";
+		}
+		this._name = output;
 	}
 	,__class__: nice_lib_core_Post
 };
@@ -8809,6 +8826,18 @@ nice_lib_util_ConfigFile.prototype = {
 		}
 		return this._data.paths.assets;
 	}
+	,getThemesPath: function() {
+		if(this._data == null || this._data.paths == null || this._data.paths.themes == null) {
+			return "_themes";
+		}
+		return this._data.paths.themes;
+	}
+	,getPluginsPath: function() {
+		if(this._data == null || this._data.paths == null || this._data.paths.plugins == null) {
+			return "_plugins";
+		}
+		return this._data.paths.plugins;
+	}
 	,getPlatform: function() {
 		if(this._data == null || this._data.platform == null) {
 			return nice_lib_util_Platform.DEFAULT;
@@ -8819,21 +8848,28 @@ nice_lib_util_ConfigFile.prototype = {
 		}
 	}
 	,getSortPages: function() {
-		if(this._data == null || this._data.sortPages == null) {
+		if(this._data == null || this._data.sort == null || this._data.sort.pages == null) {
 			return "none";
 		} else {
-			return this._data.sortPages;
+			return this._data.sort.pages;
 		}
 	}
 	,getSortPosts: function() {
-		if(this._data == null || this._data.sortPosts == null) {
+		if(this._data == null || this._data.sort == null || this._data.sort.posts == null) {
 			return "none";
 		} else {
-			return this._data.sortPosts;
+			return this._data.sort.posts;
 		}
 	}
 	,__class__: nice_lib_util_ConfigFile
 };
+var nice_lib_util_ItemType = { __ename__ : true, __constructs__ : ["POST","PAGE"] };
+nice_lib_util_ItemType.POST = ["POST",0];
+nice_lib_util_ItemType.POST.toString = $estr;
+nice_lib_util_ItemType.POST.__enum__ = nice_lib_util_ItemType;
+nice_lib_util_ItemType.PAGE = ["PAGE",1];
+nice_lib_util_ItemType.PAGE.toString = $estr;
+nice_lib_util_ItemType.PAGE.__enum__ = nice_lib_util_ItemType;
 var nice_lib_util_Platform = function() { };
 $hxClasses["nice.lib.util.Platform"] = nice_lib_util_Platform;
 nice_lib_util_Platform.__name__ = ["nice","lib","util","Platform"];
