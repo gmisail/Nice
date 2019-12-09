@@ -19,17 +19,20 @@ class Collection
     private var _directory : Directory;
     private var _items : Array<Post>; 
     private var _visible : Array<Post>; /* posts have a 'state' property which determines whether or not it can be exposed to HTML. */
+    
     private var _sort : String;
+    private var _type : String;
 
     private var _tags : Map<String, Array<Post>>;
 
-    public function new(dir : String, ?sort : String = "none")
+    public function new(dir : String, ?sort : String = "none", ?type : String = "post")
     {
         this._directory = new Directory(dir);
         this._items = [];
         this._visible = [];
         this._sort = sort;
         this._tags = new Map();
+        this._type = type;
         
         for(item in _directory.files())
         {
@@ -124,7 +127,7 @@ class Collection
 
             Output.text("Compiling " + item.getName());
 
-            var rendered = layout.compilePost(item, posts, pages, config.getVariables());
+            var rendered = layout.compilePost(item, posts, pages, config.getVariables(), _type == "post");
             item.save(path, rendered);
         }
 

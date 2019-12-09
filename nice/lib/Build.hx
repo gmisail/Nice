@@ -35,8 +35,8 @@ class Build
     {
         _config = new ConfigFile("config.yaml");
 
-        _posts = new Collection(_config.getPostsPath(), _config.getSortPosts());
-        _pages = new Collection(_config.getPagesPath(), _config.getSortPages());
+        _posts = new Collection(_config.getPostsPath(), _config.getSortPosts(), "post");
+        _pages = new Collection(_config.getPagesPath(), _config.getSortPages(), "page");
         
         _assets = [];
         _assets.push(new Assets(_config.getAssetsPath()));
