@@ -8,6 +8,7 @@ import nice.fs.Directory;
 import nice.lib.*;
 import nice.lib.util.Platform;
 import nice.lib.util.ConfigFile;
+import nice.lib.util.ItemType;
 import nice.plugin.PluginManager;
 
 class Build
@@ -35,8 +36,8 @@ class Build
     {
         _config = new ConfigFile("config.yaml");
 
-        _posts = new Collection(_config.getPostsPath(), _config.getSortPosts(), "post");
-        _pages = new Collection(_config.getPagesPath(), _config.getSortPages(), "page");
+        _posts = new Collection(_config.getPostsPath(), _config.getSortPosts(), ItemType.POST);
+        _pages = new Collection(_config.getPagesPath(), _config.getSortPages(), ItemType.PAGE);
         
         _assets = [];
         _assets.push(new Assets(_config.getAssetsPath()));

@@ -9,6 +9,7 @@ import nice.fs.Directory;
 import nice.lib.Layouts;
 import nice.lib.Collection;
 import nice.lib.core.Post;
+import nice.lib.util.ItemType;
 import nice.lib.util.ConfigFile;
 
 import nice.rss.RSS;
@@ -21,11 +22,11 @@ class Collection
     private var _visible : Array<Post>; /* posts have a 'state' property which determines whether or not it can be exposed to HTML. */
     
     private var _sort : String;
-    private var _type : String;
+    private var _type : ItemType;
 
     private var _tags : Map<String, Array<Post>>;
 
-    public function new(dir : String, ?sort : String = "none", ?type : String = "post")
+    public function new(dir : String, ?sort : String = "none", ?type : ItemType)
     {
         this._directory = new Directory(dir);
         this._items = [];
@@ -127,7 +128,7 @@ class Collection
 
             Output.text("Compiling " + item.getName());
 
-            var rendered = layout.compilePost(item, posts, pages, config.getVariables(), _type == "post");
+            var rendered = layout.compilePost(item, posts, pages, config.getVariables(), _type == ItemType.POST);
             item.save(path, rendered);
         }
 
