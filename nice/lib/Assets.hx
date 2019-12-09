@@ -3,7 +3,7 @@ package nice.lib;
 import sys.FileSystem;
 import sys.io.File;
 
-import nice.fs.Directory;
+import nice.filesystem.Directory;
 
 class Assets extends Directory
 {

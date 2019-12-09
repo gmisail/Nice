@@ -1,6 +1,6 @@
 package nice;
 
-import nice.fs.Directory;
+import nice.filesystem.Directory;
 import nice.cli.commands.*;
 import nice.cli.Controller;
 import nice.lib.Build;

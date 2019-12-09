@@ -1,4 +1,4 @@
-package nice.fs;
+package nice.filesystem;
 
 import nice.cli.Output;
 import sys.FileSystem;

@@ -4,7 +4,7 @@ import nice.lib.core.Layout;
 import haxe.Json;
 import haxe.ds.ArraySort;
 
-import nice.fs.Directory;
+import nice.filesystem.Directory;
 
 import nice.lib.Layouts;
 import nice.lib.Collection;
