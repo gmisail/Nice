@@ -57,9 +57,7 @@ class Build
             File.saveContent(outputPath + "/.nojekyll", "");
     
         for(asset in _assets)
-        {
             asset.copy();
-        }
 
         _posts.render(_layouts, _posts, _pages, _config, outputPath + "/_posts", true);
         _pages.render(_layouts, _posts, _pages, _config, outputPath, false);
@@ -84,8 +82,8 @@ class Build
 
             if(theme != "default")
             {
-                _layouts = new Layouts("_themes/" + theme + "/_layouts");
-                _assets.push(new Assets("_themes/" + theme + "/_assets"));
+                _layouts = new Layouts(_config.getThemesPath() + "/" + theme + "/_layouts");
+                _assets.push(new Assets(_config.getThemesPath() + "/" + theme + "/_assets"));
             }
         }
     }
@@ -94,8 +92,8 @@ class Build
     {
         if(FileSystem.exists("_plugins"))
         {
-            _plugin_manager = new PluginManager("_plugins");
-            _plugins = new Directory("_plugins");
+            _plugin_manager = new PluginManager(_config.getPluginsPath());
+            _plugins = new Directory(_config.getPluginsPath());
             
             for(name in _plugins.files())
             {

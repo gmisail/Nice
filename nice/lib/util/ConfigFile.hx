@@ -17,6 +17,8 @@ typedef ConfigData = {
         var pages : String;
         var layouts : String;
         var output : String;
+        var themes: String;
+        var plugins: String;
     }
 
     var sort: {
@@ -117,6 +119,18 @@ class ConfigFile
     {
         if(_data == null || _data.paths == null || _data.paths.assets == null) return "_assets";
         return _data.paths.assets;
+    }
+
+    public function getThemesPath(): String
+    {
+        if(_data == null || _data.paths == null || _data.paths.themes == null) return "_themes";
+        return _data.paths.themes;
+    }
+
+    public function getPluginsPath(): String
+    {
+        if(_data == null || _data.paths == null || _data.paths.plugins == null) return "_plugins";
+        return _data.paths.plugins;
     }
 
     public function getPlatform(): String
