@@ -30,7 +30,9 @@ class Post
         var frontmatterContent : Array<String> = this._content.split("---");
         
         this._frontmatter = Yaml.parse(frontmatterContent[1]);
-        this._createBody(frontmatterContent);
+
+        this.createBody(frontmatterContent);
+        this.updateExtension();
 
         this._title = _frontmatter.get("title");
         this._tag = _frontmatter.get("tag");
@@ -88,33 +90,14 @@ class Post
      */
     public function save(path : String, rendered : String)
     {
-        var components = _name.split(".");
-        var extension = components[components.length - 1];
-        var output = _name;
-
-        if(extension != "html")
+        if(FileSystem.exists(_name))
         {
-            output = "";
-
-            for(i in 0...components.length)
-            {
-                if(i != components.length - 1)
-                {
-                    output += components[i] + ".";
-                }
-            }
-
-            output += "html";
-        }
-
-        if(FileSystem.exists(output))
-        {
-            File.saveContent(path + "/" + output, rendered);
+            File.saveContent(path + "/" + _name, rendered);
         }
         else
         {
             FileSystem.createDirectory(path + "/");
-            File.saveContent(path + "/" + output, rendered);
+            File.saveContent(path + "/" + _name, rendered);
         }
     }
 
@@ -249,7 +232,7 @@ class Post
      * Prepare the body content for compilation
      * @param frontmatterContent 
      */
-    private function _createBody(frontmatterContent : Array<String>)
+    private function createBody(frontmatterContent : Array<String>)
     {
         if(frontmatterContent.length > 2)
         {
@@ -270,5 +253,29 @@ class Post
         {
             this._body = frontmatterContent[2];
         }
+    }
+
+    private function updateExtension()
+    {
+        var components = _name.split(".");
+        var extension = components[components.length - 1];
+        var output = _name;
+
+        if(extension != "html")
+        {
+            output = "";
+
+            for(i in 0...components.length)
+            {
+                if(i != components.length - 1)
+                {
+                    output += components[i] + ".";
+                }
+            }
+
+            output += "html";
+        }
+
+        _name = output;
     }
 }

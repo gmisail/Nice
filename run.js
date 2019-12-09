@@ -8255,6 +8255,37 @@ nice_fs_Directory.create = function(name) {
 nice_fs_Directory.exists = function(name) {
 	return sys_FileSystem.exists(name);
 };
+nice_fs_Directory.clean = function(path) {
+	if(sys_FileSystem.exists(path) && sys_FileSystem.isDirectory(path)) {
+		var entries = js_node_Fs.readdirSync(path);
+		var _g = 0;
+		while(_g < entries.length) {
+			var entry = entries[_g];
+			++_g;
+			if(sys_FileSystem.isDirectory(path + "/" + entry)) {
+				nice_fs_Directory.clean(path + "/" + entry);
+				var path1 = path + "/" + entry;
+				if(sys_FileSystem.exists(path1)) {
+					var _g1 = 0;
+					var _g11 = js_node_Fs.readdirSync(path1);
+					while(_g1 < _g11.length) {
+						var file = _g11[_g1];
+						++_g1;
+						var curPath = path1 + "/" + file;
+						if(sys_FileSystem.isDirectory(curPath)) {
+							sys_FileSystem.deleteDirectory(curPath);
+						} else {
+							js_node_Fs.unlinkSync(curPath);
+						}
+					}
+					js_node_Fs.rmdirSync(path1);
+				}
+			} else {
+				js_node_Fs.unlinkSync(path + "/" + entry);
+			}
+		}
+	}
+};
 nice_fs_Directory.prototype = {
 	_local: null
 	,_names: null
@@ -8320,7 +8351,7 @@ nice_lib_Assets.prototype = $extend(nice_fs_Directory.prototype,{
 		while(file.hasNext()) {
 			var file1 = file.next();
 			if(!sys_FileSystem.isDirectory("" + this.getLocalPath() + "/" + file1)) {
-				var from = "_assets/" + file1;
+				var from = "" + this.getLocalPath() + "/" + file1;
 				var to = "_public/_assets/" + file1;
 				sys_io_File.copy(from,to);
 			}
@@ -8349,8 +8380,18 @@ nice_lib_Build.process = function() {
 	nice_lib_Build._config = new nice_lib_util_ConfigFile("config.yaml");
 	nice_lib_Build._posts = new nice_lib_Collection(nice_lib_Build._config.getPostsPath(),nice_lib_Build._config.getSortPosts());
 	nice_lib_Build._pages = new nice_lib_Collection(nice_lib_Build._config.getPagesPath(),nice_lib_Build._config.getSortPages());
-	nice_lib_Build._layouts = new nice_lib_Layouts(nice_lib_Build._config.getLayoutsPath());
-	nice_lib_Build._assets = new nice_lib_Assets(nice_lib_Build._config.getAssetsPath());
+	nice_lib_Build._assets = [];
+	nice_lib_Build._assets.push(new nice_lib_Assets(nice_lib_Build._config.getAssetsPath()));
+	if(nice_lib_Build._config.getTheme() == "default") {
+		nice_lib_Build._layouts = new nice_lib_Layouts(nice_lib_Build._config.getLayoutsPath());
+	}
+	if(sys_FileSystem.exists("_themes")) {
+		var theme = nice_lib_Build._config.getTheme();
+		if(theme != "default") {
+			nice_lib_Build._layouts = new nice_lib_Layouts("_themes/" + theme + "/_layouts");
+			nice_lib_Build._assets.push(new nice_lib_Assets("_themes/" + theme + "/_assets"));
+		}
+	}
 	if(sys_FileSystem.exists("_plugins")) {
 		nice_lib_Build._plugin_manager = new nice_plugin_PluginManager("_plugins");
 		nice_lib_Build._plugins = new nice_fs_Directory("_plugins");
@@ -8363,47 +8404,22 @@ nice_lib_Build.process = function() {
 	}
 };
 nice_lib_Build.compile = function() {
-	nice_lib_Build.clean(nice_lib_Build._config.getOutputPath());
+	nice_fs_Directory.clean(nice_lib_Build._config.getOutputPath());
 	nice_fs_Directory.create(nice_lib_Build._config.getOutputPath());
 	nice_fs_Directory.create(nice_lib_Build._config.getOutputPath() + "/_posts");
 	nice_fs_Directory.create(nice_lib_Build._config.getOutputPath() + "/_assets");
 	if(nice_lib_Build._config.getPlatform() == nice_lib_util_Platform.GITHUB_PAGES) {
 		js_node_Fs.writeFileSync(nice_lib_Build._config.getOutputPath() + "/.nojekyll","");
 	}
-	nice_lib_Build._assets.copy();
+	var _g = 0;
+	var _g1 = nice_lib_Build._assets;
+	while(_g < _g1.length) {
+		var asset = _g1[_g];
+		++_g;
+		asset.copy();
+	}
 	nice_lib_Build._posts.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config,nice_lib_Build._config.getOutputPath() + "/_posts",true);
 	nice_lib_Build._pages.render(nice_lib_Build._layouts,nice_lib_Build._posts,nice_lib_Build._pages,nice_lib_Build._config,nice_lib_Build._config.getOutputPath(),false);
-};
-nice_lib_Build.clean = function(path) {
-	if(sys_FileSystem.exists(path) && sys_FileSystem.isDirectory(path)) {
-		var entries = js_node_Fs.readdirSync(path);
-		var _g = 0;
-		while(_g < entries.length) {
-			var entry = entries[_g];
-			++_g;
-			if(sys_FileSystem.isDirectory(path + "/" + entry)) {
-				nice_lib_Build.clean(path + "/" + entry);
-				var path1 = path + "/" + entry;
-				if(sys_FileSystem.exists(path1)) {
-					var _g1 = 0;
-					var _g11 = js_node_Fs.readdirSync(path1);
-					while(_g1 < _g11.length) {
-						var file = _g11[_g1];
-						++_g1;
-						var curPath = path1 + "/" + file;
-						if(sys_FileSystem.isDirectory(curPath)) {
-							sys_FileSystem.deleteDirectory(curPath);
-						} else {
-							js_node_Fs.unlinkSync(curPath);
-						}
-					}
-					js_node_Fs.rmdirSync(path1);
-				}
-			} else {
-				js_node_Fs.unlinkSync(path + "/" + entry);
-			}
-		}
-	}
 };
 var nice_lib_Collection = function(dir,sort) {
 	if(sort == null) {
@@ -8754,6 +8770,13 @@ nice_lib_util_ConfigFile.prototype = {
 			return { };
 		} else {
 			return this._data.variables;
+		}
+	}
+	,getTheme: function() {
+		if(this._data == null || this._data.theme == null) {
+			return "default";
+		} else {
+			return this._data.theme;
 		}
 	}
 	,getOutputPath: function() {

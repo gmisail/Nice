@@ -18,15 +18,17 @@ typedef ConfigData = {
         var layouts : String;
         var output : String;
     }
+
+    var sort: {
+        var posts: String;
+        var pages: String;
+    }
     
     var variables: {};
 
     var url : String;
     var platform: String;
     var theme: String;
-
-    var sortPosts: String;
-    var sortPages: String;
 }
 
 /*
@@ -126,13 +128,13 @@ class ConfigFile
 
     public function getSortPages() : String
     {
-        if(_data == null || _data.sortPages == null) return "none";
-        else return _data.sortPages;
+        if(_data == null || _data.sort == null || _data.sort.pages == null) return "none";
+        else return _data.sort.pages;
     }
 
     public function getSortPosts() : String
     {
-        if(_data == null || _data.sortPosts == null) return "none";
-        else return _data.sortPosts;
+        if(_data == null || _data.sort == null || _data.sort.posts == null) return "none";
+        else return _data.sort.posts;
     }
 }
