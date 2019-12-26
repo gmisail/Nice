@@ -132,5 +132,16 @@ variables:
 
 ## Plugins
 
-Plugins are written in a Haxe's official scripting language, hscript. They allow the user to customize the build process without having to recompile the Nice library itself. Installing plugins is incredibly easy; all you need to do is create a folder named `_plugins` in the root directory of your project and add
-`.hscript` files to it. Examples of plugins are available in the `plugins` folder.
+Plugins are written in a Haxe's official scripting language, hscript. They allow the user to customize the build process without having to recompile the Nice library itself. Installing plugins is incredibly easy; all you need to do is create a folder named `_plugins` in the root directory of your project and add `.hscript` files to it. 
+
+```
+for(post in posts)
+{
+    var title = post.getTitle(); 
+    var title_chars = title.split(''); 
+    title_chars.reverse(); 
+    post.setTitle(title_chars.join(''));
+}
+```
+
+In this example, we are looping through every post in the posts folder, getting the name, reversing it, and then setting it to the reversed version. Although not very practical, it represents what can be done using the plugins system. 
