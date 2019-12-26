@@ -8,6 +8,7 @@ import nice.filesystem.Directory;
  *  Manages the creation of new posts, pages, layouts, etc.  
  */
 
+@:expose
 class Create
 {
     private static var DEFAULT_POST_FRONTMATTER : String = "---\ntitle: New Post\n---\n";

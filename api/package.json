@@ -1,11 +1,8 @@
 {
   "name": "nice-site",
-  "version": "3.0.0",
-  "description": "A static site generator that isn't mean.",
-  "main": "run.js",
-  "bin": {
-    "nice": "nice.js"
-  },
+  "version": "3.0.4",
+  "description": "API for the Nice static site generator",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gmisail/Nice.git"
@@ -14,7 +11,8 @@
     "html",
     "static-site-generator",
     "js",
-    "haxe"
+    "haxe", 
+    "api"
   ],
   "author": "Graham Misail",
   "license": "MIT",

@@ -11,6 +11,7 @@ import nice.lib.util.ConfigFile;
 import nice.lib.util.ItemType;
 import nice.plugin.PluginManager;
 
+@:expose
 class Build
 {
     /**

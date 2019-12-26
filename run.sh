@@ -27,5 +27,8 @@ else
     echo '[Nice] Node ✔️'
     haxe build.hxml
     echo '[Nice] Neko ✔️'
+
+    
+
     echo '[Nice] Done.'
 fi
