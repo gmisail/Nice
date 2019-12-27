@@ -27,6 +27,24 @@ python -m SimpleHTTPServer  # python 2
 python3 -m http.server      # python 3
 ```
 
+### API
+
+If you do not want to use the default frontend, you can use the external Javascript interface. You can install it through NPM:
+
+`npm install nice-site`
+
+```
+var api = require('nice-site')
+
+api.createProject();
+api.createLayout("another-layout")
+api.createPost("my-post")
+api.createPage("another-page");
+api.build()
+```
+
+Using the API, you can do what you can do with the command line interface: create projects, posts, pages, and layouts, as well as build the project. 
+
 ## Commands
 
 Nice comes with a catalog of commands that make it incredibly easy to create, build, and manage your project.
