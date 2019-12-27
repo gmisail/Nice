@@ -92,6 +92,8 @@ You can use the following variables in your Mustache templates:
 > Note:
 > All variables within the Post / Page object are prefixed with an underscore.
 
+Posts and pages are exposed to layouts as an Array of posts. You can change the order by modifying the `sort` property in the configuration file.
+
 ## Posts
 
 Posts are very easy to create; all you have to do is create a new file in the `_posts` folder with a HTML extension. You can do this manually or by using the command `haxelib run nice create post PutYourPostNameHere`.
@@ -146,9 +148,15 @@ variables:
   name:
     first: john
     last: smith
+   
+sort:
+    posts: newest-to-oldest
+    pages: order
 ```
 
 To use the variables declared in `config.yaml`, you use the Mustache expression `{{variables.NameOfVariable}}`.
+
+There are 3 different sorting styles: `newest-to-oldest`, `oldest-to-newest`, and `order`. If a sorting style is not specified, posts and pages will be in the same order as they are in the `_posts` and `_pages` folder.
 
 ## Plugins
 
