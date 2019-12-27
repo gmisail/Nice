@@ -55,6 +55,8 @@ haxelib run Nice create <project/post/page/layout> <name>
 haxelib run Nice delete <post/page/layout> <name>
 ```
 
+It is encouraged that you create an alias to the `haxelib run Nice` command, since it a burden to type out. Because the `nice` command is a default Unix command, consider assigning `haxelib run Nice` to something like `nice-util` or `nicelib`.
+
 ## Theming
 
 Nice does not come with a pre-installed theme or design. The user must design their own theme using HTML & Mustache.
