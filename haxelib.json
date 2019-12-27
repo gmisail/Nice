@@ -12,7 +12,7 @@
 	"contributors": [
 		"gmisail"
 	],
-	"releasenote": "Added Javascript API",
+	"releasenote": "Javascript API",
 	"version": "3.4.0",
 	"url": "https://github.com/gmisail/Nice",
 	"dependencies": {
